@@ -4,6 +4,7 @@ from core2D import *
 import numpy as np
 from collections import OrderedDict
 import random
+import math
 
 # Input Data
 settings = {
@@ -34,6 +35,7 @@ hzp_density = 0.73986            # Highest density
 low_density = 0.66               # Lowest density
 pin_pitch = 1.25984              # Pin pitch
 assy_pitch = 21.50364            # Assembly pitch
+rpv_OR = 251.9
 
 assy_dict.update({
 'A___5' : Assembly(enr = '3.1', bp = None),
@@ -504,10 +506,19 @@ def create_surfaces():
 
     # Core surfaces
     box = 17.0*assy_pitch/2.0
-    add_surface('core_left', 'x-plane', '{0}'.format(-box), 'reflective', 'Core left surface')
-    add_surface('core_right', 'x-plane', '{0}'.format(box), 'reflective', 'Core right surface')
-    add_surface('core_back', 'y-plane', '{0}'.format(-box), 'reflective', 'Core back surface')
-    add_surface('core_front', 'y-plane', '{0}'.format(box), 'reflective', 'Core front surface')
+    add_surface('core_left', 'x-plane', '{0}'.format(-box), comment = 'Core left surface')
+    add_surface('core_right', 'x-plane', '{0}'.format(box), comment = 'Core right surface')
+    add_surface('core_back', 'y-plane', '{0}'.format(-box), comment = 'Core back surface')
+    add_surface('core_front', 'y-plane', '{0}'.format(box), comment = 'Core front surface')
+
+    # Peripheral structures
+    add_surface('core_barrelIR', 'z-cylinder', '0.0 0.0 187.960', comment = 'Core barrel inner radius')
+    add_surface('core_barrelOR', 'z-cylinder', '0.0 0.0 193.675', bc = 'vacuum', comment = 'Core barrel outer radius')
+    add_surface('shield_OR', 'z-cylinder', '0.0 0.0 199.39', comment = 'Shield panel outer radius')
+    add_surface('shield_NWtoSE', 'plane', '1 {0} 0 0'.format(math.tan(math.pi/3)), comment = 'Shield panel cut plane')
+    add_surface('shield_SEtoNW', 'plane', '1 {0} 0 0'.format(math.tan(math.pi/6)), comment = 'Shield panel cut plane')
+    add_surface('shield_NEtoSW', 'plane', '1 {0} 0 0'.format(math.tan(math.pi/3)), comment = 'Shield panel cut plane')
+    add_surface('shield_SWtoNE', 'plane', '1 {0} 0 0'.format(math.tan(math.pi/6)), comment = 'Shield panel cut plane')
 
 def create_fuelpin(fuel_mat):
 
@@ -1187,13 +1198,39 @@ def create_core():
      
     # Create core fill cell
     add_cell('core',
-        surfaces = '{0} -{1} {2} -{3}'.format(surf_dict['core_left'].id, surf_dict['core_right'].id,
-                                                       surf_dict['core_back'].id, surf_dict['core_front'].id),
+        surfaces = '{0} -{1} {2} -{3} -{4}'.format(surf_dict['core_left'].id, surf_dict['core_right'].id,
+                                        surf_dict['core_back'].id, surf_dict['core_front'].id, surf_dict['core_barrelIR'].id),
         fill = lat_dict['Core Lattice'].id,
         comment = 'Core fill')
+
+    # Add moderator outside of core
+    add_cell('coremodN',
+        surfaces = '{0} {1} -{2} -{3}'.format(surf_dict['core_front'].id, surf_dict['core_left'].id, surf_dict['core_right'].id, surf_dict['core_barrelIR'].id),
+        material = mat_dict['h2o_hzp'].id,
+        comment = 'Moderator around N of core')
+    add_cell('coremodS',
+        surfaces = '-{0} {1} -{2} -{3}'.format(surf_dict['core_back'].id, surf_dict['core_left'].id, surf_dict['core_right'].id, surf_dict['core_barrelIR'].id),
+        material = mat_dict['h2o_hzp'].id,
+        comment = 'Moderator around S of core')
+    add_cell('coremodNES',
+        surfaces = '{0} -{1}'.format(surf_dict['core_right'].id, surf_dict['core_barrelIR'].id),
+        material = mat_dict['h2o_hzp'].id,
+        comment = 'Moderator around E of core')
+    add_cell('coremodSWN',
+        surfaces = '-{0} -{1}'.format(surf_dict['core_left'].id, surf_dict['core_barrelIR'].id),
+        material = mat_dict['h2o_hzp'].id,
+        comment = 'Moderator around W of core')
+
+    # Add in core barrel
+    add_cell('core_barrel',
+        surfaces = '{0} -{1}'.format(surf_dict['core_barrelIR'].id, surf_dict['core_barrelOR'].id),
+        material = mat_dict['ss'].id,
+        comment = 'Core Barrel')
+     
+    # Plot core
     add_plot('plot_axial',
         origin = '0.0 0.0 0.0',
-        width = '{0} {1}'.format(-17.0*assy_pitch, 17.0*assy_pitch),
+        width = '{0} {0}'.format(2.0*rpv_OR),
         basis = 'xy',
         pixels = '3000 3000',
         filename = 'core_radial')
