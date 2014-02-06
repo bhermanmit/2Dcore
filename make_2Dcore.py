@@ -36,28 +36,232 @@ pin_pitch = 1.25984              # Pin pitch
 assy_pitch = 21.50364            # Assembly pitch
 
 assy_dict.update({
-'A___1' : Assembly(enr = '2.4', bp = '12'),
-'A___5' : Assembly(enr = '3.1', bp = None)
-})
+'A___5' : Assembly(enr = '3.1', bp = None),
+'A___6' : Assembly(enr = '3.1', bp = '6W'),
+'A___7' : Assembly(enr = '3.1', bp = None),
+'A___8' : Assembly(enr = '3.1', bp = '6W'),
+'A___9' : Assembly(enr = '3.1', bp = None),
+'A__10' : Assembly(enr = '3.1', bp = '6W'),
+'A__11' : Assembly(enr = '3.1', bp = None),
 
+'B___3' : Assembly(enr = '3.1', bp = None),
+'B___4' : Assembly(enr = '3.1', bp = None),
+'B___5' : Assembly(enr = '3.1', bp = '16'),
+'B___6' : Assembly(enr = '1.6', bp = None),
+'B___7' : Assembly(enr = '3.1', bp = '20'),
+'B___8' : Assembly(enr = '1.6', bp = None),
+'B___9' : Assembly(enr = '3.1', bp = '20'),
+'B__10' : Assembly(enr = '1.6', bp = None),
+'B__11' : Assembly(enr = '3.1', bp = '16'),
+'B__12' : Assembly(enr = '3.1', bp = None),
+'B__13' : Assembly(enr = '3.1', bp = None),
+
+'C___2' : Assembly(enr = '3.1', bp = None),
+'C___3' : Assembly(enr = '3.1', bp = '15SW'),
+'C___4' : Assembly(enr = '2.4', bp = '16'),
+'C___5' : Assembly(enr = '1.6', bp = None),
+'C___6' : Assembly(enr = '2.4', bp = '16'),
+'C___7' : Assembly(enr = '1.6', bp = None),
+'C___8' : Assembly(enr = '2.4', bp = '16'),
+'C___9' : Assembly(enr = '1.6', bp = None),
+'C__10' : Assembly(enr = '2.4', bp = '16'),
+'C__11' : Assembly(enr = '1.6', bp = None),
+'C__12' : Assembly(enr = '2.4', bp = '16'),
+'C__13' : Assembly(enr = '3.1', bp = '15NW'),
+'C__14' : Assembly(enr = '3.1', bp = None),
+
+'D___2' : Assembly(enr = '3.1', bp = None),
+'D___3' : Assembly(enr = '2.4', bp = '16'),
+'D___4' : Assembly(enr = '2.4', bp = None),
+'D___5' : Assembly(enr = '2.4', bp = '16'),
+'D___6' : Assembly(enr = '1.6', bp = None),
+'D___7' : Assembly(enr = '2.4', bp = '12'),
+'D___8' : Assembly(enr = '1.6', bp = None),
+'D___9' : Assembly(enr = '2.4', bp = '12'),
+'D__10' : Assembly(enr = '1.6', bp = None),
+'D__11' : Assembly(enr = '2.4', bp = '16'),
+'D__12' : Assembly(enr = '2.4', bp = None),
+'D__13' : Assembly(enr = '2.4', bp = '16'),
+'D__14' : Assembly(enr = '3.1', bp = None),
+
+'E___1' : Assembly(enr = '3.1', bp = None),
+'E___2' : Assembly(enr = '3.1', bp = '16'),
+'E___3' : Assembly(enr = '1.6', bp = None),
+'E___4' : Assembly(enr = '2.4', bp = '16'),
+'E___5' : Assembly(enr = '1.6', bp = None),
+'E___6' : Assembly(enr = '2.4', bp = '12'),
+'E___7' : Assembly(enr = '1.6', bp = None),
+'E___8' : Assembly(enr = '2.4', bp = '12'),
+'E___9' : Assembly(enr = '1.6', bp = None),
+'E__10' : Assembly(enr = '2.4', bp = '12'),
+'E__11' : Assembly(enr = '1.6', bp = None),
+'E__12' : Assembly(enr = '2.4', bp = '16'),
+'E__13' : Assembly(enr = '1.6', bp = None),
+'E__14' : Assembly(enr = '3.1', bp = '16'),
+'E__15' : Assembly(enr = '3.1', bp = None),
+
+'F___1' : Assembly(enr = '3.1', bp = '6S'),
+'F___2' : Assembly(enr = '1.6', bp = None),
+'F___3' : Assembly(enr = '2.4', bp = '16'),
+'F___4' : Assembly(enr = '1.6', bp = None),
+'F___5' : Assembly(enr = '2.4', bp = '12'),
+'F___6' : Assembly(enr = '1.6', bp = None),
+'F___7' : Assembly(enr = '2.4', bp = '12'),
+'F___8' : Assembly(enr = '1.6', bp = None),
+'F___9' : Assembly(enr = '2.4', bp = '12'),
+'F__10' : Assembly(enr = '1.6', bp = None),
+'F__11' : Assembly(enr = '2.4', bp = '12'),
+'F__12' : Assembly(enr = '1.6', bp = None),
+'F__13' : Assembly(enr = '2.4', bp = '16'),
+'F__14' : Assembly(enr = '1.6', bp = None),
+'F__15' : Assembly(enr = '3.1', bp = '6N'),
+
+'G___1' : Assembly(enr = '3.1', bp = None),
+'G___2' : Assembly(enr = '3.1', bp = '20'),
+'G___3' : Assembly(enr = '1.6', bp = None),
+'G___4' : Assembly(enr = '2.4', bp = '12'),
+'G___5' : Assembly(enr = '1.6', bp = None),
+'G___6' : Assembly(enr = '2.4', bp = '12'),
+'G___7' : Assembly(enr = '1.6', bp = None),
+'G___8' : Assembly(enr = '2.4', bp = '16'),
+'G___9' : Assembly(enr = '1.6', bp = None),
+'G__10' : Assembly(enr = '2.4', bp = '12'),
+'G__11' : Assembly(enr = '1.6', bp = None),
+'G__12' : Assembly(enr = '2.4', bp = '12'),
+'G__13' : Assembly(enr = '1.6', bp = None),
+'G__14' : Assembly(enr = '3.1', bp = '20'),
+'G__15' : Assembly(enr = '3.1', bp = None),
+
+'H___1' : Assembly(enr = '3.1', bp = '6S'),
+'H___2' : Assembly(enr = '1.6', bp = None),
+'H___3' : Assembly(enr = '2.4', bp = '16'),
+'H___4' : Assembly(enr = '1.6', bp = None),
+'H___5' : Assembly(enr = '2.4', bp = '12'),
+'H___6' : Assembly(enr = '1.6', bp = None),
+'H___7' : Assembly(enr = '2.4', bp = '16'),
+'H___8' : Assembly(enr = '1.6', bp = None),
+'H___9' : Assembly(enr = '2.4', bp = '16'),
+'H__10' : Assembly(enr = '1.6', bp = None),
+'H__11' : Assembly(enr = '2.4', bp = '12'),
+'H__12' : Assembly(enr = '1.6', bp = None),
+'H__13' : Assembly(enr = '2.4', bp = '16'),
+'H__14' : Assembly(enr = '1.6', bp = None),
+'H__15' : Assembly(enr = '3.1', bp = '6N'),
+
+'J___1' : Assembly(enr = '3.1', bp = None),
+'J___2' : Assembly(enr = '3.1', bp = '20'),
+'J___3' : Assembly(enr = '1.6', bp = None),
+'J___4' : Assembly(enr = '2.4', bp = '12'),
+'J___5' : Assembly(enr = '1.6', bp = None),
+'J___6' : Assembly(enr = '2.4', bp = '12'),
+'J___7' : Assembly(enr = '1.6', bp = None),
+'J___8' : Assembly(enr = '2.4', bp = '16'),
+'J___9' : Assembly(enr = '1.6', bp = None),
+'J__10' : Assembly(enr = '2.4', bp = '12'),
+'J__11' : Assembly(enr = '1.6', bp = None),
+'J__12' : Assembly(enr = '2.4', bp = '12'),
+'J__13' : Assembly(enr = '1.6', bp = None),
+'J__14' : Assembly(enr = '3.1', bp = '20'),
+'J__15' : Assembly(enr = '3.1', bp = None),
+
+'K___1' : Assembly(enr = '3.1', bp = '6S'),
+'K___2' : Assembly(enr = '1.6', bp = None),
+'K___3' : Assembly(enr = '2.4', bp = '16'),
+'K___4' : Assembly(enr = '1.6', bp = None),
+'K___5' : Assembly(enr = '2.4', bp = '12'),
+'K___6' : Assembly(enr = '1.6', bp = None),
+'K___7' : Assembly(enr = '2.4', bp = '12'),
+'K___8' : Assembly(enr = '1.6', bp = None),
+'K___9' : Assembly(enr = '2.4', bp = '12'),
+'K__10' : Assembly(enr = '1.6', bp = None),
+'K__11' : Assembly(enr = '2.4', bp = '12'),
+'K__12' : Assembly(enr = '1.6', bp = None),
+'K__13' : Assembly(enr = '2.4', bp = '16'),
+'K__14' : Assembly(enr = '1.6', bp = None),
+'K__15' : Assembly(enr = '3.1', bp = '6N'),
+
+'L___1' : Assembly(enr = '3.1', bp = None),
+'L___2' : Assembly(enr = '3.1', bp = '16'),
+'L___3' : Assembly(enr = '1.6', bp = None),
+'L___4' : Assembly(enr = '2.4', bp = '16'),
+'L___5' : Assembly(enr = '1.6', bp = None),
+'L___6' : Assembly(enr = '2.4', bp = '12'),
+'L___7' : Assembly(enr = '1.6', bp = None),
+'L___8' : Assembly(enr = '2.4', bp = '12'),
+'L___9' : Assembly(enr = '1.6', bp = None),
+'L__10' : Assembly(enr = '2.4', bp = '12'),
+'L__11' : Assembly(enr = '1.6', bp = None),
+'L__12' : Assembly(enr = '2.4', bp = '16'),
+'L__13' : Assembly(enr = '1.6', bp = None),
+'L__14' : Assembly(enr = '3.1', bp = '16'),
+'L__15' : Assembly(enr = '3.1', bp = None),
+
+'M___2' : Assembly(enr = '3.1', bp = None),
+'M___3' : Assembly(enr = '2.4', bp = '16'),
+'M___4' : Assembly(enr = '2.4', bp = None),
+'M___5' : Assembly(enr = '2.4', bp = '16'),
+'M___6' : Assembly(enr = '1.6', bp = None),
+'M___7' : Assembly(enr = '2.4', bp = '12'),
+'M___8' : Assembly(enr = '1.6', bp = None),
+'M___9' : Assembly(enr = '2.4', bp = '12'),
+'M__10' : Assembly(enr = '1.6', bp = None),
+'M__11' : Assembly(enr = '2.4', bp = '16'),
+'M__12' : Assembly(enr = '2.4', bp = None),
+'M__13' : Assembly(enr = '2.4', bp = '16'),
+'M__14' : Assembly(enr = '3.1', bp = None),
+
+'N___2' : Assembly(enr = '3.1', bp = None),
+'N___3' : Assembly(enr = '3.1', bp = '15SE'),
+'N___4' : Assembly(enr = '2.4', bp = '16'),
+'N___5' : Assembly(enr = '1.6', bp = None),
+'N___6' : Assembly(enr = '2.4', bp = '16'),
+'N___7' : Assembly(enr = '1.6', bp = None),
+'N___8' : Assembly(enr = '2.4', bp = '16'),
+'N___9' : Assembly(enr = '1.6', bp = None),
+'N__10' : Assembly(enr = '2.4', bp = '16'),
+'N__11' : Assembly(enr = '1.6', bp = None),
+'N__12' : Assembly(enr = '2.4', bp = '16'),
+'N__13' : Assembly(enr = '3.1', bp = '15NE'),
+'N__14' : Assembly(enr = '3.1', bp = None),
+
+'P___3' : Assembly(enr = '3.1', bp = None),
+'P___4' : Assembly(enr = '3.1', bp = None),
+'P___5' : Assembly(enr = '3.1', bp = '16'),
+'P___6' : Assembly(enr = '1.6', bp = None),
+'P___7' : Assembly(enr = '3.1', bp = '20'),
+'P___8' : Assembly(enr = '1.6', bp = None),
+'P___9' : Assembly(enr = '3.1', bp = '20'),
+'P__10' : Assembly(enr = '1.6', bp = None),
+'P__11' : Assembly(enr = '3.1', bp = '16'),
+'P__12' : Assembly(enr = '3.1', bp = None),
+'P__13' : Assembly(enr = '3.1', bp = None),
+
+'R___5' : Assembly(enr = '3.1', bp = None),
+'R___6' : Assembly(enr = '3.1', bp = '6E'),
+'R___7' : Assembly(enr = '3.1', bp = None),
+'R___8' : Assembly(enr = '3.1', bp = '6E'),
+'R___9' : Assembly(enr = '3.1', bp = None),
+'R__10' : Assembly(enr = '3.1', bp = '6E'),
+'R__11' : Assembly(enr = '3.1', bp = None),
+})
 
 assembly_map = """
 {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} 
-{MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4}
-{MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4}
-{MOD__.u:>4} {MOD__.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {MOD__.u:>4} {MOD__.u:>4}
-{MOD__.u:>4} {MOD__.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {MOD__.u:>4} {MOD__.u:>4}
-{MOD__.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___5.u:>4} {MOD__.u:>4}
-{MOD__.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {MOD__.u:>4}
-{MOD__.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {MOD__.u:>4}
-{MOD__.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {MOD__.u:>4}
-{MOD__.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {MOD__.u:>4}
-{MOD__.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {MOD__.u:>4}
-{MOD__.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {MOD__.u:>4}
-{MOD__.u:>4} {MOD__.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {MOD__.u:>4} {MOD__.u:>4}
-{MOD__.u:>4} {MOD__.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {MOD__.u:>4} {MOD__.u:>4}
-{MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4}
-{MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4}
+{MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {L___1.u:>4} {K___1.u:>4} {J___1.u:>4} {H___1.u:>4} {G___1.u:>4} {F___1.u:>4} {E___1.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4}
+{MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {N___2.u:>4} {M___2.u:>4} {L___2.u:>4} {K___2.u:>4} {J___2.u:>4} {H___2.u:>4} {G___2.u:>4} {F___2.u:>4} {E___2.u:>4} {D___2.u:>4} {C___2.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4}
+{MOD__.u:>4} {MOD__.u:>4} {P___3.u:>4} {N___3.u:>4} {M___3.u:>4} {L___3.u:>4} {K___3.u:>4} {J___3.u:>4} {H___3.u:>4} {G___3.u:>4} {F___3.u:>4} {E___3.u:>4} {D___3.u:>4} {C___3.u:>4} {B___3.u:>4} {MOD__.u:>4} {MOD__.u:>4}
+{MOD__.u:>4} {MOD__.u:>4} {P___4.u:>4} {N___4.u:>4} {M___4.u:>4} {L___4.u:>4} {K___4.u:>4} {J___4.u:>4} {H___4.u:>4} {G___4.u:>4} {F___4.u:>4} {E___4.u:>4} {D___4.u:>4} {C___4.u:>4} {B___4.u:>4} {MOD__.u:>4} {MOD__.u:>4}
+{MOD__.u:>4} {R___5.u:>4} {P___5.u:>4} {N___5.u:>4} {M___5.u:>4} {L___5.u:>4} {K___5.u:>4} {J___5.u:>4} {H___5.u:>4} {G___5.u:>4} {F___5.u:>4} {E___5.u:>4} {D___5.u:>4} {C___5.u:>4} {B___5.u:>4} {A___5.u:>4} {MOD__.u:>4}
+{MOD__.u:>4} {R___6.u:>4} {P___6.u:>4} {N___6.u:>4} {M___6.u:>4} {L___6.u:>4} {K___6.u:>4} {J___6.u:>4} {H___6.u:>4} {G___6.u:>4} {F___6.u:>4} {E___6.u:>4} {D___6.u:>4} {C___6.u:>4} {B___6.u:>4} {A___6.u:>4} {MOD__.u:>4}
+{MOD__.u:>4} {R___7.u:>4} {P___7.u:>4} {N___7.u:>4} {M___7.u:>4} {L___7.u:>4} {K___7.u:>4} {J___7.u:>4} {H___7.u:>4} {G___7.u:>4} {F___7.u:>4} {E___7.u:>4} {D___7.u:>4} {C___7.u:>4} {B___7.u:>4} {A___7.u:>4} {MOD__.u:>4}
+{MOD__.u:>4} {R___8.u:>4} {P___8.u:>4} {N___8.u:>4} {M___8.u:>4} {L___8.u:>4} {K___8.u:>4} {J___8.u:>4} {H___8.u:>4} {G___8.u:>4} {F___8.u:>4} {E___8.u:>4} {D___8.u:>4} {C___8.u:>4} {B___8.u:>4} {A___8.u:>4} {MOD__.u:>4}
+{MOD__.u:>4} {R___9.u:>4} {P___9.u:>4} {N___9.u:>4} {M___9.u:>4} {L___9.u:>4} {K___9.u:>4} {J___9.u:>4} {H___9.u:>4} {G___9.u:>4} {F___9.u:>4} {E___9.u:>4} {D___9.u:>4} {C___9.u:>4} {B___9.u:>4} {A___9.u:>4} {MOD__.u:>4}
+{MOD__.u:>4} {R__10.u:>4} {P__10.u:>4} {N__10.u:>4} {M__10.u:>4} {L__10.u:>4} {K__10.u:>4} {J__10.u:>4} {H__10.u:>4} {G__10.u:>4} {F__10.u:>4} {E__10.u:>4} {D__10.u:>4} {C__10.u:>4} {B__10.u:>4} {A__10.u:>4} {MOD__.u:>4}
+{MOD__.u:>4} {R__11.u:>4} {P__11.u:>4} {N__11.u:>4} {M__11.u:>4} {L__11.u:>4} {K__11.u:>4} {J__11.u:>4} {H__11.u:>4} {G__11.u:>4} {F__11.u:>4} {E__11.u:>4} {D__11.u:>4} {C__11.u:>4} {B__11.u:>4} {A__11.u:>4} {MOD__.u:>4}
+{MOD__.u:>4} {MOD__.u:>4} {P__12.u:>4} {N__12.u:>4} {M__12.u:>4} {L__12.u:>4} {K__12.u:>4} {J__12.u:>4} {H__12.u:>4} {G__12.u:>4} {F__12.u:>4} {E__12.u:>4} {D__12.u:>4} {C__12.u:>4} {B__12.u:>4} {MOD__.u:>4} {MOD__.u:>4}
+{MOD__.u:>4} {MOD__.u:>4} {P__13.u:>4} {N__13.u:>4} {M__13.u:>4} {L__13.u:>4} {K__13.u:>4} {J__13.u:>4} {H__13.u:>4} {G__13.u:>4} {F__13.u:>4} {E__13.u:>4} {D__13.u:>4} {C__13.u:>4} {B__13.u:>4} {MOD__.u:>4} {MOD__.u:>4}
+{MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {N__14.u:>4} {M__14.u:>4} {L__14.u:>4} {K__14.u:>4} {J__14.u:>4} {H__14.u:>4} {G__14.u:>4} {F__14.u:>4} {E__14.u:>4} {D__14.u:>4} {C__14.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4}
+{MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {L__15.u:>4} {K__15.u:>4} {J__15.u:>4} {H__15.u:>4} {G__15.u:>4} {F__15.u:>4} {E__15.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4}
 {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4}
 """
 
@@ -666,7 +870,9 @@ def create_lattice(lat_key, fuel_key, bp_key, gt_key, it_key, bp_config=None, co
         'nw' : nw_id} 
 
     # Perform BP configurations
-    if bp_config == '6N':
+    if bp_config == None:
+        pass
+    elif bp_config == '6N':
         univs.update({
             'pa' : bp_id,
 	    'pc' : bp_id,
@@ -820,6 +1026,8 @@ def create_lattice(lat_key, fuel_key, bp_key, gt_key, it_key, bp_config=None, co
             'pw' : bp_id,
             'px' : bp_id,
             'py' : bp_id})
+    else:
+        raise Exception('BP Configuration {0} doesnt exist.'.format(bp_config))
 
     # Make lattice
     add_lattice(lat_key,
