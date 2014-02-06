@@ -265,9 +265,13 @@ class Assembly(object):
         self.enr = enr
         self.bp = bp
         self.u = u 
+        self.density = None
 
     def add_universe(self, u):
         self.u = u
+
+    def add_density(self, density):
+        self.density = density
 
 class Plot(object):
     def __init__(self, origin, width, basis, type='slice', color='mat', pixels="1000 1000", background='255 0 0', filename=None, comment=None):

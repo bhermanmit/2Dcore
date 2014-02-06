@@ -36,7 +36,8 @@ pin_pitch = 1.25984              # Pin pitch
 assy_pitch = 21.50364            # Assembly pitch
 
 assy_dict.update({
-'A___1' : Assembly(enr = '2.4', bp = '12')
+'A___1' : Assembly(enr = '2.4', bp = '12'),
+'A___5' : Assembly(enr = '3.1', bp = None)
 })
 
 
@@ -46,7 +47,7 @@ assembly_map = """
 {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4}
 {MOD__.u:>4} {MOD__.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {MOD__.u:>4} {MOD__.u:>4}
 {MOD__.u:>4} {MOD__.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {MOD__.u:>4} {MOD__.u:>4}
-{MOD__.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {MOD__.u:>4}
+{MOD__.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___5.u:>4} {MOD__.u:>4}
 {MOD__.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {MOD__.u:>4}
 {MOD__.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {MOD__.u:>4}
 {MOD__.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {MOD__.u:>4}
@@ -607,14 +608,15 @@ def create_baffle():
        'GR__W' : Assembly(u = univ_dict['baffle_W'].id),
        'GR_NW' : Assembly(u = univ_dict['baffle_NW'].id)})
 
-def create_lattice(lat_key, fuel_key, bp_key, gt_key, it_key, comment = None):
+def create_lattice(lat_key, fuel_key, bp_key, gt_key, it_key, bp_config=None, comment = None):
 
-    # Get ids
+    # Set up pin ids
     fuel_id = univ_dict[fuel_key].id
     bp_id = univ_dict[bp_key].id
     gt_id = univ_dict[gt_key].id
     it_id = univ_dict[it_key].id
 
+    # No grid present in this model so set these all to water
     no_id = univ_dict['mod'].id
     ne_id = univ_dict['mod'].id
     ea_id = univ_dict['mod'].id
@@ -627,72 +629,250 @@ def create_lattice(lat_key, fuel_key, bp_key, gt_key, it_key, comment = None):
     # Calculate coordinates
     lleft = -19.0*pin_pitch / 2.0
 
+    # Set defaults
+    univs = { 'fp':fuel_id,
+        'pa' : gt_id,
+        'pb' : gt_id,
+        'pc' : gt_id,
+        'pd' : gt_id,
+        'pe' : gt_id,
+        'pf' : gt_id,
+        'pg' : gt_id,
+        'ph' : gt_id,
+        'pi' : gt_id,
+        'pj' : gt_id,
+        'pk' : gt_id,
+        'pl' : gt_id,
+        'pm' : it_id,
+        'pn' : gt_id,
+        'po' : gt_id,
+        'pp' : gt_id,
+        'pq' : gt_id,
+        'pr' : gt_id,
+        'ps' : gt_id,
+        'pt' : gt_id,
+        'pu' : gt_id,
+        'pv' : gt_id,
+        'pw' : gt_id,
+        'px' : gt_id,
+        'py' : gt_id,
+        'no' : no_id,
+        'ne' : ne_id,
+        'ea' : ea_id,
+        'se' : se_id,
+        'so' : so_id,
+        'sw' : sw_id,
+        'we' : we_id,
+        'nw' : nw_id} 
+
+    # Perform BP configurations
+    if bp_config == '6N':
+        univs.update({
+            'pa' : bp_id,
+	    'pc' : bp_id,
+            'pd' : bp_id,
+            'pe' : bp_id,
+            'pf' : bp_id,
+            'pj' : bp_id})
+    elif bp_config == '6E':
+        univs.update({
+            'pj' : bp_id,
+	    'pt' : bp_id,
+            'pe' : bp_id,
+            'pv' : bp_id,
+            'pc' : bp_id,
+            'py' : bp_id})
+    elif bp_config == '6S':
+        univs.update({
+            'py' : bp_id,
+	    'pw' : bp_id,
+            'pv' : bp_id,
+            'pu' : bp_id,
+            'pt' : bp_id,
+            'pp' : bp_id})
+    elif bp_config == '6W':
+        univs.update({
+            'pp' : bp_id,
+	    'pf' : bp_id,
+            'pu' : bp_id,
+            'pd' : bp_id,
+            'pw' : bp_id,
+            'pa' : bp_id})
+    elif bp_config == '12':
+        univs.update({
+            'pa' : bp_id,
+	    'pc' : bp_id,
+            'pd' : bp_id,
+            'pe' : bp_id,
+            'pf' : bp_id,
+            'pj' : bp_id,
+            'pp' : bp_id,
+	    'pt' : bp_id,
+            'pu' : bp_id,
+            'pv' : bp_id,
+            'pw' : bp_id,
+            'py' : bp_id})
+    elif bp_config == '15NW':
+        univs.update({
+            'pa' : bp_id,
+	    'pb' : bp_id,
+            'pc' : bp_id,
+            'pd' : bp_id,
+            'pf' : bp_id,
+            'pg' : bp_id,
+            'ph' : bp_id,
+	    'pi' : bp_id,
+            'pk' : bp_id,
+            'pl' : bp_id,
+            'pn' : bp_id,
+            'pp' : bp_id,
+            'pq' : bp_id,
+            'pr' : bp_id,
+            'ps' : bp_id})
+    elif bp_config == '15NE':
+        univs.update({
+            'pa' : bp_id,
+	    'pb' : bp_id,
+            'pc' : bp_id,
+            'pe' : bp_id,
+            'pg' : bp_id,
+            'ph' : bp_id,
+            'pi' : bp_id,
+	    'pj' : bp_id,
+            'pl' : bp_id,
+            'pn' : bp_id,
+            'po' : bp_id,
+            'pq' : bp_id,
+            'pr' : bp_id,
+            'ps' : bp_id,
+            'pt' : bp_id})
+    elif bp_config == '15SE':
+        univs.update({
+            'pg' : bp_id,
+	    'ph' : bp_id,
+            'pi' : bp_id,
+            'pj' : bp_id,
+            'pl' : bp_id,
+            'pn' : bp_id,
+            'po' : bp_id,
+	    'pq' : bp_id,
+            'pr' : bp_id,
+            'ps' : bp_id,
+            'pt' : bp_id,
+            'pv' : bp_id,
+            'pw' : bp_id,
+            'px' : bp_id,
+            'py' : bp_id})
+    elif bp_config == '15SW':
+        univs.update({
+            'pf' : bp_id,
+	    'pg' : bp_id,
+            'ph' : bp_id,
+            'pi' : bp_id,
+            'pk' : bp_id,
+            'pl' : bp_id,
+            'pn' : bp_id,
+	    'pp' : bp_id,
+            'pq' : bp_id,
+            'pr' : bp_id,
+            'ps' : bp_id,
+            'pu' : bp_id,
+            'pw' : bp_id,
+            'px' : bp_id,
+            'py' : bp_id})
+    elif bp_config == '16':
+        univs.update({
+            'pa' : bp_id,
+	    'pb' : bp_id,
+            'pc' : bp_id,
+            'pd' : bp_id,
+            'pe' : bp_id,
+            'pf' : bp_id,
+            'pj' : bp_id,
+            'pk' : bp_id,
+	    'po' : bp_id,
+            'pp' : bp_id,
+            'pt' : bp_id,
+            'pu' : bp_id,
+            'pv' : bp_id,
+            'pw' : bp_id,
+            'px' : bp_id,
+            'py' : bp_id})
+    elif bp_config == '20':
+        univs.update({
+            'pa' : bp_id,
+            'pb' : bp_id,
+	    'pc' : bp_id,
+	    'pd' : bp_id,
+            'pe' : bp_id,
+            'pf' : bp_id,
+            'pg' : bp_id,
+            'pi' : bp_id,
+            'pj' : bp_id,
+            'pk' : bp_id,
+	    'po' : bp_id,
+            'pp' : bp_id,
+            'pq' : bp_id,
+            'ps' : bp_id,
+            'pt' : bp_id,
+            'pu' : bp_id,
+            'pv' : bp_id,
+            'pw' : bp_id,
+            'px' : bp_id,
+            'py' : bp_id})
+
     # Make lattice
     add_lattice(lat_key,
         dimension = '19 19',
         lower_left = '{0} {0}'.format(lleft),
         width = '{0} {0}'.format(pin_pitch),
-        universes = pin_lattice.format(**{ 'fp': fuel_id,
-                      'pa': bp_id,
-                      'pb': gt_id,
-                      'pc': bp_id,
-                      'pd': bp_id,
-                      'pe': bp_id,
-                      'pf': bp_id,
-                      'pg': gt_id,
-                      'ph': gt_id,
-                      'pi': gt_id,
-                      'pj': bp_id,
-                      'pk': gt_id,
-                      'pl': gt_id,
-                      'pm': it_id,
-                      'pn': gt_id,
-                      'po': gt_id,
-                      'pp': bp_id,
-                      'pq': gt_id,
-                      'pr': gt_id,
-                      'ps': gt_id,
-                      'pt': bp_id,
-                      'pu': bp_id,
-                      'pv': bp_id,
-                      'pw': bp_id,
-                      'px': gt_id,
-                      'py': bp_id,
-                      'no': no_id,
-                      'ne': ne_id,
-                      'ea': ea_id,
-                      'se': se_id,
-                      'so': so_id,
-                      'sw': sw_id,
-                      'we': we_id,
-                      'nw': nw_id}),
+        universes = pin_lattice.format(**univs),
         comment = comment)
 
 def create_assemblies():
 
-    # Sample density
-    density = random.uniform(low_density, hzp_density)
-    color = -156.0/(hzp_density - low_density) * \
-            (density - hzp_density)
+    # Begin loop around fuel assemblies
+    for assy in assy_dict.keys():
 
-    # Create a water material with that density
-    create_water_material('A___1 coolant', density, color)
+        # Check for non fuel assembly
+        if assy_dict[assy].enr == None:
+            continue
 
-    # Create pin cells
-    create_fuelpin_cell('A___1 fuelpin', 'fuel24pin', 'A___1 coolant') 
-    create_bppin_cell('A___1 bppin', 'bp', 'A___1 coolant') 
-    create_gtpin_cell('A___1 gtpin', 'gt', 'A___1 coolant') 
+        # Sample density
+        density = random.uniform(low_density, hzp_density)
+        color = -156.0/(hzp_density - low_density) * \
+                (density - hzp_density)
+        assy_dict[assy].add_density(density)
 
-    # Create lattice
-    create_lattice('A___1 lattice', 'A___1 fuelpin', 'A___1 bppin', 'A___1 gtpin', 'A___1 gtpin', 'A___1 lattice')
+        # Create a water material with that density
+        create_water_material('{0} coolant'.format(assy), density, color)
 
-    # Create cell to put lattice in
-    add_cell('A___1 lattice fill',
-        surfaces = '',
-        universe = 'A___1 assembly',
-        fill = lat_dict['A___1 lattice'].id,
-        comment = 'A___1 Assembly Cell')
-    assy_dict['A___1'].add_universe(univ_dict['A___1 assembly'].id)
+        # Create pin cells
+        enr = assy_dict[assy].enr
+        if enr == '1.6':
+            fuelpin = 'fuel16pin'
+        elif enr == '2.4':
+            fuelpin = 'fuel24pin'
+        elif enr == '3.1':
+            fuelpin = 'fuel31pin'
+        else:
+            raise Exception ('Fuel enrichment doesnt exist')
+        create_fuelpin_cell('{0} fuelpin'.format(assy), fuelpin, '{0} coolant'.format(assy)) 
+        create_bppin_cell('{0} bppin'.format(assy), 'bp', '{0} coolant'.format(assy))
+        create_gtpin_cell('{0} gtpin'.format(assy), 'gt', '{0} coolant'.format(assy)) 
+
+        # Create lattice
+        create_lattice('{0} lattice'.format(assy), '{0} fuelpin'.format(assy), '{0} bppin'.format(assy),
+                       '{0} gtpin'.format(assy), '{0} gtpin'.format(assy), bp_config = assy_dict[assy].bp,
+                       comment = '{0} lattice'.format(assy))
+
+        # Create cell to put lattice in
+        add_cell('{0} lattice fill'.format(assy),
+            surfaces = '',
+            universe = '{0} assembly'.format(assy),
+            fill = lat_dict['{0} lattice'.format(assy)].id,
+            comment = '{0} Assembly Cell'.format(assy))
+        assy_dict['{0}'.format(assy)].add_universe(univ_dict['{0} assembly'.format(assy)].id)
 
 def create_core():
 
