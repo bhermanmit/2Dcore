@@ -246,23 +246,23 @@ assy_dict.update({
 })
 
 assembly_map = """
-{MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} 
-{MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {L___1.u:>4} {K___1.u:>4} {J___1.u:>4} {H___1.u:>4} {G___1.u:>4} {F___1.u:>4} {E___1.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4}
-{MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {N___2.u:>4} {M___2.u:>4} {L___2.u:>4} {K___2.u:>4} {J___2.u:>4} {H___2.u:>4} {G___2.u:>4} {F___2.u:>4} {E___2.u:>4} {D___2.u:>4} {C___2.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4}
-{MOD__.u:>4} {MOD__.u:>4} {P___3.u:>4} {N___3.u:>4} {M___3.u:>4} {L___3.u:>4} {K___3.u:>4} {J___3.u:>4} {H___3.u:>4} {G___3.u:>4} {F___3.u:>4} {E___3.u:>4} {D___3.u:>4} {C___3.u:>4} {B___3.u:>4} {MOD__.u:>4} {MOD__.u:>4}
-{MOD__.u:>4} {MOD__.u:>4} {P___4.u:>4} {N___4.u:>4} {M___4.u:>4} {L___4.u:>4} {K___4.u:>4} {J___4.u:>4} {H___4.u:>4} {G___4.u:>4} {F___4.u:>4} {E___4.u:>4} {D___4.u:>4} {C___4.u:>4} {B___4.u:>4} {MOD__.u:>4} {MOD__.u:>4}
-{MOD__.u:>4} {R___5.u:>4} {P___5.u:>4} {N___5.u:>4} {M___5.u:>4} {L___5.u:>4} {K___5.u:>4} {J___5.u:>4} {H___5.u:>4} {G___5.u:>4} {F___5.u:>4} {E___5.u:>4} {D___5.u:>4} {C___5.u:>4} {B___5.u:>4} {A___5.u:>4} {MOD__.u:>4}
-{MOD__.u:>4} {R___6.u:>4} {P___6.u:>4} {N___6.u:>4} {M___6.u:>4} {L___6.u:>4} {K___6.u:>4} {J___6.u:>4} {H___6.u:>4} {G___6.u:>4} {F___6.u:>4} {E___6.u:>4} {D___6.u:>4} {C___6.u:>4} {B___6.u:>4} {A___6.u:>4} {MOD__.u:>4}
-{MOD__.u:>4} {R___7.u:>4} {P___7.u:>4} {N___7.u:>4} {M___7.u:>4} {L___7.u:>4} {K___7.u:>4} {J___7.u:>4} {H___7.u:>4} {G___7.u:>4} {F___7.u:>4} {E___7.u:>4} {D___7.u:>4} {C___7.u:>4} {B___7.u:>4} {A___7.u:>4} {MOD__.u:>4}
-{MOD__.u:>4} {R___8.u:>4} {P___8.u:>4} {N___8.u:>4} {M___8.u:>4} {L___8.u:>4} {K___8.u:>4} {J___8.u:>4} {H___8.u:>4} {G___8.u:>4} {F___8.u:>4} {E___8.u:>4} {D___8.u:>4} {C___8.u:>4} {B___8.u:>4} {A___8.u:>4} {MOD__.u:>4}
-{MOD__.u:>4} {R___9.u:>4} {P___9.u:>4} {N___9.u:>4} {M___9.u:>4} {L___9.u:>4} {K___9.u:>4} {J___9.u:>4} {H___9.u:>4} {G___9.u:>4} {F___9.u:>4} {E___9.u:>4} {D___9.u:>4} {C___9.u:>4} {B___9.u:>4} {A___9.u:>4} {MOD__.u:>4}
-{MOD__.u:>4} {R__10.u:>4} {P__10.u:>4} {N__10.u:>4} {M__10.u:>4} {L__10.u:>4} {K__10.u:>4} {J__10.u:>4} {H__10.u:>4} {G__10.u:>4} {F__10.u:>4} {E__10.u:>4} {D__10.u:>4} {C__10.u:>4} {B__10.u:>4} {A__10.u:>4} {MOD__.u:>4}
-{MOD__.u:>4} {R__11.u:>4} {P__11.u:>4} {N__11.u:>4} {M__11.u:>4} {L__11.u:>4} {K__11.u:>4} {J__11.u:>4} {H__11.u:>4} {G__11.u:>4} {F__11.u:>4} {E__11.u:>4} {D__11.u:>4} {C__11.u:>4} {B__11.u:>4} {A__11.u:>4} {MOD__.u:>4}
-{MOD__.u:>4} {MOD__.u:>4} {P__12.u:>4} {N__12.u:>4} {M__12.u:>4} {L__12.u:>4} {K__12.u:>4} {J__12.u:>4} {H__12.u:>4} {G__12.u:>4} {F__12.u:>4} {E__12.u:>4} {D__12.u:>4} {C__12.u:>4} {B__12.u:>4} {MOD__.u:>4} {MOD__.u:>4}
-{MOD__.u:>4} {MOD__.u:>4} {P__13.u:>4} {N__13.u:>4} {M__13.u:>4} {L__13.u:>4} {K__13.u:>4} {J__13.u:>4} {H__13.u:>4} {G__13.u:>4} {F__13.u:>4} {E__13.u:>4} {D__13.u:>4} {C__13.u:>4} {B__13.u:>4} {MOD__.u:>4} {MOD__.u:>4}
-{MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {N__14.u:>4} {M__14.u:>4} {L__14.u:>4} {K__14.u:>4} {J__14.u:>4} {H__14.u:>4} {G__14.u:>4} {F__14.u:>4} {E__14.u:>4} {D__14.u:>4} {C__14.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4}
-{MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {L__15.u:>4} {K__15.u:>4} {J__15.u:>4} {H__15.u:>4} {G__15.u:>4} {F__15.u:>4} {E__15.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4}
-{MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4}
+{MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {GRNWc.u:>4} {GR__N.u:>4} {GR__N.u:>4} {GR__N.u:>4} {GR__N.u:>4} {GR__N.u:>4} {GR__N.u:>4} {GR__N.u:>4} {GRNEc.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} 
+{MOD__.u:>4} {MOD__.u:>4} {GRNWc.u:>4} {GR__N.u:>4} {GR_NW.u:>4} {L___1.u:>4} {K___1.u:>4} {J___1.u:>4} {H___1.u:>4} {G___1.u:>4} {F___1.u:>4} {E___1.u:>4} {GR_NE.u:>4} {GR__N.u:>4} {GRNEc.u:>4} {MOD__.u:>4} {MOD__.u:>4}
+{MOD__.u:>4} {GRNWc.u:>4} {GR_NW.u:>4} {N___2.u:>4} {M___2.u:>4} {L___2.u:>4} {K___2.u:>4} {J___2.u:>4} {H___2.u:>4} {G___2.u:>4} {F___2.u:>4} {E___2.u:>4} {D___2.u:>4} {C___2.u:>4} {GR_NE.u:>4} {GRNEc.u:>4} {MOD__.u:>4}
+{MOD__.u:>4} {GR__W.u:>4} {P___3.u:>4} {N___3.u:>4} {M___3.u:>4} {L___3.u:>4} {K___3.u:>4} {J___3.u:>4} {H___3.u:>4} {G___3.u:>4} {F___3.u:>4} {E___3.u:>4} {D___3.u:>4} {C___3.u:>4} {B___3.u:>4} {GR__E.u:>4} {MOD__.u:>4}
+{GRNWc.u:>4} {GR_NW.u:>4} {P___4.u:>4} {N___4.u:>4} {M___4.u:>4} {L___4.u:>4} {K___4.u:>4} {J___4.u:>4} {H___4.u:>4} {G___4.u:>4} {F___4.u:>4} {E___4.u:>4} {D___4.u:>4} {C___4.u:>4} {B___4.u:>4} {GR_NE.u:>4} {GRNEc.u:>4}
+{GR__W.u:>4} {R___5.u:>4} {P___5.u:>4} {N___5.u:>4} {M___5.u:>4} {L___5.u:>4} {K___5.u:>4} {J___5.u:>4} {H___5.u:>4} {G___5.u:>4} {F___5.u:>4} {E___5.u:>4} {D___5.u:>4} {C___5.u:>4} {B___5.u:>4} {A___5.u:>4} {GR__E.u:>4}
+{GR__W.u:>4} {R___6.u:>4} {P___6.u:>4} {N___6.u:>4} {M___6.u:>4} {L___6.u:>4} {K___6.u:>4} {J___6.u:>4} {H___6.u:>4} {G___6.u:>4} {F___6.u:>4} {E___6.u:>4} {D___6.u:>4} {C___6.u:>4} {B___6.u:>4} {A___6.u:>4} {GR__E.u:>4}
+{GR__W.u:>4} {R___7.u:>4} {P___7.u:>4} {N___7.u:>4} {M___7.u:>4} {L___7.u:>4} {K___7.u:>4} {J___7.u:>4} {H___7.u:>4} {G___7.u:>4} {F___7.u:>4} {E___7.u:>4} {D___7.u:>4} {C___7.u:>4} {B___7.u:>4} {A___7.u:>4} {GR__E.u:>4}
+{GR__W.u:>4} {R___8.u:>4} {P___8.u:>4} {N___8.u:>4} {M___8.u:>4} {L___8.u:>4} {K___8.u:>4} {J___8.u:>4} {H___8.u:>4} {G___8.u:>4} {F___8.u:>4} {E___8.u:>4} {D___8.u:>4} {C___8.u:>4} {B___8.u:>4} {A___8.u:>4} {GR__E.u:>4}
+{GR__W.u:>4} {R___9.u:>4} {P___9.u:>4} {N___9.u:>4} {M___9.u:>4} {L___9.u:>4} {K___9.u:>4} {J___9.u:>4} {H___9.u:>4} {G___9.u:>4} {F___9.u:>4} {E___9.u:>4} {D___9.u:>4} {C___9.u:>4} {B___9.u:>4} {A___9.u:>4} {GR__E.u:>4}
+{GR__W.u:>4} {R__10.u:>4} {P__10.u:>4} {N__10.u:>4} {M__10.u:>4} {L__10.u:>4} {K__10.u:>4} {J__10.u:>4} {H__10.u:>4} {G__10.u:>4} {F__10.u:>4} {E__10.u:>4} {D__10.u:>4} {C__10.u:>4} {B__10.u:>4} {A__10.u:>4} {GR__E.u:>4}
+{GR__W.u:>4} {R__11.u:>4} {P__11.u:>4} {N__11.u:>4} {M__11.u:>4} {L__11.u:>4} {K__11.u:>4} {J__11.u:>4} {H__11.u:>4} {G__11.u:>4} {F__11.u:>4} {E__11.u:>4} {D__11.u:>4} {C__11.u:>4} {B__11.u:>4} {A__11.u:>4} {GR__E.u:>4}
+{GRSWc.u:>4} {GR_SW.u:>4} {P__12.u:>4} {N__12.u:>4} {M__12.u:>4} {L__12.u:>4} {K__12.u:>4} {J__12.u:>4} {H__12.u:>4} {G__12.u:>4} {F__12.u:>4} {E__12.u:>4} {D__12.u:>4} {C__12.u:>4} {B__12.u:>4} {GR_SE.u:>4} {GRSEc.u:>4}
+{MOD__.u:>4} {GR__W.u:>4} {P__13.u:>4} {N__13.u:>4} {M__13.u:>4} {L__13.u:>4} {K__13.u:>4} {J__13.u:>4} {H__13.u:>4} {G__13.u:>4} {F__13.u:>4} {E__13.u:>4} {D__13.u:>4} {C__13.u:>4} {B__13.u:>4} {GR__E.u:>4} {MOD__.u:>4}
+{MOD__.u:>4} {GRSWc.u:>4} {GR_SW.u:>4} {N__14.u:>4} {M__14.u:>4} {L__14.u:>4} {K__14.u:>4} {J__14.u:>4} {H__14.u:>4} {G__14.u:>4} {F__14.u:>4} {E__14.u:>4} {D__14.u:>4} {C__14.u:>4} {GR_SE.u:>4} {GRSEc.u:>4} {MOD__.u:>4}
+{MOD__.u:>4} {MOD__.u:>4} {GRSWc.u:>4} {GR__S.u:>4} {GR_SW.u:>4} {L__15.u:>4} {K__15.u:>4} {J__15.u:>4} {H__15.u:>4} {G__15.u:>4} {F__15.u:>4} {E__15.u:>4} {GR_SE.u:>4} {GR__S.u:>4} {GRSEc.u:>4} {MOD__.u:>4} {MOD__.u:>4}
+{MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {GRSWc.u:>4} {GR__S.u:>4} {GR__S.u:>4} {GR__S.u:>4} {GR__S.u:>4} {GR__S.u:>4} {GR__S.u:>4} {GR__S.u:>4} {GRSEc.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4}
 """
 
 pin_lattice ="""
@@ -496,7 +496,7 @@ def create_surfaces():
     baffle_left = assy_pitch/2.0 - baffle_width
     baffle_right = -assy_pitch/2.0 + baffle_width
     baffle_back = assy_pitch/2.0 - baffle_width 
-    baffle_front = assy_pitch/2.0 + baffle_width
+    baffle_front = -assy_pitch/2.0 + baffle_width
     add_surface('baffleleft', 'x-plane', '{0}'.format(baffle_left), comment = 'Baffle Left')
     add_surface('baffleright', 'x-plane', '{0}'.format(baffle_right), comment = 'Baffle Right')
     add_surface('baffleback', 'y-plane', '{0}'.format(baffle_back), comment = 'Baffle Back')
@@ -682,19 +682,41 @@ def create_baffle():
         universe = 'baffle_NE',
         material = mat_dict[bafmat].id,
         comment = 'Northeast {0} grid baffle'.format(bafmat))
-    add_cell('baffle_NE_mod_n',
+    add_cell('baffle_NE_n',
         surfaces = '-{0} {1}'.format(surf_dict['baffleright'].id, surf_dict['bafflefront'].id),
         universe = 'baffle_NE',
-        material = mat_dict['h2o_hzp'].id,
-        comment = 'Mod north of {0} northeast grid baffle'.format(bafmat))
-    add_cell('baffle_NE_mod_e',
+        material = mat_dict[bafmat].id,
+        comment = 'North of {0} northeast grid baffle'.format(bafmat))
+    add_cell('baffle_NE_e',
         surfaces = '{0} -{1}'.format(surf_dict['baffleright'].id, surf_dict['bafflefront'].id),
         universe = 'baffle_NE',
-        material = mat_dict['h2o_hzp'].id,
-        comment = 'Mod east of {0} northeast grid baffle'.format(bafmat))
+        material = mat_dict[bafmat].id,
+        comment = 'East of {0} northeast grid baffle'.format(bafmat))
     add_cell('baffle_NE_mod_ne',
         surfaces = '{0} {1}'.format(surf_dict['baffleright'].id, surf_dict['bafflefront'].id),
         universe = 'baffle_NE',
+        material = mat_dict['h2o_hzp'].id,
+        comment = 'Mod northeast of {0} northeast grid baffle'.format(bafmat))
+
+    # Northeast corner 
+    add_cell('baffle_NEc',
+        surfaces = '-{0} -{1}'.format(surf_dict['baffleright'].id, surf_dict['bafflefront'].id),
+        universe = 'baffle_NEc',
+        material = mat_dict[bafmat].id,
+        comment = 'Northeast {0} grid baffle'.format(bafmat))
+    add_cell('baffle_NE_mod_nc',
+        surfaces = '-{0} {1}'.format(surf_dict['baffleright'].id, surf_dict['bafflefront'].id),
+        universe = 'baffle_NEc',
+        material = mat_dict['h2o_hzp'].id,
+        comment = 'Mod north of {0} northeast grid baffle'.format(bafmat))
+    add_cell('baffle_NE_mod_ec',
+        surfaces = '{0} -{1}'.format(surf_dict['baffleright'].id, surf_dict['bafflefront'].id),
+        universe = 'baffle_NEc',
+        material = mat_dict['h2o_hzp'].id,
+        comment = 'Mod east of {0} northeast grid baffle'.format(bafmat))
+    add_cell('baffle_NE_mod_nec',
+        surfaces = '{0} {1}'.format(surf_dict['baffleright'].id, surf_dict['bafflefront'].id),
+        universe = 'baffle_NEc',
         material = mat_dict['h2o_hzp'].id,
         comment = 'Mod northeast of {0} northeast grid baffle'.format(bafmat))
 
@@ -716,19 +738,41 @@ def create_baffle():
         universe = 'baffle_SE',
         material = mat_dict[bafmat].id,
         comment = 'Southeast {0} grid baffle'.format(bafmat))
-    add_cell('baffle_SE_mod_s',
+    add_cell('baffle_SE_s',
         surfaces = '-{0} -{1}'.format(surf_dict['baffleright'].id, surf_dict['baffleback'].id),
         universe = 'baffle_SE',
-        material = mat_dict['h2o_hzp'].id,
-        comment = 'Mod south of {0} southeast grid baffle'.format(bafmat))
-    add_cell('baffle_SE_mod_e',
+        material = mat_dict[bafmat].id,
+        comment = 'South of {0} southeast grid baffle'.format(bafmat))
+    add_cell('baffle_SE_e',
         surfaces = '{0} {1}'.format(surf_dict['baffleright'].id, surf_dict['baffleback'].id),
         universe = 'baffle_SE',
-        material = mat_dict['h2o_hzp'].id,
-        comment = 'Mod east of {0} southeast grid baffle'.format(bafmat))
+        material = mat_dict[bafmat].id,
+        comment = 'East of {0} southeast grid baffle'.format(bafmat))
     add_cell('baffle_SE_mod_se',
         surfaces = '{0} -{1}'.format(surf_dict['baffleright'].id, surf_dict['baffleback'].id),
         universe = 'baffle_SE',
+        material = mat_dict['h2o_hzp'].id,
+        comment = 'Mod southeast of {0} southeast grid baffle'.format(bafmat))
+
+    # Southeast baffle corner
+    add_cell('baffle_SEc',
+        surfaces = '-{0} {1}'.format(surf_dict['baffleright'].id, surf_dict['baffleback'].id),
+        universe = 'baffle_SEc',
+        material = mat_dict[bafmat].id,
+        comment = 'Southeast {0} grid baffle'.format(bafmat))
+    add_cell('baffle_SE_mod_sc',
+        surfaces = '-{0} -{1}'.format(surf_dict['baffleright'].id, surf_dict['baffleback'].id),
+        universe = 'baffle_SEc',
+        material = mat_dict['h2o_hzp'].id,
+        comment = 'Mod south of {0} southeast grid baffle'.format(bafmat))
+    add_cell('baffle_SE_mod_ec',
+        surfaces = '{0} {1}'.format(surf_dict['baffleright'].id, surf_dict['baffleback'].id),
+        universe = 'baffle_SEc',
+        material = mat_dict['h2o_hzp'].id,
+        comment = 'Mod east of {0} southeast grid baffle'.format(bafmat))
+    add_cell('baffle_SE_mod_sec',
+        surfaces = '{0} -{1}'.format(surf_dict['baffleright'].id, surf_dict['baffleback'].id),
+        universe = 'baffle_SEc',
         material = mat_dict['h2o_hzp'].id,
         comment = 'Mod southeast of {0} southeast grid baffle'.format(bafmat))
 
@@ -750,19 +794,41 @@ def create_baffle():
         universe = 'baffle_SW',
         material = mat_dict[bafmat].id,
         comment = 'Southwest {0} grid baffle'.format(bafmat))
-    add_cell('baffle_SW_mod_s',
+    add_cell('baffle_SW_s',
         surfaces = '{0} -{1}'.format(surf_dict['baffleleft'].id, surf_dict['baffleback'].id),
         universe = 'baffle_SW',
-        material = mat_dict['h2o_hzp'].id,
-        comment = 'Mod south of {0} southwest grid baffle'.format(bafmat))
-    add_cell('baffle_SW_mod_w',
+        material = mat_dict[bafmat].id,
+        comment = 'South of {0} southwest grid baffle'.format(bafmat))
+    add_cell('baffle_SW_w',
         surfaces = '-{0} {1}'.format(surf_dict['baffleleft'].id, surf_dict['baffleback'].id),
         universe = 'baffle_SW',
-        material = mat_dict['h2o_hzp'].id,
-        comment = 'Mod west of {0} southwest grid baffle'.format(bafmat))
+        material = mat_dict[bafmat].id,
+        comment = 'West of {0} southwest grid baffle'.format(bafmat))
     add_cell('baffle_SW_mod_sw',
         surfaces = '-{0} -{1}'.format(surf_dict['baffleleft'].id, surf_dict['baffleback'].id),
         universe = 'baffle_SW',
+        material = mat_dict['h2o_hzp'].id,
+        comment = 'Mod southwest of {0} southwest grid baffle'.format(bafmat))
+
+    # Southwest baffle corner 
+    add_cell('baffle_SWc',
+        surfaces = '{0} {1}'.format(surf_dict['baffleleft'].id, surf_dict['baffleback'].id),
+        universe = 'baffle_SWc',
+        material = mat_dict[bafmat].id,
+        comment = 'Southwest {0} grid baffle'.format(bafmat))
+    add_cell('baffle_SW_mod_sc',
+        surfaces = '{0} -{1}'.format(surf_dict['baffleleft'].id, surf_dict['baffleback'].id),
+        universe = 'baffle_SWc',
+        material = mat_dict['h2o_hzp'].id,
+        comment = 'Mod south of {0} southwest grid baffle'.format(bafmat))
+    add_cell('baffle_SW_mod_wc',
+        surfaces = '-{0} {1}'.format(surf_dict['baffleleft'].id, surf_dict['baffleback'].id),
+        universe = 'baffle_SWc',
+        material = mat_dict['h2o_hzp'].id,
+        comment = 'Mod west of {0} southwest grid baffle'.format(bafmat))
+    add_cell('baffle_SW_mod_swc',
+        surfaces = '-{0} -{1}'.format(surf_dict['baffleleft'].id, surf_dict['baffleback'].id),
+        universe = 'baffle_SWc',
         material = mat_dict['h2o_hzp'].id,
         comment = 'Mod southwest of {0} southwest grid baffle'.format(bafmat))
 
@@ -784,19 +850,41 @@ def create_baffle():
         universe = 'baffle_NW',
         material = mat_dict[bafmat].id,
         comment = 'Northwest {0} grid baffle'.format(bafmat))
-    add_cell('baffle_NW_mod_s',
+    add_cell('baffle_NW_s',
         surfaces = '{0} {1}'.format(surf_dict['baffleleft'].id, surf_dict['bafflefront'].id),
         universe = 'baffle_NW',
+        material = mat_dict[bafmat].id,
+        comment = 'North of {0} northwest grid baffle'.format(bafmat))
+    add_cell('baffle_NW_w',
+        surfaces = '-{0} -{1}'.format(surf_dict['baffleleft'].id, surf_dict['bafflefront'].id),
+        universe = 'baffle_NW',
+        material = mat_dict[bafmat].id,
+        comment = 'West of {0} northwest grid baffle'.format(bafmat))
+    add_cell('baffle_NW_mod_sw',
+        surfaces = '-{0} {1}'.format(surf_dict['baffleleft'].id, surf_dict['bafflefront'].id),
+        universe = 'baffle_NW',
+        material = mat_dict['h2o_hzp'].id,
+        comment = 'Mod northwest of {0} northest grid baffle'.format(bafmat))
+
+    # Northwest baffle corner
+    add_cell('baffle_NWc',
+        surfaces = '{0} -{1}'.format(surf_dict['baffleleft'].id, surf_dict['bafflefront'].id),
+        universe = 'baffle_NWc',
+        material = mat_dict[bafmat].id,
+        comment = 'Northwest {0} grid baffle'.format(bafmat))
+    add_cell('baffle_NW_mod_sc',
+        surfaces = '{0} {1}'.format(surf_dict['baffleleft'].id, surf_dict['bafflefront'].id),
+        universe = 'baffle_NWc',
         material = mat_dict['h2o_hzp'].id,
         comment = 'Mod north of {0} northwest grid baffle'.format(bafmat))
-    add_cell('baffle_NW_mod_w',
-        surfaces = '-{0} -{1}'.format(surf_dict['baffleleft'].id, surf_dict['baffleback'].id),
-        universe = 'baffle_NW',
+    add_cell('baffle_NW_mod_wc',
+        surfaces = '-{0} -{1}'.format(surf_dict['baffleleft'].id, surf_dict['bafflefront'].id),
+        universe = 'baffle_NWc',
         material = mat_dict['h2o_hzp'].id,
         comment = 'Mod west of {0} northwest grid baffle'.format(bafmat))
-    add_cell('baffle_NW_mod_sw',
-        surfaces = '-{0} {1}'.format(surf_dict['baffleleft'].id, surf_dict['baffleback'].id),
-        universe = 'baffle_NW',
+    add_cell('baffle_NW_mod_swc',
+        surfaces = '-{0} {1}'.format(surf_dict['baffleleft'].id, surf_dict['bafflefront'].id),
+        universe = 'baffle_NWc',
         material = mat_dict['h2o_hzp'].id,
         comment = 'Mod northwest of {0} northest grid baffle'.format(bafmat))
 
@@ -805,12 +893,16 @@ def create_baffle():
        'MOD__' : Assembly(u = univ_dict['mod'].id),
        'GR__N' : Assembly(u = univ_dict['baffle_N'].id),
        'GR_NE' : Assembly(u = univ_dict['baffle_NE'].id),
+       'GRNEc' : Assembly(u = univ_dict['baffle_NEc'].id),
        'GR__E' : Assembly(u = univ_dict['baffle_E'].id),
        'GR_SE' : Assembly(u = univ_dict['baffle_SE'].id),
+       'GRSEc' : Assembly(u = univ_dict['baffle_SEc'].id),
        'GR__S' : Assembly(u = univ_dict['baffle_S'].id),
        'GR_SW' : Assembly(u = univ_dict['baffle_SW'].id),
+       'GRSWc' : Assembly(u = univ_dict['baffle_SWc'].id),
        'GR__W' : Assembly(u = univ_dict['baffle_W'].id),
-       'GR_NW' : Assembly(u = univ_dict['baffle_NW'].id)})
+       'GR_NW' : Assembly(u = univ_dict['baffle_NW'].id),
+       'GRNWc' : Assembly(u = univ_dict['baffle_NWc'].id)})
 
 def create_lattice(lat_key, fuel_key, bp_key, gt_key, it_key, bp_config=None, comment = None):
 
