@@ -1,15 +1,16 @@
 #!/usr/bin/env python2
 
-from assembly import *
+from core2D import *
 import numpy as np
 from collections import OrderedDict
+import random
 
 # Input Data
 settings = {
 'batches' : 500,
 'inactive' : 100,
 'particles' : 1000,
-'run_cmfd' : 'true'
+'run_cmfd' : 'false'
 }
 n_densities = 1 # number of unique densities from hzp to 0.66
 n_temps = 1  # number of unique fuel temperature linear from 600 to 1200
@@ -33,67 +34,55 @@ hzp_density = 0.73986            # Highest density
 low_density = 0.66               # Lowest density
 pin_pitch = 1.25984              # Pin pitch
 assy_pitch = 21.50364            # Assembly pitch
-active_core_height = 365.76      # Active core height
-axial_surfaces = { 
-'lowest_extent':0.0,             # Lowest plane of model
-'lower_plenum':20.0,             # Top of lower plenum/Bottom Support Plate
-'support_plate':35.16,           # Top of Support plate/Bottom of Fuel Rod
-'baf':36.007,                    # Bottom of Active Fuel
-'grid1bot':37.8790,              # Grid 1 Bottom
-'bpbot':41.0870,                 # Bottom of Burnable Absorbers
-'grid1top':42.0700,              # Grid 1 Top
-'dptop':45.0790,                 # Dashpot Top
-'grid2bot':99.1640,              # Grid 2 Bottom
-'grid2top':104.879,              # Grid 2 Top
-'grid3bot':151.361,              # Grid 3 Bottom
-'grid3top':157.076,              # Grid 3 Top
-'grid4bot':203.558,              # Grid 4 Bottom
-'grid4top':209.273,              # Grid 4 Top
-'grid5bot':255.755,              # Grid 5 Bottom
-'grid5top':261.470,              # Grid 5 Top
-'grid6bot':307.952,              # Grid 6 Bottom
-'grid6top':313.667,              # Grid 6 Top
-'grid7bot':360.149,              # Grid 7 Bottom
-'grid7top':365.864,              # Grid 7 Top
-'taf':401.767,                   # Top of Active Fuel
-'grid8bot':412.529,              # Grid 8 Bottom
-'grid8top':416.720,              # Grid 8 Top
-'topplugbot':421.223,            # Bottom of Top End Plug
-'rodtop':423.272,                # Top of fuel rod
-'nozzlebot':426.617,             # Bottom of Nozzle
-'nozzletop':435.444,             # Top of Nozzle
-'highest_extent':455.444         # Highest plane of problem 
-}
 
-axial_labels = [
-'Lowest plane of model',
-'Top of lower plenum/Bottom Support Plate',
-'Top of Support plate/Bottom of Fuel Rod',
-'Bottom of Active Fuel',
-'Grid 1 Bottom',
-'Bottom of Burnable Absorbers',
-'Grid 1 Top',
-'Dashpot Top',
-'Grid 2 Bottom',
-'Grid 2 Top',
-'Grid 3 Bottom',
-'Grid 3 Top',
-'Grid 4 Bottom',
-'Grid 4 Top',
-'Grid 5 Bottom',
-'Grid 5 Top',
-'Grid 6 Bottom',
-'Grid 6 Top',
-'Grid 7 Bottom',
-'Grid 7 Top',
-'Top of Active Fuel',
-'Grid 8 Bottom',
-'Grid 8 Top',
-'Bottom of Top End Plug',
-'Top of fuel rod',
-'Bottom of Nozzle',
-'Top of Nozzle',
-'Highest plane of problem']
+assy_dict.update({
+'A___1' : Assembly(enr = '2.4', bp = '12')
+})
+
+
+assembly_map = """
+{MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} 
+{MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4}
+{MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4}
+{MOD__.u:>4} {MOD__.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {MOD__.u:>4} {MOD__.u:>4}
+{MOD__.u:>4} {MOD__.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {MOD__.u:>4} {MOD__.u:>4}
+{MOD__.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {MOD__.u:>4}
+{MOD__.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {MOD__.u:>4}
+{MOD__.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {MOD__.u:>4}
+{MOD__.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {MOD__.u:>4}
+{MOD__.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {MOD__.u:>4}
+{MOD__.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {MOD__.u:>4}
+{MOD__.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {MOD__.u:>4}
+{MOD__.u:>4} {MOD__.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {MOD__.u:>4} {MOD__.u:>4}
+{MOD__.u:>4} {MOD__.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {MOD__.u:>4} {MOD__.u:>4}
+{MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4}
+{MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {A___1.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4}
+{MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4}
+"""
+
+pin_lattice ="""
+{nw:>4} {no:>4} {no:>4} {no:>4} {no:>4} {no:>4} {no:>4} {no:>4} {no:>4} {no:>4} {no:>4} {no:>4} {no:>4} {no:>4} {no:>4} {no:>4} {no:>4} {no:>4} {ne:>4}
+{we:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {ea:>4}
+{we:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {ea:>4}
+{we:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {pa:>4} {fp:>4} {fp:>4} {pb:>4} {fp:>4} {fp:>4} {pc:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {ea:>4}
+{we:>4} {fp:>4} {fp:>4} {fp:>4} {pd:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {pe:>4} {fp:>4} {fp:>4} {fp:>4} {ea:>4}
+{we:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {ea:>4}
+{we:>4} {fp:>4} {fp:>4} {pf:>4} {fp:>4} {fp:>4} {pg:>4} {fp:>4} {fp:>4} {ph:>4} {fp:>4} {fp:>4} {pi:>4} {fp:>4} {fp:>4} {pj:>4} {fp:>4} {fp:>4} {ea:>4}
+{we:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {ea:>4}
+{we:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {ea:>4}
+{we:>4} {fp:>4} {fp:>4} {pk:>4} {fp:>4} {fp:>4} {pl:>4} {fp:>4} {fp:>4} {pm:>4} {fp:>4} {fp:>4} {pn:>4} {fp:>4} {fp:>4} {po:>4} {fp:>4} {fp:>4} {ea:>4}
+{we:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {ea:>4}
+{we:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {ea:>4}
+{we:>4} {fp:>4} {fp:>4} {pp:>4} {fp:>4} {fp:>4} {pq:>4} {fp:>4} {fp:>4} {pr:>4} {fp:>4} {fp:>4} {ps:>4} {fp:>4} {fp:>4} {pt:>4} {fp:>4} {fp:>4} {ea:>4}
+{we:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {ea:>4}
+{we:>4} {fp:>4} {fp:>4} {fp:>4} {pu:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {pv:>4} {fp:>4} {fp:>4} {fp:>4} {ea:>4}
+{we:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {pw:>4} {fp:>4} {fp:>4} {px:>4} {fp:>4} {fp:>4} {py:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {ea:>4}
+{we:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {ea:>4}
+{we:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {fp:>4} {ea:>4}
+{sw:>4} {so:>4} {so:>4} {so:>4} {so:>4} {so:>4} {so:>4} {so:>4} {so:>4} {so:>4} {so:>4} {so:>4} {so:>4} {so:>4} {so:>4} {so:>4} {so:>4} {so:>4} {se:>4}
+"""
+
+random.seed(974357)
 
 def main():
 
@@ -103,29 +92,24 @@ def main():
     # Create surfaces
     create_surfaces()
 
-    # Create grid info
-    create_gridstrap()
-
     # Create static pins
-    create_fuelpin()
+    create_fuelpin('fuel16')
+    create_fuelpin('fuel24')
+    create_fuelpin('fuel31')
     create_bppin()
-    create_bppinDP()
     create_gtpin()
-    create_gtpinDP()
-    create_fuelplenumpin()
-    create_bpplenumpin()
 
-    # Create axial regions
-    create_axial_regions()
+    # Create baffle
+    create_baffle()
 
-    # Make assembly
-    create_assembly()
+    # Make assemblies
+    create_assemblies()
 
     # Create core
     create_core()
 
     # Create cmfd
-    create_cmfd()
+#   create_cmfd()
 
     # Write OpenMC files
     write_openmc_input()
@@ -237,6 +221,16 @@ def create_static_materials():
     mat_zr.add_color('201 201 201')
     mat_zr.finalize()
 
+    # UO2 at 1.6% enrichment Material
+    mat_fuel24 = Material('fuel16', 'UO2 Fuel 1.6 w/o')
+    mat_fuel24.add_nuclide('U-234', '71c', '3.0131e-06')
+    mat_fuel24.add_nuclide('U-235', '71c', '3.7503e-04')
+    mat_fuel24.add_nuclide('U-238', '71c', '2.2626e-02')
+    mat_fuel24.add_nuclide('O-16', '71c', '4.5896e-02')
+    mat_fuel24.add_nuclide('O-17', '71c', '1.1180e-04')
+    mat_fuel24.add_color('142 35 35')
+    mat_fuel24.finalize()
+
     # UO2 at 2.4% enrichment Material
     mat_fuel24 = Material('fuel24', 'UO2 Fuel 2.4 w/o')
     mat_fuel24.add_nuclide('U-234', '71c', '4.4843e-06')
@@ -245,6 +239,16 @@ def create_static_materials():
     mat_fuel24.add_nuclide('O-16', '71c', '4.5829e-02')
     mat_fuel24.add_nuclide('O-17', '71c', '1.1164e-04')
     mat_fuel24.add_color('255 215 0')
+    mat_fuel24.finalize()
+
+    # UO2 at 3.1% enrichment Material
+    mat_fuel24 = Material('fuel31', 'UO2 Fuel 2.4 w/o')
+    mat_fuel24.add_nuclide('U-234', '71c', '5.7988e-06')
+    mat_fuel24.add_nuclide('U-235', '71c', '7.2176e-04')
+    mat_fuel24.add_nuclide('U-238', '71c', '2.2254e-02')
+    mat_fuel24.add_nuclide('O-16', '71c', '4.5851e-02')
+    mat_fuel24.add_nuclide('O-17', '71c', '1.1169e-04')
+    mat_fuel24.add_color('0 0 128')
     mat_fuel24.finalize()
 
     # Borosilicate Glass Material
@@ -282,58 +286,44 @@ def create_surfaces():
     add_surface('bpIR5', 'z-cylinder', '0.0 0.0 0.436880', comment = 'Burnable Absorber Rod Inner Radius 5')
     add_surface('bpIR6', 'z-cylinder', '0.0 0.0 0.483870', comment = 'Burnable Absorber Rod Inner Radius 6')
 
-    # Top/Bottom Grid Spacer Surfaces
-    add_surface('gridTBleft', 'x-plane', '-0.62208', comment = 'Top/Bottom Left Grid Spacer')
-    add_surface('gridTBright', 'x-plane', '0.62208', comment = 'Top/Bottom Right Grid Spacer')
-    add_surface('gridTBback', 'y-plane', '-0.62208', comment = 'Top/Bottom Back Grid Spacer')
-    add_surface('gridTBfront', 'y-plane', '0.62208', comment = 'Top/Bottom Front Grid Spacer')
-
-    # Intermediate Grid Spacer Surfaces
-    add_surface('gridIleft', 'x-plane', '-0.60978', comment = 'Intermediate Left Grid Spacer')
-    add_surface('gridIright', 'x-plane', '0.60978', comment = 'Intermediate Right Grid Spacer')
-    add_surface('gridIback', 'y-plane', '-0.60978', comment = 'Intermediate Back Grid Spacer')
-    add_surface('gridIfront', 'y-plane', '0.60978', comment = 'Intermediate Front Grid Spacer')
-
-    # Grid Strap surfaces (need to convert to a pin cell universe coordinate system)
-    strap_offset = assy_pitch/2.0 - 10.73635
-    strap_left = pin_pitch/2.0 - strap_offset
-    strap_right = -pin_pitch/2.0 + strap_offset
-    strap_back = pin_pitch/2.0 - strap_offset 
-    strap_front = -pin_pitch/2.0 + strap_offset
-    add_surface('strapleft', 'x-plane', '{0}'.format(strap_left), comment = 'Grid Strap Left')
-    add_surface('strapright', 'x-plane', '{0}'.format(strap_right), comment = 'Grid Strap Right')
-    add_surface('strapback', 'y-plane', '{0}'.format(strap_back), comment = 'Grid Strap Back')
-    add_surface('strapfront', 'y-plane', '{0}'.format(strap_front), comment = 'Grid Strap Front')
+    # Baffle 
+    baffle_width = 2.22250 
+    baffle_left = assy_pitch/2.0 - baffle_width
+    baffle_right = -assy_pitch/2.0 + baffle_width
+    baffle_back = assy_pitch/2.0 - baffle_width 
+    baffle_front = assy_pitch/2.0 + baffle_width
+    add_surface('baffleleft', 'x-plane', '{0}'.format(baffle_left), comment = 'Baffle Left')
+    add_surface('baffleright', 'x-plane', '{0}'.format(baffle_right), comment = 'Baffle Right')
+    add_surface('baffleback', 'y-plane', '{0}'.format(baffle_back), comment = 'Baffle Back')
+    add_surface('bafflefront', 'y-plane', '{0}'.format(baffle_front), comment = 'Baffle Front')
 
     # Core surfaces
-    box = assy_pitch/2.0
+    box = 17.0*assy_pitch/2.0
     add_surface('core_left', 'x-plane', '{0}'.format(-box), 'reflective', 'Core left surface')
     add_surface('core_right', 'x-plane', '{0}'.format(box), 'reflective', 'Core right surface')
     add_surface('core_back', 'y-plane', '{0}'.format(-box), 'reflective', 'Core back surface')
     add_surface('core_front', 'y-plane', '{0}'.format(box), 'reflective', 'Core front surface')
-    add_surface('core_bottom', 'z-plane', '{0}'.format(axial_surfaces['lowest_extent']), 'vacuum', 'Core bottom surface')
-    add_surface('core_top', 'z-plane', '{0}'.format(axial_surfaces['highest_extent']), 'vacuum', 'Core top surface')
 
-def create_fuelpin():
+def create_fuelpin(fuel_mat):
 
     # Fuel Pellet
-    add_cell('fuel', 
+    add_cell(fuel_mat, 
         surfaces = '-{0}'.format(surf_dict['fuelOR'].id), 
-        universe = 'fuel',
-        material = mat_dict['fuel24'].id,
+        universe = fuel_mat+'pin',
+        material = mat_dict[fuel_mat].id,
         comment = 'Fuel pellet')
 
     # Gas Gap
-    add_cell('gap',
+    add_cell('gap_'+fuel_mat,
         surfaces = '{0} -{1}'.format(surf_dict['fuelOR'].id, surf_dict['cladIR'].id),
-        universe = 'fuel',
+        universe = fuel_mat+'pin',
         material = mat_dict['he'].id,
         comment = 'Fuel pin gas gap')
 
     # Clad
-    add_cell('clad',
+    add_cell('clad_'+fuel_mat,
         surfaces = '{0}'.format(surf_dict['cladIR'].id),
-        universe = 'fuel',
+        universe = fuel_mat+'pin',
         material = mat_dict['zr'].id,
         comment = 'Fuel pin clad')
 
@@ -395,64 +385,6 @@ def create_bppin():
         material = mat_dict['zr'].id,
         comment = 'BP clad')
 
-def create_bppinDP():
-
-    # Inner Air Region
-    add_cell('air1BPdp',
-        surfaces = '-{0}'.format(surf_dict['bpIR1'].id),
-        universe = 'bpDP',
-        material = mat_dict['air'].id,
-        comment = 'BP inner air at DP')
-
-    # Inner Stainless Steel Region
-    add_cell('ss1BPdp',
-        surfaces = '{0} -{1}'.format(surf_dict['bpIR1'].id, surf_dict['bpIR2'].id),
-        universe = 'bpDP',
-        material = mat_dict['ss'].id,
-        comment = 'BP inner stainless at DP')
-
-    # Middle Air Region
-    add_cell('air2BPdp',
-        surfaces = '{0} -{1}'.format(surf_dict['bpIR2'].id, surf_dict['bpIR3'].id),
-        universe = 'bpDP',
-        material = mat_dict['air'].id,
-        comment = 'BP middle air at DP')
-
-    # Borosilicate Glass Region
-    add_cell('bsgBPdp',
-        surfaces = '{0} -{1}'.format(surf_dict['bpIR3'].id, surf_dict['bpIR4'].id),
-        universe = 'bpDP',
-        material = mat_dict['bsg'].id,
-        comment = 'BP borosilicate at DP')
-
-    # Outer Air Region
-    add_cell('air3BPdp',
-        surfaces = '{0} -{1}'.format(surf_dict['bpIR4'].id, surf_dict['bpIR5'].id),
-        universe = 'bpDP',
-		material = mat_dict['air'].id,
-		comment = 'BP outer air at DP')
-
-    # Outer Stainless Steel Region
-    add_cell('ss2BPdp',
-        surfaces = '{0} -{1}'.format(surf_dict['bpIR5'].id, surf_dict['bpIR6'].id),
-        universe = 'bpDP',
-        material = mat_dict['ss'].id,
-        comment = 'BP outer stainless at DP')
-
-    # Moderator Region
-    add_cell('modBPdp',
-        surfaces = '{0} -{1}'.format(surf_dict['bpIR6'].id, surf_dict['gtIRdp'].id),
-        universe = 'bpDP',
-        material = mat_dict['h2o_hzp'].id,
-        comment = 'BP moderator at DP')
-
-    # Tube Clad
-    add_cell('cladBPdp',
-        surfaces = '{0}'.format(surf_dict['gtIRdp'].id),
-        universe = 'bpDP',
-        material = mat_dict['zr'].id,
-        comment = 'BP clad at DP')
-
 def create_gtpin():
 
     # Moderator Region
@@ -469,61 +401,7 @@ def create_gtpin():
         material = mat_dict['zr'].id,
         comment = 'GT clad')
 
-def create_gtpinDP():
-
-    # Moderator Region
-    add_cell('modGTdp',
-        surfaces = '-{0}'.format(surf_dict['gtIRdp'].id),
-        universe = 'gtDP',
-        material = mat_dict['h2o_hzp'].id,
-        comment = 'GT moderator at DP')
-
-    # Tube Clad
-    add_cell('cladGTdp',
-        surfaces = '{0}'.format(surf_dict['gtIRdp'].id),
-        universe = 'gtDP',
-        material = mat_dict['zr'].id,
-        comment = 'GT clad at DP')
-
-def create_fuelplenumpin():
-
-    # Fuel Pin
-    add_cell('rodplenumspring',
-        surfaces = '-{0}'.format(surf_dict['springOR'].id),
-        universe = 'fuelplenum',
-        material = mat_dict['in'].id,
-        comment = 'Inconel Spring in Fuel Pin')
-    add_cell('rodplenumgap',
-        surfaces = '{0} -{1}'.format(surf_dict['springOR'].id, surf_dict['cladIR'].id),
-        universe = 'fuelplenum',
-        material = mat_dict['he'].id,
-        comment = 'Helium Outside Spring in Fuel Pin')
-    add_cell('rodplenumclad',
-        surfaces = '{0}'.format(surf_dict['cladIR'].id),
-        universe = 'fuelplenum',
-        material = mat_dict['zr'].id,
-        comment = 'Clad Outside Spring in Fuel Pin')
-
-def create_bpplenumpin():
-
-    # BP pin
-    add_cell('bpplenumss',
-        surfaces = '-{0}'.format(surf_dict['bpIR6'].id),
-        universe = 'bpplenum',
-        material = mat_dict['ss'].id,
-        comment = 'Stainless Steel BP pin in GT')
-    add_cell('bpplenummod',
-        surfaces = '{0} -{1}'.format(surf_dict['bpIR6'].id, surf_dict['gtIR'].id),
-        universe = 'bpplenum',
-        material = mat_dict['h2o_hzp'].id,
-        comment = 'Moderator between SS BP pin and GT')
-    add_cell('bpplenumclad',
-        surfaces = '{0}'.format(surf_dict['gtIR'].id),
-        universe = 'bpplenum',
-        material = mat_dict['zr'].id,
-        comment = 'Clad of GT surrounding SS BP pin')
-
-def create_fuelpin_cell(cell_key, pin_key, water_key, grid = None):
+def create_fuelpin_cell(cell_key, pin_key, water_key):
 
     # Fill static fuel pin
     add_cell('fuelpin_'+cell_key,
@@ -532,62 +410,14 @@ def create_fuelpin_cell(cell_key, pin_key, water_key, grid = None):
         fill = univ_dict[pin_key].id,
         comment = 'Fuel pin fill for coolant')
 
-    if grid != None:
+    # Fill in water coolant
+    add_cell('cool_'+cell_key,
+        surfaces = '{0}'.format(surf_dict['cladOR'].id),
+        universe = cell_key,
+        material = mat_dict[water_key].id,
+        comment = 'Coolant around fuel pin')
 
-        # Allow this to work with TB and I grids
-        gridleft = 'grid'+grid+'left'
-        gridright = 'grid'+grid+'right'
-        gridback = 'grid'+grid+'back'
-        gridfront = 'grid'+grid+'front'
-
-        # Determine grid spacer material
-        if grid == 'TB':
-            gridmat = 'in'
-        elif grid == 'I':
-            gridmat = 'zr'
-        else:
-            raise Exception('Grid type not recognized - ' + grid)
-
-        # Fill in water coolant
-        add_cell('cool_'+cell_key,
-            surfaces = '{0} {1} -{2} {3} -{4}'.format(surf_dict['cladOR'].id, surf_dict[gridleft].id, surf_dict[gridright].id,
-                                                      surf_dict[gridback].id, surf_dict[gridfront].id),
-            universe = cell_key,
-            material = mat_dict[water_key].id,
-            comment = 'Coolant around fuel pin before grid ' + grid)
-
-        # Fill in grid (requires 4 cells because OpenMC doesn't have union operator)
-        add_cell('gridtbn_'+cell_key,
-            surfaces = '{0} {1} -{2}'.format(surf_dict[gridfront].id, surf_dict[gridleft].id, surf_dict[gridright].id),
-            universe = cell_key,
-            material = mat_dict[gridmat].id,
-            comment = grid + ' Grid Spacer N')
-        add_cell('gridtbs_'+cell_key,
-            surfaces = '-{0} {1} -{2}'.format(surf_dict[gridback].id, surf_dict[gridleft].id, surf_dict[gridright].id),
-            universe = cell_key,
-            material = mat_dict[gridmat].id,
-            comment = grid + ' Grid Spacer S')
-        add_cell('gridtbe_'+cell_key,
-            surfaces = '{0}'.format(surf_dict[gridright].id),
-            universe = cell_key,
-            material = mat_dict[gridmat].id,
-            comment = grid + ' Grid Spacer NE/E/SE')
-        add_cell('gridtbw_'+cell_key,
-            surfaces = '-{0}'.format(surf_dict[gridleft].id),
-            universe = cell_key,
-            material = mat_dict[gridmat].id,
-            comment = grid + ' Grid Spacer SW/W/NW')
-
-    else:
-
-        # Fill in water coolant
-        add_cell('cool_'+cell_key,
-            surfaces = '{0}'.format(surf_dict['cladOR'].id),
-            universe = cell_key,
-            material = mat_dict[water_key].id,
-            comment = 'Coolant around fuel pin')
-
-def create_bppin_cell(cell_key, pin_key, water_key, grid = None):
+def create_bppin_cell(cell_key, pin_key, water_key):
 
     # Fill static bp pin
     add_cell('bppin_'+cell_key,
@@ -596,126 +426,14 @@ def create_bppin_cell(cell_key, pin_key, water_key, grid = None):
         fill = univ_dict[pin_key].id,
         comment = 'BP pin fill for coolant')
 
-    if grid != None:
-
-        # Allow this to work with TB and I grids
-        gridleft = 'grid'+grid+'left'
-        gridright = 'grid'+grid+'right'
-        gridback = 'grid'+grid+'back'
-        gridfront = 'grid'+grid+'front'
-
-        # Determine grid spacer material
-        if grid == 'TB':
-            gridmat = 'in'
-        elif grid == 'I':
-            gridmat = 'zr'
-        else:
-            raise Exception('Grid type not recognized - ' + grid)
-
-        # Fill in water coolant
-        add_cell('cool_'+cell_key,
-            surfaces = '{0} {1} -{2} {3} -{4}'.format(surf_dict['gtOR'].id, surf_dict[gridleft].id, surf_dict[gridright].id,
-                                                      surf_dict[gridback].id, surf_dict[gridfront].id),
-            universe = cell_key,
-            material = mat_dict[water_key].id,
-            comment = 'Coolant around BP pin before grid ' + grid)
-
-        # Fill in grid (requires 4 cells because OpenMC doesn't have union operator)
-        add_cell('gridtbn_'+cell_key,
-            surfaces = '{0} {1} -{2}'.format(surf_dict[gridfront].id, surf_dict[gridleft].id, surf_dict[gridright].id),
-            universe = cell_key,
-            material = mat_dict[gridmat].id,
-            comment = grid + ' Grid Spacer N')
-        add_cell('gridtbs_'+cell_key,
-            surfaces = '-{0} {1} -{2}'.format(surf_dict[gridback].id, surf_dict[gridleft].id, surf_dict[gridright].id),
-            universe = cell_key,
-            material = mat_dict[gridmat].id,
-            comment = grid + ' Grid Spacer S')
-        add_cell('gridtbe_'+cell_key,
-            surfaces = '{0}'.format(surf_dict[gridright].id),
-            universe = cell_key,
-            material = mat_dict[gridmat].id,
-            comment = grid + ' Grid Spacer NE/E/SE')
-        add_cell('gridtbw_'+cell_key,
-            surfaces = '-{0}'.format(surf_dict[gridleft].id),
-            universe = cell_key,
-            material = mat_dict[gridmat].id,
-            comment = grid + ' Grid Spacer SW/W/NW')
-
-    else:
-
-        # Fill in water coolant
-        add_cell('cool_'+cell_key,
-            surfaces = '{0}'.format(surf_dict['gtOR'].id),
-            universe = cell_key,
-            material = mat_dict[water_key].id,
-            comment = 'Coolant around BP pin')
-
-def create_bppinDP_cell(cell_key, pin_key, water_key, grid = None):
-
-    # Fill static bp pin at DP
-    add_cell('bppinDP_'+cell_key,
-        surfaces = '-{0}'.format(surf_dict['gtORdp'].id),
+    # Fill in water coolant
+    add_cell('cool_'+cell_key,
+        surfaces = '{0}'.format(surf_dict['gtOR'].id),
         universe = cell_key,
-        fill = univ_dict[pin_key].id,
-        comment = 'BP pin fill for coolant at DP')
+        material = mat_dict[water_key].id,
+        comment = 'Coolant around BP pin')
 
-    if grid != None:
-
-        # Allow this to work with TB and I grids
-        gridleft = 'grid'+grid+'left'
-        gridright = 'grid'+grid+'right'
-        gridback = 'grid'+grid+'back'
-        gridfront = 'grid'+grid+'front'
-
-        # Determine grid spacer material
-        if grid == 'TB':
-            gridmat = 'in'
-        elif grid == 'I':
-            gridmat = 'zr'
-        else:
-            raise Exception('Grid type not recognized - ' + grid)
-
-        # Fill in water coolant
-        add_cell('cool_'+cell_key,
-            surfaces = '{0} {1} -{2} {3} -{4}'.format(surf_dict['gtORdp'].id, surf_dict[gridleft].id, surf_dict[gridright].id,
-                                                      surf_dict[gridback].id, surf_dict[gridfront].id),
-            universe = cell_key,
-            material = mat_dict[water_key].id,
-            comment = 'Coolant around BP pin at DP before grid ' + grid)
-
-        # Fill in grid (requires 4 cells because OpenMC doesn't have union operator)
-        add_cell('gridtbn_'+cell_key,
-            surfaces = '{0} {1} -{2}'.format(surf_dict[gridfront].id, surf_dict[gridleft].id, surf_dict[gridright].id),
-            universe = cell_key,
-            material = mat_dict[gridmat].id,
-            comment = grid + ' Grid Spacer N')
-        add_cell('gridtbs_'+cell_key,
-            surfaces = '-{0} {1} -{2}'.format(surf_dict[gridback].id, surf_dict[gridleft].id, surf_dict[gridright].id),
-            universe = cell_key,
-            material = mat_dict[gridmat].id,
-            comment = grid + ' Grid Spacer S')
-        add_cell('gridtbe_'+cell_key,
-            surfaces = '{0}'.format(surf_dict[gridright].id),
-            universe = cell_key,
-            material = mat_dict[gridmat].id,
-            comment = grid + ' Grid Spacer NE/E/SE')
-        add_cell('gridtbw_'+cell_key,
-            surfaces = '-{0}'.format(surf_dict[gridleft].id),
-            universe = cell_key,
-            material = mat_dict[gridmat].id,
-            comment = grid + ' Grid Spacer SW/W/NW')
-
-    else:
-
-        # Fill in water coolant
-        add_cell('cool_'+cell_key,
-            surfaces = '{0}'.format(surf_dict['gtORdp'].id),
-            universe = cell_key,
-            material = mat_dict[water_key].id,
-            comment = 'Coolant around BP pin at DP')
-
-def create_gtpin_cell(cell_key, pin_key, water_key, grid = None):
+def create_gtpin_cell(cell_key, pin_key, water_key):
 
     # Fill static gt pin
     add_cell('gtpin_'+cell_key,
@@ -724,126 +442,14 @@ def create_gtpin_cell(cell_key, pin_key, water_key, grid = None):
         fill = univ_dict[pin_key].id, 
         comment = 'GT pin fill for coolant')
 
-    if grid != None:
-
-        # Allow this to work with TB and I grids
-        gridleft = 'grid'+grid+'left'
-        gridright = 'grid'+grid+'right'
-        gridback = 'grid'+grid+'back'
-        gridfront = 'grid'+grid+'front'
-
-        # Determine grid spacer material
-        if grid == 'TB':
-            gridmat = 'in'
-        elif grid == 'I':
-            gridmat = 'zr'
-        else:
-            raise Exception('Grid type not recognized - ' + grid)
-
-        # Fill in water coolant
-        add_cell('cool_'+cell_key,
-            surfaces = '{0} {1} -{2} {3} -{4}'.format(surf_dict['gtOR'].id, surf_dict[gridleft].id, surf_dict[gridright].id,
-                                                      surf_dict[gridback].id, surf_dict[gridfront].id),
-            universe = cell_key,
-            material = mat_dict[water_key].id,
-            comment = 'Coolant around GT pin before grid ' + grid)
-
-        # Fill in grid (requires 4 cells because OpenMC doesn't have union operator)
-        add_cell('gridtbn_'+cell_key,
-            surfaces = '{0} {1} -{2}'.format(surf_dict[gridfront].id, surf_dict[gridleft].id, surf_dict[gridright].id),
-            universe = cell_key,
-            material = mat_dict[gridmat].id,
-            comment = grid + ' Grid Spacer N')
-        add_cell('gridtbs_'+cell_key,
-            surfaces = '-{0} {1} -{2}'.format(surf_dict[gridback].id, surf_dict[gridleft].id, surf_dict[gridright].id),
-            universe = cell_key,
-            material = mat_dict[gridmat].id,
-            comment = grid + ' Grid Spacer S')
-        add_cell('gridtbe_'+cell_key,
-            surfaces = '{0}'.format(surf_dict[gridright].id),
-            universe = cell_key,
-            material = mat_dict[gridmat].id,
-            comment = grid + ' Grid Spacer NE/E/SE')
-        add_cell('gridtbw_'+cell_key,
-            surfaces = '-{0}'.format(surf_dict[gridleft].id),
-            universe = cell_key,
-            material = mat_dict[gridmat].id,
-            comment = grid + ' Grid Spacer SW/W/NW')
-
-    else:
-
-        # Fill in water coolant
-        add_cell('cool_'+cell_key,
-            surfaces = '{0}'.format(surf_dict['gtOR'].id),
-            universe = cell_key,
-            material = mat_dict[water_key].id,
-            comment = 'Coolant around GT pin')
-
-def create_gtpinDP_cell(cell_key, pin_key, water_key, grid = None):
-
-    # Fill static bp pin at DP
-    add_cell('gtpinDP_'+cell_key,
-        surfaces = '-{0}'.format(surf_dict['gtORdp'].id),
+    # Fill in water coolant
+    add_cell('cool_'+cell_key,
+        surfaces = '{0}'.format(surf_dict['gtOR'].id),
         universe = cell_key,
-        fill = univ_dict[pin_key].id,
-        comment = 'GT pin fill for coolant at DP')
+        material = mat_dict[water_key].id,
+        comment = 'Coolant around GT pin')
 
-    if grid != None:
-
-        # Allow this to work with TB and I grids
-        gridleft = 'grid'+grid+'left'
-        gridright = 'grid'+grid+'right'
-        gridback = 'grid'+grid+'back'
-        gridfront = 'grid'+grid+'front'
-
-        # Fill in water coolant
-        add_cell('cool_'+cell_key,
-            surfaces = '{0} {1} -{2} {3} -{4}'.format(surf_dict['gtORdp'].id, surf_dict[gridleft].id, surf_dict[gridright].id,
-                                                      surf_dict[gridback].id, surf_dict[gridfront].id),
-            universe = cell_key,
-            material = mat_dict[water_key].id,
-            comment = 'Coolant around GT pin at DP before grid ' + grid)
-
-        # Determine grid spacer material
-        if grid == 'TB':
-            gridmat = 'in'
-        elif grid == 'I':
-            gridmat = 'zr'
-        else:
-            raise Exception('Grid type not recognized - ' + grid)
-
-        # Fill in grid (requires 4 cells because OpenMC doesn't have union operator)
-        add_cell('gridtbn_'+cell_key,
-            surfaces = '{0} {1} -{2}'.format(surf_dict[gridfront].id, surf_dict[gridleft].id, surf_dict[gridright].id),
-            universe = cell_key,
-            material = mat_dict[gridmat].id,
-            comment = grid + ' Grid Spacer N')
-        add_cell('gridtbs_'+cell_key,
-            surfaces = '-{0} {1} -{2}'.format(surf_dict[gridback].id, surf_dict[gridleft].id, surf_dict[gridright].id),
-            universe = cell_key,
-            material = mat_dict[gridmat].id,
-            comment = grid + ' Grid Spacer S')
-        add_cell('gridtbe_'+cell_key,
-            surfaces = '{0}'.format(surf_dict[gridright].id),
-            universe = cell_key,
-            material = mat_dict[gridmat].id,
-            comment = grid + ' Grid Spacer NE/E/SE')
-        add_cell('gridtbw_'+cell_key,
-            surfaces = '-{0}'.format(surf_dict[gridleft].id),
-            universe = cell_key,
-            material = mat_dict[gridmat].id,
-            comment = grid + ' Grid Spacer SW/W/NW')
-
-    else:
-
-        # Fill in water coolant
-        add_cell('cool_'+cell_key,
-            surfaces = '{0}'.format(surf_dict['gtORdp'].id),
-            universe = cell_key,
-            material = mat_dict[water_key].id,
-            comment = 'Coolant around GT pin at DP')
-
-def create_gridstrap():
+def create_baffle():
 
     # Moderator universe
     add_cell('water_mod',
@@ -852,151 +458,156 @@ def create_gridstrap():
         material =  mat_dict['h2o_hzp'].id,
         comment = 'Moderator universe')
 
-    # North grid strap
-    for gridmat in ['ss', 'zr']:
-        add_cell('strap_N_'+gridmat,
-            surfaces = '-{0}'.format(surf_dict['strapfront'].id),
-            universe = 'strap_N_'+gridmat,
-            material = mat_dict[gridmat].id,
-            comment = 'North {0} grid strap'.format(gridmat))
-        add_cell('strap_N_mod_'+gridmat,
-            surfaces = '{0}'.format(surf_dict['strapfront'].id),
-            universe = 'strap_N_'+gridmat,
-            material = mat_dict['h2o_hzp'].id,
-            comment = 'Mod north of {0} north grid strap'.format(gridmat))
+    bafmat = 'ss'
+    # North baffle 
+    add_cell('baffle_N',
+        surfaces = '-{0}'.format(surf_dict['bafflefront'].id),
+        universe = 'baffle_N',
+        material = mat_dict[bafmat].id,
+        comment = 'North {0} grid baffle'.format(bafmat))
+    add_cell('baffle_N_mod',
+        surfaces = '{0}'.format(surf_dict['bafflefront'].id),
+        universe = 'baffle_N',
+        material = mat_dict['h2o_hzp'].id,
+        comment = 'Mod north of {0} north grid baffle'.format(bafmat))
 
-    # Northeast grid strap
-    for gridmat in ['ss', 'zr']:
-        add_cell('strap_NE_'+gridmat,
-            surfaces = '-{0} -{1}'.format(surf_dict['strapright'].id, surf_dict['strapfront'].id),
-            universe = 'strap_NE_'+gridmat,
-            material = mat_dict[gridmat].id,
-            comment = 'Northeast {0} grid strap'.format(gridmat))
-        add_cell('strap_NE_mod_n_'+gridmat,
-            surfaces = '-{0} {1}'.format(surf_dict['strapright'].id, surf_dict['strapfront'].id),
-            universe = 'strap_NE_'+gridmat,
-            material = mat_dict['h2o_hzp'].id,
-            comment = 'Mod north of {0} northeast grid strap'.format(gridmat))
-        add_cell('strap_NE_mod_e_'+gridmat,
-            surfaces = '{0} -{1}'.format(surf_dict['strapright'].id, surf_dict['strapfront'].id),
-            universe = 'strap_NE_'+gridmat,
-            material = mat_dict['h2o_hzp'].id,
-            comment = 'Mod east of {0} northeast grid strap'.format(gridmat))
-        add_cell('strap_NE_mod_ne_'+gridmat,
-            surfaces = '{0} {1}'.format(surf_dict['strapright'].id, surf_dict['strapfront'].id),
-            universe = 'strap_NE_'+gridmat,
-            material = mat_dict['h2o_hzp'].id,
-            comment = 'Mod northeast of {0} northeast grid strap'.format(gridmat))
+    # Northeast baffle 
+    add_cell('baffle_NE',
+        surfaces = '-{0} -{1}'.format(surf_dict['baffleright'].id, surf_dict['bafflefront'].id),
+        universe = 'baffle_NE',
+        material = mat_dict[bafmat].id,
+        comment = 'Northeast {0} grid baffle'.format(bafmat))
+    add_cell('baffle_NE_mod_n',
+        surfaces = '-{0} {1}'.format(surf_dict['baffleright'].id, surf_dict['bafflefront'].id),
+        universe = 'baffle_NE',
+        material = mat_dict['h2o_hzp'].id,
+        comment = 'Mod north of {0} northeast grid baffle'.format(bafmat))
+    add_cell('baffle_NE_mod_e',
+        surfaces = '{0} -{1}'.format(surf_dict['baffleright'].id, surf_dict['bafflefront'].id),
+        universe = 'baffle_NE',
+        material = mat_dict['h2o_hzp'].id,
+        comment = 'Mod east of {0} northeast grid baffle'.format(bafmat))
+    add_cell('baffle_NE_mod_ne',
+        surfaces = '{0} {1}'.format(surf_dict['baffleright'].id, surf_dict['bafflefront'].id),
+        universe = 'baffle_NE',
+        material = mat_dict['h2o_hzp'].id,
+        comment = 'Mod northeast of {0} northeast grid baffle'.format(bafmat))
 
-    # East grid strap
-    for gridmat in ['ss', 'zr']:
-        add_cell('strap_E_'+gridmat,
-            surfaces = '-{0}'.format(surf_dict['strapright'].id),
-            universe = 'strap_E_'+gridmat,
-            material = mat_dict[gridmat].id,
-            comment = 'East {0} grid strap'.format(gridmat))
-        add_cell('strap_E_mod_'+gridmat,
-            surfaces = '{0}'.format(surf_dict['strapright'].id),
-            universe = 'strap_E_'+gridmat,
-            material = mat_dict['h2o_hzp'].id,
-            comment = 'Mod east of {0} east grid strap'.format(gridmat))
+    # East grid baffle 
+    add_cell('baffle_E',
+        surfaces = '-{0}'.format(surf_dict['baffleright'].id),
+        universe = 'baffle_E',
+        material = mat_dict[bafmat].id,
+        comment = 'East {0} grid baffle'.format(bafmat))
+    add_cell('baffle_E_mod',
+        surfaces = '{0}'.format(surf_dict['baffleright'].id),
+        universe = 'baffle_E',
+        material = mat_dict['h2o_hzp'].id,
+        comment = 'Mod east of {0} east grid baffle'.format(bafmat))
 
-    # Southeast grid strap
-    for gridmat in ['ss', 'zr']:
-        add_cell('strap_SE_'+gridmat,
-            surfaces = '-{0} {1}'.format(surf_dict['strapright'].id, surf_dict['strapback'].id),
-            universe = 'strap_SE_'+gridmat,
-            material = mat_dict[gridmat].id,
-            comment = 'Southeast {0} grid strap'.format(gridmat))
-        add_cell('strap_SE_mod_s_'+gridmat,
-            surfaces = '-{0} -{1}'.format(surf_dict['strapright'].id, surf_dict['strapback'].id),
-            universe = 'strap_SE_'+gridmat,
-            material = mat_dict['h2o_hzp'].id,
-            comment = 'Mod south of {0} southeast grid strap'.format(gridmat))
-        add_cell('strap_SE_mod_e_'+gridmat,
-            surfaces = '{0} {1}'.format(surf_dict['strapright'].id, surf_dict['strapback'].id),
-            universe = 'strap_SE_'+gridmat,
-            material = mat_dict['h2o_hzp'].id,
-            comment = 'Mod east of {0} southeast grid strap'.format(gridmat))
-        add_cell('strap_SE_mod_se_'+gridmat,
-            surfaces = '{0} -{1}'.format(surf_dict['strapright'].id, surf_dict['strapback'].id),
-            universe = 'strap_SE_'+gridmat,
-            material = mat_dict['h2o_hzp'].id,
-            comment = 'Mod southeast of {0} southeast grid strap'.format(gridmat))
+    # Southeast baffle 
+    add_cell('baffle_SE',
+        surfaces = '-{0} {1}'.format(surf_dict['baffleright'].id, surf_dict['baffleback'].id),
+        universe = 'baffle_SE',
+        material = mat_dict[bafmat].id,
+        comment = 'Southeast {0} grid baffle'.format(bafmat))
+    add_cell('baffle_SE_mod_s',
+        surfaces = '-{0} -{1}'.format(surf_dict['baffleright'].id, surf_dict['baffleback'].id),
+        universe = 'baffle_SE',
+        material = mat_dict['h2o_hzp'].id,
+        comment = 'Mod south of {0} southeast grid baffle'.format(bafmat))
+    add_cell('baffle_SE_mod_e',
+        surfaces = '{0} {1}'.format(surf_dict['baffleright'].id, surf_dict['baffleback'].id),
+        universe = 'baffle_SE',
+        material = mat_dict['h2o_hzp'].id,
+        comment = 'Mod east of {0} southeast grid baffle'.format(bafmat))
+    add_cell('baffle_SE_mod_se',
+        surfaces = '{0} -{1}'.format(surf_dict['baffleright'].id, surf_dict['baffleback'].id),
+        universe = 'baffle_SE',
+        material = mat_dict['h2o_hzp'].id,
+        comment = 'Mod southeast of {0} southeast grid baffle'.format(bafmat))
 
-    # South grid strap
-    for gridmat in ['ss', 'zr']:
-        add_cell('strap_S_'+gridmat,
-            surfaces = '{0}'.format(surf_dict['strapback'].id),
-            universe = 'strap_S_'+gridmat,
-            material = mat_dict[gridmat].id,
-            comment = 'South {0} grid strap'.format(gridmat))
-        add_cell('strap_S_mod_'+gridmat,
-            surfaces = '-{0}'.format(surf_dict['strapback'].id),
-            universe = 'strap_S_'+gridmat,
-            material = mat_dict['h2o_hzp'].id,
-            comment = 'Mod south of {0} south grid strap'.format(gridmat))
+    # South baffle 
+    add_cell('baffle_S',
+        surfaces = '{0}'.format(surf_dict['baffleback'].id),
+        universe = 'baffle_S',
+        material = mat_dict[bafmat].id,
+        comment = 'South {0} grid baffle'.format(bafmat))
+    add_cell('baffle_S_mod',
+        surfaces = '-{0}'.format(surf_dict['baffleback'].id),
+        universe = 'baffle_S',
+        material = mat_dict['h2o_hzp'].id,
+        comment = 'Mod south of {0} south grid baffle'.format(bafmat))
 
-    # Southwest grid strap
-    for gridmat in ['ss', 'zr']:
-        add_cell('strap_SW_'+gridmat,
-            surfaces = '{0} {1}'.format(surf_dict['strapleft'].id, surf_dict['strapback'].id),
-            universe = 'strap_SW_'+gridmat,
-            material = mat_dict[gridmat].id,
-            comment = 'Southwest {0} grid strap'.format(gridmat))
-        add_cell('strap_SW_mod_s_'+gridmat,
-            surfaces = '{0} -{1}'.format(surf_dict['strapleft'].id, surf_dict['strapback'].id),
-            universe = 'strap_SW_'+gridmat,
-            material = mat_dict['h2o_hzp'].id,
-            comment = 'Mod south of {0} southwest grid strap'.format(gridmat))
-        add_cell('strap_SW_mod_w_'+gridmat,
-            surfaces = '-{0} {1}'.format(surf_dict['strapleft'].id, surf_dict['strapback'].id),
-            universe = 'strap_SW_'+gridmat,
-            material = mat_dict['h2o_hzp'].id,
-            comment = 'Mod west of {0} southwest grid strap'.format(gridmat))
-        add_cell('strap_SW_mod_sw_'+gridmat,
-            surfaces = '-{0} -{1}'.format(surf_dict['strapleft'].id, surf_dict['strapback'].id),
-            universe = 'strap_SW_'+gridmat,
-            material = mat_dict['h2o_hzp'].id,
-            comment = 'Mod southwest of {0} southwest grid strap'.format(gridmat))
+    # Southwest baffle 
+    add_cell('baffle_SW',
+        surfaces = '{0} {1}'.format(surf_dict['baffleleft'].id, surf_dict['baffleback'].id),
+        universe = 'baffle_SW',
+        material = mat_dict[bafmat].id,
+        comment = 'Southwest {0} grid baffle'.format(bafmat))
+    add_cell('baffle_SW_mod_s',
+        surfaces = '{0} -{1}'.format(surf_dict['baffleleft'].id, surf_dict['baffleback'].id),
+        universe = 'baffle_SW',
+        material = mat_dict['h2o_hzp'].id,
+        comment = 'Mod south of {0} southwest grid baffle'.format(bafmat))
+    add_cell('baffle_SW_mod_w',
+        surfaces = '-{0} {1}'.format(surf_dict['baffleleft'].id, surf_dict['baffleback'].id),
+        universe = 'baffle_SW',
+        material = mat_dict['h2o_hzp'].id,
+        comment = 'Mod west of {0} southwest grid baffle'.format(bafmat))
+    add_cell('baffle_SW_mod_sw',
+        surfaces = '-{0} -{1}'.format(surf_dict['baffleleft'].id, surf_dict['baffleback'].id),
+        universe = 'baffle_SW',
+        material = mat_dict['h2o_hzp'].id,
+        comment = 'Mod southwest of {0} southwest grid baffle'.format(bafmat))
 
-    # West grid strap
-    for gridmat in ['ss', 'zr']:
-        add_cell('strap_W_'+gridmat,
-            surfaces = '{0}'.format(surf_dict['strapleft'].id),
-            universe = 'strap_W_'+gridmat,
-            material = mat_dict[gridmat].id,
-            comment = 'West {0} grid strap'.format(gridmat))
-        add_cell('strap_W_mod_'+gridmat,
-            surfaces = '-{0}'.format(surf_dict['strapleft'].id),
-            universe = 'strap_W_'+gridmat,
-            material = mat_dict['h2o_hzp'].id,
-            comment = 'Mod west of {0} west grid strap'.format(gridmat))
+    # West baffle 
+    add_cell('baffle_W',
+        surfaces = '{0}'.format(surf_dict['baffleleft'].id),
+        universe = 'baffle_W',
+        material = mat_dict[bafmat].id,
+        comment = 'West {0} grid baffle'.format(bafmat))
+    add_cell('baffle_W_mod',
+        surfaces = '-{0}'.format(surf_dict['baffleleft'].id),
+        universe = 'baffle_W',
+        material = mat_dict['h2o_hzp'].id,
+        comment = 'Mod west of {0} west grid baffle'.format(bafmat))
 
-    # Northwest grid strap
-    for gridmat in ['ss', 'zr']:
-        add_cell('strap_NW_'+gridmat,
-            surfaces = '{0} -{1}'.format(surf_dict['strapleft'].id, surf_dict['strapfront'].id),
-            universe = 'strap_NW_'+gridmat,
-            material = mat_dict[gridmat].id,
-            comment = 'Northwest {0} grid strap'.format(gridmat))
-        add_cell('strap_NW_mod_s_'+gridmat,
-            surfaces = '{0} {1}'.format(surf_dict['strapleft'].id, surf_dict['strapfront'].id),
-            universe = 'strap_NW_'+gridmat,
-            material = mat_dict['h2o_hzp'].id,
-            comment = 'Mod north of {0} northwest grid strap'.format(gridmat))
-        add_cell('strap_NW_mod_w_'+gridmat,
-            surfaces = '-{0} -{1}'.format(surf_dict['strapleft'].id, surf_dict['strapback'].id),
-            universe = 'strap_NW_'+gridmat,
-            material = mat_dict['h2o_hzp'].id,
-            comment = 'Mod west of {0} northwest grid strap'.format(gridmat))
-        add_cell('strap_NW_mod_sw_'+gridmat,
-            surfaces = '-{0} {1}'.format(surf_dict['strapleft'].id, surf_dict['strapback'].id),
-            universe = 'strap_NW_'+gridmat,
-            material = mat_dict['h2o_hzp'].id,
-            comment = 'Mod northwest of {0} northest grid strap'.format(gridmat))
+    # Northwest baffle
+    add_cell('baffle_NW',
+        surfaces = '{0} -{1}'.format(surf_dict['baffleleft'].id, surf_dict['bafflefront'].id),
+        universe = 'baffle_NW',
+        material = mat_dict[bafmat].id,
+        comment = 'Northwest {0} grid baffle'.format(bafmat))
+    add_cell('baffle_NW_mod_s',
+        surfaces = '{0} {1}'.format(surf_dict['baffleleft'].id, surf_dict['bafflefront'].id),
+        universe = 'baffle_NW',
+        material = mat_dict['h2o_hzp'].id,
+        comment = 'Mod north of {0} northwest grid baffle'.format(bafmat))
+    add_cell('baffle_NW_mod_w',
+        surfaces = '-{0} -{1}'.format(surf_dict['baffleleft'].id, surf_dict['baffleback'].id),
+        universe = 'baffle_NW',
+        material = mat_dict['h2o_hzp'].id,
+        comment = 'Mod west of {0} northwest grid baffle'.format(bafmat))
+    add_cell('baffle_NW_mod_sw',
+        surfaces = '-{0} {1}'.format(surf_dict['baffleleft'].id, surf_dict['baffleback'].id),
+        universe = 'baffle_NW',
+        material = mat_dict['h2o_hzp'].id,
+        comment = 'Mod northwest of {0} northest grid baffle'.format(bafmat))
 
-def create_lattice(lat_key, fuel_key, bp_key, gt_key, it_key, grid=False, comment = None):
+    # Add all of these ids to assemblies for core construction
+    assy_dict.update({
+       'MOD__' : Assembly(u = univ_dict['mod'].id),
+       'GR__N' : Assembly(u = univ_dict['baffle_N'].id),
+       'GR_NE' : Assembly(u = univ_dict['baffle_NE'].id),
+       'GR__E' : Assembly(u = univ_dict['baffle_E'].id),
+       'GR_SE' : Assembly(u = univ_dict['baffle_SE'].id),
+       'GR__S' : Assembly(u = univ_dict['baffle_S'].id),
+       'GR_SW' : Assembly(u = univ_dict['baffle_SW'].id),
+       'GR__W' : Assembly(u = univ_dict['baffle_W'].id),
+       'GR_NW' : Assembly(u = univ_dict['baffle_NW'].id)})
+
+def create_lattice(lat_key, fuel_key, bp_key, gt_key, it_key, comment = None):
 
     # Get ids
     fuel_id = univ_dict[fuel_key].id
@@ -1004,35 +615,14 @@ def create_lattice(lat_key, fuel_key, bp_key, gt_key, it_key, grid=False, commen
     gt_id = univ_dict[gt_key].id
     it_id = univ_dict[it_key].id
 
-    # Check for grid
-    if grid == 'TB':
-        no_id = univ_dict['strap_N_ss'].id
-        ne_id = univ_dict['strap_NE_ss'].id
-        ea_id = univ_dict['strap_E_ss'].id
-        se_id = univ_dict['strap_SE_ss'].id
-        so_id = univ_dict['strap_S_ss'].id
-        sw_id = univ_dict['strap_SW_ss'].id
-        we_id = univ_dict['strap_W_ss'].id
-        nw_id = univ_dict['strap_NW_ss'].id
-    elif grid == 'I':
-        no_id = univ_dict['strap_N_zr'].id
-        ne_id = univ_dict['strap_NE_zr'].id
-        ea_id = univ_dict['strap_E_zr'].id
-        se_id = univ_dict['strap_SE_zr'].id
-        so_id = univ_dict['strap_S_zr'].id
-        sw_id = univ_dict['strap_SW_zr'].id
-        we_id = univ_dict['strap_W_zr'].id
-        nw_id = univ_dict['strap_NW_zr'].id
-    else:
-        no_id = univ_dict['mod'].id
-        ne_id = univ_dict['mod'].id
-        ea_id = univ_dict['mod'].id
-        se_id = univ_dict['mod'].id
-        so_id = univ_dict['mod'].id
-        sw_id = univ_dict['mod'].id
-        we_id = univ_dict['mod'].id
-        nw_id = univ_dict['mod'].id
-
+    no_id = univ_dict['mod'].id
+    ne_id = univ_dict['mod'].id
+    ea_id = univ_dict['mod'].id
+    se_id = univ_dict['mod'].id
+    so_id = univ_dict['mod'].id
+    sw_id = univ_dict['mod'].id
+    we_id = univ_dict['mod'].id
+    nw_id = univ_dict['mod'].id
 
     # Calculate coordinates
     lleft = -19.0*pin_pitch / 2.0
@@ -1042,7 +632,7 @@ def create_lattice(lat_key, fuel_key, bp_key, gt_key, it_key, grid=False, commen
         dimension = '19 19',
         lower_left = '{0} {0}'.format(lleft),
         width = '{0} {0}'.format(pin_pitch),
-        universes = { 'fp': fuel_id,
+        universes = pin_lattice.format(**{ 'fp': fuel_id,
                       'pa': bp_id,
                       'pb': gt_id,
                       'pc': bp_id,
@@ -1075,404 +665,58 @@ def create_lattice(lat_key, fuel_key, bp_key, gt_key, it_key, grid=False, commen
                       'so': so_id,
                       'sw': sw_id,
                       'we': we_id,
-                      'nw': nw_id},
+                      'nw': nw_id}),
         comment = comment)
 
-def create_axial_regions():
+def create_assemblies():
 
-    # Support Plate
-    add_cell('suppin', 
-        surfaces = '-{0}'.format(surf_dict['cladOR'].id), 
-        universe = 'supplate',
-        material = mat_dict['ss'].id,
-        comment = 'Support plate pin')
-    add_cell('supmod',
-        surfaces = '{0}'.format(surf_dict['cladOR'].id),
-        universe = 'supplate',
-        material = mat_dict['h2o_hzp'].id,
-        comment = 'Moderator around support plate')
-    create_gtpin_cell('gt_hzp', 'gt', 'h2o_hzp')
+    # Sample density
+    density = random.uniform(low_density, hzp_density)
+    color = -156.0/(hzp_density - low_density) * \
+            (density - hzp_density)
 
-    # Make lattice for support plate
-    create_lattice('support_plate', 'supplate', 'mod', 'mod', 'gt_hzp', comment = 'Support Plate')
+    # Create a water material with that density
+    create_water_material('A___1 coolant', density, color)
 
-    # Bottom of Fuel Rod lattice
-    add_cell('rodpin', 
-        surfaces = '-{0}'.format(surf_dict['cladOR'].id), 
-        universe = 'botfpin',
-        material = mat_dict['zr'].id,
-        comment = 'Bottom Fuel Rod pin')
-    add_cell('rodmod',
-        surfaces = '{0}'.format(surf_dict['cladOR'].id),
-        universe = 'botfpin',
-        material = mat_dict['h2o_hzp'].id,
-        comment = 'Moderator around Bottom Fuel Rod')
-    create_gtpinDP_cell('gtDP_hzp', 'gtDP', 'h2o_hzp')
-    create_lattice('bottom_fuel', 'botfpin', 'gtDP_hzp', 'gtDP_hzp', 'gt_hzp', comment = 'Bottom of Fuel Rod')
+    # Create pin cells
+    create_fuelpin_cell('A___1 fuelpin', 'fuel24pin', 'A___1 coolant') 
+    create_bppin_cell('A___1 bppin', 'bp', 'A___1 coolant') 
+    create_gtpin_cell('A___1 gtpin', 'gt', 'A___1 coolant') 
 
-    # Compute water region thickness
-    water_size = active_core_height/float(n_water)
+    # Create lattice
+    create_lattice('A___1 lattice', 'A___1 fuelpin', 'A___1 bppin', 'A___1 gtpin', 'A___1 gtpin', 'A___1 lattice')
 
-    # Determine where water planes are
-    more = True
-    water_planes = []
-    current_plane = axial_surfaces['baf']
-    while(more):
-        current_plane += water_size
-        water_planes.append(current_plane)
-        if current_plane + water_size > axial_surfaces['taf']:
-            more = False
-    water_planes.append(axial_surfaces['taf'])
-
-    # Set up function for water density calculation
-    try:
-        d_rho = (hzp_density - low_density) / float(n_densities - 1)
-    except ZeroDivisionError:
-        d_rho = 0.0
-    def coolant_density(idx): return hzp_density - d_rho*float(idx + 1)
-
-    # Add lower core surfaces
-    add_surface('lower_plenum', 'z-plane', '{0}'.format(axial_surfaces['lower_plenum']), comment = 'Bottom Support Plate')
-    add_surface('support_plate', 'z-plane', '{0}'.format(axial_surfaces['support_plate']), comment = 'Top Support Plate')
-
-    # Begin loop from BAF to TAF
-    add_surface('baf', 'z-plane', '{0}'.format(axial_surfaces['baf']), comment = 'Bottom of Active Fuel')
-    bottom_surface = ['baf']
-    top_surface = []
-    grids = []
-    label_idx = 0
-    water_idx = 0
-    grid = False
-    grid_id = 0
-    for plane in OrderedDict(sorted(axial_surfaces.items(), key=lambda t: t[1])):
-
-        # start above baf
-        if axial_surfaces[plane] <= axial_surfaces['baf']:
-            continue
-
-        # stop after taf
-        if axial_surfaces[plane] > axial_surfaces['taf']:
-            break
-
-        # check for grid
-        if grid:
-            grids.append(grid_id)
-        else:
-            grids.append(0)
-        if 'grid' in plane and 'bot' in plane:
-            grid = True
-            grid_id += 1
-        elif 'grid' in plane and 'top' in plane:
-            grid = False
-
-        # check if we hit a water plane first
-        label = axial_labels[label_idx]
-        subplane = 1
-        while water_planes[water_idx] < axial_surfaces[plane]:
-            axial_labels.insert(label_idx,label + ' Water Region {0}'.format(subplane))
-            add_surface(plane+'_water {0}'.format(subplane), 'z-plane', '{0}'.format(water_planes[water_idx]), comment = axial_labels[label_idx])
-            bottom_surface.append(plane+'_water {0}'.format(subplane))
-            top_surface.append(plane+'_water {0}'.format(subplane))
-            axial_surfaces.update({plane+'_water {0}'.format(subplane):water_planes[water_idx]})
-            label_idx += 1
-            water_idx += 1
-            subplane += 1
-            grids.append(grid)
-            if water_idx >= len(water_planes):
-                break
-
-        # add surface
-        add_surface(plane, 'z-plane', '{0}'.format(axial_surfaces[plane]), comment = axial_labels[label_idx])
-        bottom_surface.append(plane)
-        top_surface.append(plane)
-        label_idx += 1
-    del bottom_surface[len(bottom_surface)-1] # delete the last entry
-
-    # Loop around axial regions
-    water_idx = 0
-    for i in range(len(bottom_surface)):
-        bottom = bottom_surface[i]
-        top = top_surface[i]
-        if axial_surfaces[top] <= axial_surfaces['dptop']:
-            dp = True
-        else:
-            dp = False
-        grid = grids[i]
-        add_axial('{0}_{1}'.format(axial_labels[i+3], axial_labels[i+4]),
-            bottom = bottom,
-            top = top,
-            dp = dp,
-            grid = grid,
-            water_idx = water_idx,
-            cool_rho = coolant_density(water_idx))
-        if water_planes[water_idx] == axial_surfaces[top]:
-            water_idx += 1
-
-def create_assembly():
-
-    # Add lower plenum region 
-    add_cell('lower_plenum',
-        surfaces = '-{0}'.format(surf_dict['lower_plenum'].id),
-        universe = 'assembly',
-        material = mat_dict['h2o_hzp'].id,
-        comment = 'Lower Plenum')
-    add_plot('plot_lower_plenum',
-        origin = '0.0 0.0 {0}'.format(0.5*(axial_surfaces['lowest_extent'] + axial_surfaces['lower_plenum'])),
-        width = '{0} {0}'.format(assy_pitch+5),
-        basis = 'xy',
-        filename = 'lower_plenum')
-
-    # Add support plate 
-    add_cell('support_plate',
-        surfaces = '{0} -{1}'.format(surf_dict['lower_plenum'].id, surf_dict['support_plate'].id),
-        universe = 'assembly',
-        fill = lat_dict['support_plate'].id,
-        comment = 'Support Plate')
-    add_plot('plot_support_plate',
-        origin = '0.0 0.0 {0}'.format(0.5*(axial_surfaces['lower_plenum'] + axial_surfaces['support_plate'])),
-        width = '{0} {0}'.format(assy_pitch+5),
-        basis = 'xy',
-        filename = 'support_plate')
-
-    # Add bottom of fuel pin 
-    add_cell('bottom_fuel',
-        surfaces = '{0} -{1}'.format(surf_dict['support_plate'].id, surf_dict['baf'].id),
-        universe = 'assembly',
-        fill = lat_dict['bottom_fuel'].id,
-        comment = 'Bottom of fuel rods')
-    add_plot('plot_bottom_fuel',
-        origin = '0.0 0.0 {0}'.format(0.5*(axial_surfaces['support_plate'] + axial_surfaces['baf'])),
-        width = '{0} {0}'.format(assy_pitch+5),
-        basis = 'xy',
-        filename = 'bottom_fuel')
-
-    # Build active core
-    i = 0
-    current_water = -1
-    for item in axial_dict.keys():
-
-        # Get the current axial region
-        axial = axial_dict[item]
-
-        # Create water material for this axial region
-        #     if not yet created
-        grid_counter = 0
-        if current_water != axial.water_idx:
-
-            # Color for plots
-            color = -156.0/(hzp_density - low_density) * \
-                    (axial.cool_rho - hzp_density)
-
-            # Water material
-            create_water_material('water_{0}'.format(axial.water_idx),
-                                  axial.cool_rho, color)
-
-            # Make this the current water index
-            current_water = axial.water_idx
-
-        # Check for grid
-        if axial.grid > 0:
-            if axial.grid == 1 or axial.grid == 8:
-                grid = 'TB'
-            else:
-                grid = 'I'
-        else:
-            grid = None
-
-        # Create fuel pin and guide tube for this water region
-        create_fuelpin_cell('fpw_{0}'.format(i), 'fuel', 'water_{0}'.format(current_water), grid=grid)
-        if axial.dp:
-            create_gtpinDP_cell('gtw_{0}'.format(i), 'gtDP', 'water_{0}'.format(current_water), grid=grid)
-        else:
-            create_gtpin_cell('gtw_{0}'.format(i), 'gt', 'water_{0}'.format(current_water), grid=grid)
-
-        # Check to create bp pin
-        if axial_surfaces[axial.bottom] >= axial_surfaces['bpbot']:
-            if axial.dp:
-                create_bppinDP_cell('bpw_{0}'.format(i), 'bpDP', 'water_{0}'.format(current_water), grid=grid)
-            else:
-                create_bppin_cell('bpw_{0}'.format(i), 'bp', 'water_{0}'.format(current_water), grid=grid)
-            bp_key = 'bpw_{0}'.format(i)
-        else:
-            bp_key = 'gtw_{0}'.format(i)
-
-        # Create a lattice
-        create_lattice('lat_{0}'.format(i), 
-            fuel_key = 'fpw_{0}'.format(i),
-            bp_key = bp_key,
-            gt_key = 'gtw_{0}'.format(i),
-            it_key = 'gtw_{0}'.format(i),
-            grid = grid,
-            comment = 'Lattice active region {0}'.format(i))
- 
-        # Fill lattice into axial cell
-        add_cell(item,
-            surfaces = '{0} -{1}'.format(surf_dict[axial.bottom].id, surf_dict[axial.top].id),
-            universe = 'assembly',
-            fill = lat_dict['lat_{0}'.format(i)].id, 
-            comment = 'Cell fill lattice active region {0}'.format(i))
-
-        # Add a plot
-        add_plot('plot_active_region_{0}'.format(i),
-            origin = '0.0 0.0 {0}'.format(0.5*(axial_surfaces[axial.bottom] + axial_surfaces[axial.top])),
-            width = '{0} {0}'.format(assy_pitch+5),
-            basis = 'xy',
-            filename = 'active_region_{0}'.format(i))
-
-        i += 1 # next axial region
-    i -= 1
-    # Add pin plenum region before grid 8
-    create_fuelpin_cell('fuelpinplenum', 'fuelplenum', 'water_{0}'.format(current_water))
-    create_bppin_cell('bppinplenum', 'bpplenum', 'water_{0}'.format(current_water))
-    create_lattice('pinplenum', 'fuelpinplenum', 'bppinplenum', 'gtw_{0}'.format(i), 'gtw_{0}'.format(i), comment = 'Pin Plenum before Grid 8')
-    add_surface('grid8bot', 'z-plane', '{0}'.format(axial_surfaces['grid8bot']), comment = 'Grid 8 Bottom')
-    add_cell('pinplenum',
-        surfaces = '{0} -{1}'.format(surf_dict['taf'].id, surf_dict['grid8bot'].id),
-        universe = 'assembly',
-        fill = lat_dict['pinplenum'].id,
-        comment = 'Cell fill Lattice Pin Plenum before Grid 8')
-    add_plot('plot_pin_plenum',
-        origin = '0.0 0.0 {0}'.format(0.5*(axial_surfaces['taf'] + axial_surfaces['grid8bot'])),
-        width = '{0} {0}'.format(assy_pitch+5),
-        basis = 'xy',
-        filename = 'pin_plenum')
-
-    # Add Grid 8 region
-    create_fuelpin_cell('fuelpinplenumgrid8', 'fuelplenum', 'water_{0}'.format(current_water), grid = 'TB')
-    create_bppin_cell('bppinplenumgrid8', 'bpplenum', 'water_{0}'.format(current_water), grid = 'TB')
-    create_gtpin_cell('gtpinplenumgrid8', 'gt', 'water_{0}'.format(current_water), grid = 'TB')
-    create_lattice('pinplenumgrid8', 'fuelpinplenumgrid8', 'bppinplenumgrid8', 'gtpinplenumgrid8', 'gtpinplenumgrid8', grid = 'TB', comment = 'Pin Plenum at Grid 8')
-    add_surface('grid8top', 'z-plane', '{0}'.format(axial_surfaces['grid8top']), comment = 'Grid 8 Top')
-    add_cell('pinplenumgrid8',
-        surfaces = '{0} -{1}'.format(surf_dict['grid8bot'].id, surf_dict['grid8top'].id),
-        universe = 'assembly',
-        fill = lat_dict['pinplenumgrid8'].id,
-        comment = 'Cell fill Lattice Pin Plenum at Grid 8')
-    add_plot('plot_pin_plenumgrid',
-        origin = '0.0 0.0 {0}'.format(0.5*(axial_surfaces['grid8bot'] + axial_surfaces['grid8top'])),
-        width = '{0} {0}'.format(assy_pitch+5),
-        basis = 'xy',
-        filename = 'pin_plenum_grid8')
-
-    # Add pin plenum region above grid 8
-    add_surface('topplugbot', 'z-plane', '{0}'.format(axial_surfaces['topplugbot']), comment = 'Bottom of Top End Plug')
-    add_cell('pinplenum2', 
-        surfaces = '{0} -{1}'.format(surf_dict['grid8top'].id, surf_dict['topplugbot'].id),
-        universe = 'assembly',
-        fill = lat_dict['pinplenum'].id,
-        comment = 'Cell fill Lattice Pin Plenum after Grid 8')
-    add_plot('plot_pin_plenum2',
-        origin = '0.0 0.0 {0}'.format(0.5*(axial_surfaces['grid8top'] + axial_surfaces['topplugbot'])),
-        width = '{0} {0}'.format(assy_pitch+5),
-        basis = 'xy',
-        filename = 'pin_plenum2')
-
-    # Make zircaloy fuel pin for top plug
-    add_cell('fueltopplugzr',
-        surfaces = '-{0}'.format(surf_dict['cladOR'].id),
-        universe = 'topplug',
-        material = mat_dict['zr'].id,
-        comment = 'Zircaloy Fuel Top Plug')
-    add_cell('fueltopplugcool',
-        surfaces = '{0}'.format(surf_dict['cladOR'].id),
-        universe = 'topplug',
-        material = mat_dict['water_{0}'.format(current_water)].id,
-        comment = 'Coolant around Fuel Top Plug')
-    create_lattice('topplug', 'topplug', 'bppinplenum', 'gtw_{0}'.format(i), 'gtw_{0}'.format(i), comment = 'Fuel Top Plug')
-    add_surface('rodtop', 'z-plane', '{0}'.format(axial_surfaces['rodtop']), comment = 'Top of Fuel Rod')
-    add_cell('rodtopplug', 
-        surfaces = '{0} -{1}'.format(surf_dict['topplugbot'].id, surf_dict['rodtop'].id),
-        universe = 'assembly',
-        fill = lat_dict['topplug'].id,
-        comment = 'Cell fill Lattice Top End Plug')
-    add_plot('plot_topplug',
-        origin = '0.0 0.0 {0}'.format(0.5*(axial_surfaces['topplugbot'] + axial_surfaces['rodtop'])),
-        width = '{0} {0}'.format(assy_pitch+5),
-        basis = 'xy',
-        filename = 'top_plug')
-
-    # Water region before nozzle 
-    add_cell('upperwater',
+    # Create cell to put lattice in
+    add_cell('A___1 lattice fill',
         surfaces = '',
-        universe = 'upperwater',
-        material = mat_dict['water_{0}'.format(current_water)].id,
-        comment = 'Coolant in before nozzle')
-    create_lattice('beforenozzle', 'upperwater', 'bppinplenum', 'gtw_{0}'.format(i), 'gtw_{0}'.format(i), comment = 'Before Nozzle')
-    add_surface('nozzlebot', 'z-plane', '{0}'.format(axial_surfaces['nozzlebot']), comment = 'Bottom of Nozzle')
-    add_cell('beforenozzle', 
-        surfaces = '{0} -{1}'.format(surf_dict['rodtop'].id, surf_dict['nozzlebot'].id),
-        universe = 'assembly',
-        fill = lat_dict['beforenozzle'].id,
-        comment = 'Before nozzle')
-    add_plot('plot_beforenozzle',
-        origin = '0.0 0.0 {0}'.format(0.5*(axial_surfaces['rodtop'] + axial_surfaces['nozzlebot'])),
-        width = '{0} {0}'.format(assy_pitch+5),
-        basis = 'xy',
-        filename = 'before_nozzle')
-
-    # Nozzle Region
-    # Fuel Pin
-    add_cell('fuel_nozzle_ss',
-        surfaces = '-{0}'.format(surf_dict['cladOR'].id),
-        universe = 'fuel_nozzle',
-        material = mat_dict['ss'].id,
-        comment = 'SS Fuel Pin to approximate Nozzle')
-    add_cell('fuel_nozzle_cool',
-        surfaces = '{0}'.format(surf_dict['cladOR'].id),
-        universe = 'fuel_nozzle',
-        material = mat_dict['water_{0}'.format(current_water)].id,
-        comment = 'Coolant around fuel pin in nozzle')
-
-    # BP Pin
-    add_cell('bp_nozzle_ss',
-        surfaces = '-{0}'.format(surf_dict['bpIR6'].id),
-        universe = 'bp_nozzle',
-        material = mat_dict['ss'].id,
-        comment = 'SS BP Pin to approximate Nozzle')
-    add_cell('bp_nozzle_cool',
-        surfaces = '{0}'.format(surf_dict['bpIR6'].id),
-        universe = 'bp_nozzle',
-        material = mat_dict['water_{0}'.format(current_water)].id,
-        comment = 'Coolant around bp pin in nozzle')
-
-    create_lattice('nozzle', 'fuel_nozzle', 'bp_nozzle', 'upperwater', 'upperwater', comment = 'Nozzle')
-    add_surface('nozzletop', 'z-plane', '{0}'.format(axial_surfaces['nozzletop']), comment = 'Top of Nozzle')
-    add_cell('nozzle', 
-        surfaces = '{0} -{1}'.format(surf_dict['nozzlebot'].id, surf_dict['nozzletop'].id),
-        universe = 'assembly',
-        fill = lat_dict['nozzle'].id,
-        comment = 'Nozzle')
-    add_plot('plot_nozzle',
-        origin = '0.0 0.0 {0}'.format(0.5*(axial_surfaces['nozzlebot'] + axial_surfaces['nozzletop'])),
-        width = '{0} {0}'.format(assy_pitch+5),
-        basis = 'xy',
-        filename = 'nozzle')
-
-    # Add upper plenum region 
-    add_cell('upper_plenum',
-        surfaces = '{0}'.format(surf_dict['nozzletop'].id),
-        universe = 'assembly',
-        material = mat_dict['water_{0}'.format(current_water)].id,
-        comment = 'Upper Plenum')
-    add_plot('plot_upper_plenum',
-        origin = '0.0 0.0 {0}'.format(0.5*(axial_surfaces['nozzletop'] + axial_surfaces['highest_extent'])),
-        width = '{0} {0}'.format(assy_pitch+5),
-        basis = 'xy',
-        filename = 'upper_plenum')
+        universe = 'A___1 assembly',
+        fill = lat_dict['A___1 lattice'].id,
+        comment = 'A___1 Assembly Cell')
+    assy_dict['A___1'].add_universe(univ_dict['A___1 assembly'].id)
 
 def create_core():
-    add_cell('core',
-        surfaces = '{0} -{1} {2} -{3} {4} -{5}'.format(surf_dict['core_left'].id, surf_dict['core_right'].id,
-                                                       surf_dict['core_back'].id, surf_dict['core_front'].id,
-                                                       surf_dict['core_bottom'].id, surf_dict['core_top'].id),
-        fill = univ_dict['assembly'].id,
-        comment = 'Core fill')
 
+    # Create Core Lattice
+    lleft = -17.0*assy_pitch/2.0
+    add_lattice('Core Lattice',
+        dimension = '17 17',
+        lower_left = '{0} {0}'.format(lleft),
+        width = '{0} {0}'.format(assy_pitch),
+        universes = assembly_map.format(**assy_dict),
+        comment = 'Core Lattice')
+     
+    # Create core fill cell
+    add_cell('core',
+        surfaces = '{0} -{1} {2} -{3}'.format(surf_dict['core_left'].id, surf_dict['core_right'].id,
+                                                       surf_dict['core_back'].id, surf_dict['core_front'].id),
+        fill = lat_dict['Core Lattice'].id,
+        comment = 'Core fill')
     add_plot('plot_axial',
-        origin = '0.0 {0} {1}'.format(6*pin_pitch,0.5*(axial_surfaces['highest_extent'] + axial_surfaces['lowest_extent'])),
-        width = '{0} {1}'.format(assy_pitch+5, axial_surfaces['highest_extent'] - axial_surfaces['lowest_extent'] + 5),
-        basis = 'xz',
-        filename = 'axial')
+        origin = '0.0 0.0 0.0',
+        width = '{0} {1}'.format(-17.0*assy_pitch, 17.0*assy_pitch),
+        basis = 'xy',
+        pixels = '3000 3000',
+        filename = 'core_radial')
 
 def create_water_material(key, water_density, color=None):
 
@@ -1660,15 +904,15 @@ def write_openmc_input():
 ############ Settings File ##############
 
     settings.update({
-'xbot' : -assy_pitch/2.0,
-'ybot' : -assy_pitch/2.0,
-'zbot' : axial_surfaces['baf'],
-'xtop' : assy_pitch/2.0,
-'ytop' : assy_pitch/2.0,
-'ztop' : axial_surfaces['taf'],
-'entrX' : 1,
-'entrY' : 1,
-'entrZ' : n_water
+'xbot' : -17*assy_pitch/2.0,
+'ybot' : -17*assy_pitch/2.0,
+'zbot' : 0.0,
+'xtop' : 17*assy_pitch/2.0,
+'ytop' : 17*assy_pitch/2.0,
+'ztop' : 10.0,
+'entrX' : 17,
+'entrY' : 17,
+'entrZ' : 1
     })
 
     set_str = """<?xml version="1.0" encoding="UTF-8"?>
@@ -1708,7 +952,7 @@ def write_openmc_input():
     plot_str += """</plots>""".format(x = assy_pitch+5, y = assy_pitch+5)
     with open('plots.xml','w') as fh:
         fh.write(plot_str)
-
+    return
 ############ CMFD File ###############
 
     cmfd_str = """<?xml version="1.0" encoding="UTF-8"?>
