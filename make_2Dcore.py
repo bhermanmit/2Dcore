@@ -398,6 +398,32 @@ def create_static_materials():
     mat_ss.add_color('0 0 0')
     mat_ss.finalize()
 
+    # Carbon steel ASTM A533 Grade B
+    mat_cs = Material('cs', 'Carbon steel')
+    mat_cs.add_nuclide('C-Nat', '71c', '9.7772E-04')
+    mat_cs.add_nuclide('Si-28', '71c', '4.2417E-04')
+    mat_cs.add_nuclide('Si-29', '71c', '2.1548E-05')
+    mat_cs.add_nuclide('Si-30', '71c', '1.4221E-05')
+    mat_cs.add_nuclide('Mn-55', '71c', '1.1329E-03')
+    mat_cs.add_nuclide('P-31',  '71c', '3.7913E-05')
+    mat_cs.add_nuclide('Mo-92', '71c', '3.7965E-05')
+    mat_cs.add_nuclide('Mo-94', '71c', '2.3725E-05')
+    mat_cs.add_nuclide('Mo-96', '71c', '4.2875E-05')
+    mat_cs.add_nuclide('Mo-97', '71c', '2.4573E-05')
+    mat_cs.add_nuclide('Mo-98', '71c', '6.2179E-05')
+    mat_cs.add_nuclide('Mo-100','71c', '2.4856E-05')
+    mat_cs.add_nuclide('Fe-54', '71c', '4.7714E-03')
+    mat_cs.add_nuclide('Fe-56', '71c', '7.4900E-02')
+    mat_cs.add_nuclide('Fe-57', '71c', '1.7298E-03')
+    mat_cs.add_nuclide('Fe-58', '71c', '2.3020E-04')
+    mat_cs.add_nuclide('Ni-58', '71c', '2.9965E-04')
+    mat_cs.add_nuclide('Ni-60', '71c', '1.1543E-04')
+    mat_cs.add_nuclide('Ni-61', '71c', '5.0175E-06')
+    mat_cs.add_nuclide('Ni-62', '71c', '1.5998E-05')
+    mat_cs.add_nuclide('Ni-64', '71c', '4.0742E-06')
+    mat_cs.add_color('0 0 0')
+    mat_cs.finalize()
+
     # Zircaloy Material
     mat_zr = Material('zr', 'Zircaloy-4')
     mat_zr.add_nuclide('O-16', '71c', '3.0743e-04')
@@ -513,12 +539,14 @@ def create_surfaces():
 
     # Peripheral structures
     add_surface('core_barrelIR', 'z-cylinder', '0.0 0.0 187.960', comment = 'Core barrel inner radius')
-    add_surface('core_barrelOR', 'z-cylinder', '0.0 0.0 193.675', bc = 'vacuum', comment = 'Core barrel outer radius')
+    add_surface('core_barrelOR', 'z-cylinder', '0.0 0.0 193.675', comment = 'Core barrel outer radius')
     add_surface('shield_OR', 'z-cylinder', '0.0 0.0 199.39', comment = 'Shield panel outer radius')
-    add_surface('shield_NWtoSE', 'plane', '1 {0} 0 0'.format(math.tan(math.pi/3)), comment = 'Shield panel cut plane')
-    add_surface('shield_SEtoNW', 'plane', '1 {0} 0 0'.format(math.tan(math.pi/6)), comment = 'Shield panel cut plane')
-    add_surface('shield_NEtoSW', 'plane', '1 {0} 0 0'.format(math.tan(math.pi/3)), comment = 'Shield panel cut plane')
-    add_surface('shield_SWtoNE', 'plane', '1 {0} 0 0'.format(math.tan(math.pi/6)), comment = 'Shield panel cut plane')
+    add_surface('shield_NESW60', 'plane', '1 {0} 0 0'.format(math.tan(math.pi/3)), comment = 'Shield panel cut plane')
+    add_surface('shield_NESW30', 'plane', '1 {0} 0 0'.format(math.tan(math.pi/6)), comment = 'Shield panel cut plane')
+    add_surface('shield_NWSE60', 'plane', '1 {0} 0 0'.format(-math.tan(math.pi/3)), comment = 'Shield panel cut plane')
+    add_surface('shield_NWSE30', 'plane', '1 {0} 0 0'.format(-math.tan(math.pi/6)), comment = 'Shield panel cut plane')
+    add_surface('rpv_IR', 'z-cylinder', '0.0 0.0 230.09', comment = 'RPV inner radius')
+    add_surface('rpv_OR', 'z-cylinder', '0.0 0.0 251.9', bc = 'vacuum', comment = 'RPV outer radius')
 
 def create_fuelpin(fuel_mat):
 
@@ -1226,7 +1254,53 @@ def create_core():
         surfaces = '{0} -{1}'.format(surf_dict['core_barrelIR'].id, surf_dict['core_barrelOR'].id),
         material = mat_dict['ss'].id,
         comment = 'Core Barrel')
-     
+
+    # Add shield panel ring
+    add_cell('panelNE',
+        surfaces = '{0} -{1} {2} -{3}'.format(surf_dict['core_barrelOR'].id, surf_dict['shield_OR'].id, surf_dict['shield_NESW60'].id, surf_dict['shield_NESW30'].id),
+        material = mat_dict['ss'].id,
+        comment = 'Northeast Shield Panel')
+    add_cell('panelmodE',
+        surfaces = '{0} -{1} {2} -{3}'.format(surf_dict['core_barrelOR'].id, surf_dict['shield_OR'].id, surf_dict['shield_NESW30'].id, surf_dict['shield_NWSE30'].id),
+        material = mat_dict['h2o_hzp'].id,
+        comment = 'Mod East Shield Panel')
+    add_cell('panelSE',
+       surfaces = '{0} -{1} {2} -{3}'.format(surf_dict['core_barrelOR'].id, surf_dict['shield_OR'].id, surf_dict['shield_NWSE30'].id, surf_dict['shield_NWSE60'].id),
+       material = mat_dict['ss'].id,
+       comment = 'Southeast Shield Panel')
+    add_cell('panelmodS',
+        surfaces = '{0} -{1}  {2} {3}'.format(surf_dict['core_barrelOR'].id, surf_dict['shield_OR'].id, surf_dict['shield_NWSE60'].id, surf_dict['shield_NESW60'].id),
+        material = mat_dict['h2o_hzp'].id,
+        comment = 'Mod South Shield Panel')
+    add_cell('panelSW',
+        surfaces = '{0} -{1} -{2} {3}'.format(surf_dict['core_barrelOR'].id, surf_dict['shield_OR'].id, surf_dict['shield_NESW60'].id, surf_dict['shield_NESW30'].id),
+        material = mat_dict['ss'].id,
+        comment = 'Southwest Shield Panel')
+    add_cell('panelmodW',
+        surfaces = '{0} -{1} -{2} {3}'.format(surf_dict['core_barrelOR'].id, surf_dict['shield_OR'].id, surf_dict['shield_NESW30'].id, surf_dict['shield_NWSE30'].id),
+        material = mat_dict['h2o_hzp'].id,
+        comment = 'Mod West Shield Panel')
+    add_cell('panelNW',
+        surfaces = '{0} -{1} -{2} {3}'.format(surf_dict['core_barrelOR'].id, surf_dict['shield_OR'].id, surf_dict['shield_NWSE30'].id, surf_dict['shield_NWSE60'].id),
+        material = mat_dict['ss'].id,
+        comment = 'Northwest Shield Panel')
+    add_cell('panelmodN',
+        surfaces = '{0} -{1} -{2} -{3}'.format(surf_dict['core_barrelOR'].id, surf_dict['shield_OR'].id, surf_dict['shield_NWSE60'].id, surf_dict['shield_NESW60'].id),
+        material = mat_dict['h2o_hzp'].id,
+        comment = 'Mod North Shield Panel')
+
+    # Add moderator before rpv
+    add_cell('modrpv',
+        surfaces = '{0} -{1}'.format(surf_dict['shield_OR'].id, surf_dict['rpv_IR'].id),
+        material = mat_dict['h2o_hzp'].id,
+        comment = 'Mod before RPV')
+
+    # Add rpv
+    add_cell('rpv',
+        surfaces = '{0} -{1}'.format(surf_dict['rpv_IR'].id, surf_dict['rpv_OR'].id),
+        material = mat_dict['cs'].id,
+        comment = 'RPV')
+
     # Plot core
     add_plot('plot_axial',
         origin = '0.0 0.0 0.0',

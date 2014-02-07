@@ -274,7 +274,7 @@ class Assembly(object):
         self.density = density
 
 class Plot(object):
-    def __init__(self, origin, width, basis, type='slice', color='mat', pixels="1000 1000", background='255 0 0', filename=None, comment=None):
+    def __init__(self, origin, width, basis, type='slice', color='mat', pixels="1000 1000", background='255 255 255', filename=None, comment=None):
         global n_plots
         n_plots += 1
         self.id = n_plots
@@ -369,7 +369,7 @@ def add_lattice(key, dimension, lower_left, width, universes, comment=None):
          raise Exception('Duplicate lattice key - '+key)
     lat_dict.update({key:Lattice(dimension, lower_left, width, universes, comment)})
 
-def add_plot(key, origin, width, basis, type='slice', color='mat', pixels="1000 1000", background='255 0 0', filename=None, comment=None):
+def add_plot(key, origin, width, basis, type='slice', color='mat', pixels="1000 1000", background='255 255 255', filename=None, comment=None):
     if plot_dict.has_key(key):
          raise Exception('Duplicate plot key - '+key)
     plot_dict.update({key:Plot(origin, width, basis, type, color, pixels, background, filename, comment)})
