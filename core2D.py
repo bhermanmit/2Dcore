@@ -261,17 +261,27 @@ class Lattice(object):
         return xml_str
 
 class Assembly(object):
-    def __init__(self, enr = None, bp = None, u = None):
+    def __init__(self, enr = '0.0', bp = '0', u = None, wid = '0'):
         self.enr = enr
+        if bp == None:
+            bp = '0'
         self.bp = bp
-        self.u = u 
-        self.density = None
+        self.u = u
+        self.wid = wid
+        self.density = '0.0' 
+        self.fueltemp = '0.0'
 
     def add_universe(self, u):
         self.u = u
 
+    def add_waterid(self, wid):
+        self.wid = wid
+
     def add_density(self, density):
         self.density = density
+
+    def add_fueltemp(self, fueltemp):
+        self.fueltemp = fueltemp
 
 class Plot(object):
     def __init__(self, origin, width, basis, type='slice', color='mat', pixels="1000 1000", background='255 255 255', filename=None, comment=None):

@@ -11,241 +11,238 @@ settings = {
 'batches' : 500,
 'inactive' : 100,
 'particles' : 1000,
-'run_cmfd' : 'false'
+'run_cmfd' : 'true'
 }
-n_densities = 1 # number of unique densities from hzp to 0.66
-n_temps = 1  # number of unique fuel temperature linear from 600 to 1200
-n_water = 25 # number of water materials, cmfd regions
 cmfd = {
-'power' : 17.674e6,
-'flowrate' : 88.5145,
-'inlet_enthalpy' : 1301740.,
-'n_assemblies': 1,
-'boron' : 975,
-'thinner' : 1,
-'thouter' : 1,
-'interval' : 1000,
-'begin':500,
-'active_flush':70,
+'power' : '3411e6',
+'flowrate' : '17083.3',
+'inlet_enthalpy' : '1301740.0',
+'n_assemblies': '193',
+'boron' : '975',
+'thinner' : '1',
+'thouter' : '1',
+'interval' : '1000',
+'begin':'500',
+'active_flush':'70',
 'feedback':'false'
 }
 
 # Global data
 hzp_density = 0.73986            # Highest density
 low_density = 0.66               # Lowest density
+hzp_fueltemp = 600.0             # Lowest fuel temp 
+high_fueltemp = 1200.0           # Highest fuel temp
 pin_pitch = 1.25984              # Pin pitch
 assy_pitch = 21.50364            # Assembly pitch
 rpv_OR = 251.9
 
-assy_dict.update({
-'A___5' : Assembly(enr = '3.1', bp = None),
-'A___6' : Assembly(enr = '3.1', bp = '6W'),
-'A___7' : Assembly(enr = '3.1', bp = None),
-'A___8' : Assembly(enr = '3.1', bp = '6W'),
-'A___9' : Assembly(enr = '3.1', bp = None),
-'A__10' : Assembly(enr = '3.1', bp = '6W'),
-'A__11' : Assembly(enr = '3.1', bp = None),
+assy_dict.update({'A___5' : Assembly(enr = '3.1', bp = None)})
+assy_dict.update({'A___6' : Assembly(enr = '3.1', bp = '6W')})
+assy_dict.update({'A___7' : Assembly(enr = '3.1', bp = None)})
+assy_dict.update({'A___8' : Assembly(enr = '3.1', bp = '6W')})
+assy_dict.update({'A___9' : Assembly(enr = '3.1', bp = None)})
+assy_dict.update({'A__10' : Assembly(enr = '3.1', bp = '6W')})
+assy_dict.update({'A__11' : Assembly(enr = '3.1', bp = None)})
 
-'B___3' : Assembly(enr = '3.1', bp = None),
-'B___4' : Assembly(enr = '3.1', bp = None),
-'B___5' : Assembly(enr = '3.1', bp = '16'),
-'B___6' : Assembly(enr = '1.6', bp = None),
-'B___7' : Assembly(enr = '3.1', bp = '20'),
-'B___8' : Assembly(enr = '1.6', bp = None),
-'B___9' : Assembly(enr = '3.1', bp = '20'),
-'B__10' : Assembly(enr = '1.6', bp = None),
-'B__11' : Assembly(enr = '3.1', bp = '16'),
-'B__12' : Assembly(enr = '3.1', bp = None),
-'B__13' : Assembly(enr = '3.1', bp = None),
+assy_dict.update({'B___3' : Assembly(enr = '3.1', bp = None)})
+assy_dict.update({'B___4' : Assembly(enr = '3.1', bp = None)})
+assy_dict.update({'B___5' : Assembly(enr = '3.1', bp = '16')})
+assy_dict.update({'B___6' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'B___7' : Assembly(enr = '3.1', bp = '20')})
+assy_dict.update({'B___8' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'B___9' : Assembly(enr = '3.1', bp = '20')})
+assy_dict.update({'B__10' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'B__11' : Assembly(enr = '3.1', bp = '16')})
+assy_dict.update({'B__12' : Assembly(enr = '3.1', bp = None)})
+assy_dict.update({'B__13' : Assembly(enr = '3.1', bp = None)})
 
-'C___2' : Assembly(enr = '3.1', bp = None),
-'C___3' : Assembly(enr = '3.1', bp = '15SW'),
-'C___4' : Assembly(enr = '2.4', bp = '16'),
-'C___5' : Assembly(enr = '1.6', bp = None),
-'C___6' : Assembly(enr = '2.4', bp = '16'),
-'C___7' : Assembly(enr = '1.6', bp = None),
-'C___8' : Assembly(enr = '2.4', bp = '16'),
-'C___9' : Assembly(enr = '1.6', bp = None),
-'C__10' : Assembly(enr = '2.4', bp = '16'),
-'C__11' : Assembly(enr = '1.6', bp = None),
-'C__12' : Assembly(enr = '2.4', bp = '16'),
-'C__13' : Assembly(enr = '3.1', bp = '15NW'),
-'C__14' : Assembly(enr = '3.1', bp = None),
+assy_dict.update({'C___2' : Assembly(enr = '3.1', bp = None)})
+assy_dict.update({'C___3' : Assembly(enr = '3.1', bp = '15SW')})
+assy_dict.update({'C___4' : Assembly(enr = '2.4', bp = '16')})
+assy_dict.update({'C___5' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'C___6' : Assembly(enr = '2.4', bp = '16')})
+assy_dict.update({'C___7' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'C___8' : Assembly(enr = '2.4', bp = '16')})
+assy_dict.update({'C___9' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'C__10' : Assembly(enr = '2.4', bp = '16')})
+assy_dict.update({'C__11' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'C__12' : Assembly(enr = '2.4', bp = '16')})
+assy_dict.update({'C__13' : Assembly(enr = '3.1', bp = '15NW')})
+assy_dict.update({'C__14' : Assembly(enr = '3.1', bp = None)})
 
-'D___2' : Assembly(enr = '3.1', bp = None),
-'D___3' : Assembly(enr = '2.4', bp = '16'),
-'D___4' : Assembly(enr = '2.4', bp = None),
-'D___5' : Assembly(enr = '2.4', bp = '16'),
-'D___6' : Assembly(enr = '1.6', bp = None),
-'D___7' : Assembly(enr = '2.4', bp = '12'),
-'D___8' : Assembly(enr = '1.6', bp = None),
-'D___9' : Assembly(enr = '2.4', bp = '12'),
-'D__10' : Assembly(enr = '1.6', bp = None),
-'D__11' : Assembly(enr = '2.4', bp = '16'),
-'D__12' : Assembly(enr = '2.4', bp = None),
-'D__13' : Assembly(enr = '2.4', bp = '16'),
-'D__14' : Assembly(enr = '3.1', bp = None),
+assy_dict.update({'D___2' : Assembly(enr = '3.1', bp = None)})
+assy_dict.update({'D___3' : Assembly(enr = '2.4', bp = '16')})
+assy_dict.update({'D___4' : Assembly(enr = '2.4', bp = None)})
+assy_dict.update({'D___5' : Assembly(enr = '2.4', bp = '16')})
+assy_dict.update({'D___6' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'D___7' : Assembly(enr = '2.4', bp = '12')})
+assy_dict.update({'D___8' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'D___9' : Assembly(enr = '2.4', bp = '12')})
+assy_dict.update({'D__10' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'D__11' : Assembly(enr = '2.4', bp = '16')})
+assy_dict.update({'D__12' : Assembly(enr = '2.4', bp = None)})
+assy_dict.update({'D__13' : Assembly(enr = '2.4', bp = '16')})
+assy_dict.update({'D__14' : Assembly(enr = '3.1', bp = None)})
 
-'E___1' : Assembly(enr = '3.1', bp = None),
-'E___2' : Assembly(enr = '3.1', bp = '16'),
-'E___3' : Assembly(enr = '1.6', bp = None),
-'E___4' : Assembly(enr = '2.4', bp = '16'),
-'E___5' : Assembly(enr = '1.6', bp = None),
-'E___6' : Assembly(enr = '2.4', bp = '12'),
-'E___7' : Assembly(enr = '1.6', bp = None),
-'E___8' : Assembly(enr = '2.4', bp = '12'),
-'E___9' : Assembly(enr = '1.6', bp = None),
-'E__10' : Assembly(enr = '2.4', bp = '12'),
-'E__11' : Assembly(enr = '1.6', bp = None),
-'E__12' : Assembly(enr = '2.4', bp = '16'),
-'E__13' : Assembly(enr = '1.6', bp = None),
-'E__14' : Assembly(enr = '3.1', bp = '16'),
-'E__15' : Assembly(enr = '3.1', bp = None),
+assy_dict.update({'E___1' : Assembly(enr = '3.1', bp = None)})
+assy_dict.update({'E___2' : Assembly(enr = '3.1', bp = '16')})
+assy_dict.update({'E___3' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'E___4' : Assembly(enr = '2.4', bp = '16')})
+assy_dict.update({'E___5' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'E___6' : Assembly(enr = '2.4', bp = '12')})
+assy_dict.update({'E___7' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'E___8' : Assembly(enr = '2.4', bp = '12')})
+assy_dict.update({'E___9' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'E__10' : Assembly(enr = '2.4', bp = '12')})
+assy_dict.update({'E__11' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'E__12' : Assembly(enr = '2.4', bp = '16')})
+assy_dict.update({'E__13' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'E__14' : Assembly(enr = '3.1', bp = '16')})
+assy_dict.update({'E__15' : Assembly(enr = '3.1', bp = None)})
 
-'F___1' : Assembly(enr = '3.1', bp = '6S'),
-'F___2' : Assembly(enr = '1.6', bp = None),
-'F___3' : Assembly(enr = '2.4', bp = '16'),
-'F___4' : Assembly(enr = '1.6', bp = None),
-'F___5' : Assembly(enr = '2.4', bp = '12'),
-'F___6' : Assembly(enr = '1.6', bp = None),
-'F___7' : Assembly(enr = '2.4', bp = '12'),
-'F___8' : Assembly(enr = '1.6', bp = None),
-'F___9' : Assembly(enr = '2.4', bp = '12'),
-'F__10' : Assembly(enr = '1.6', bp = None),
-'F__11' : Assembly(enr = '2.4', bp = '12'),
-'F__12' : Assembly(enr = '1.6', bp = None),
-'F__13' : Assembly(enr = '2.4', bp = '16'),
-'F__14' : Assembly(enr = '1.6', bp = None),
-'F__15' : Assembly(enr = '3.1', bp = '6N'),
+assy_dict.update({'F___1' : Assembly(enr = '3.1', bp = '6S')})
+assy_dict.update({'F___2' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'F___3' : Assembly(enr = '2.4', bp = '16')})
+assy_dict.update({'F___4' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'F___5' : Assembly(enr = '2.4', bp = '12')})
+assy_dict.update({'F___6' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'F___7' : Assembly(enr = '2.4', bp = '12')})
+assy_dict.update({'F___8' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'F___9' : Assembly(enr = '2.4', bp = '12')})
+assy_dict.update({'F__10' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'F__11' : Assembly(enr = '2.4', bp = '12')})
+assy_dict.update({'F__12' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'F__13' : Assembly(enr = '2.4', bp = '16')})
+assy_dict.update({'F__14' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'F__15' : Assembly(enr = '3.1', bp = '6N')})
 
-'G___1' : Assembly(enr = '3.1', bp = None),
-'G___2' : Assembly(enr = '3.1', bp = '20'),
-'G___3' : Assembly(enr = '1.6', bp = None),
-'G___4' : Assembly(enr = '2.4', bp = '12'),
-'G___5' : Assembly(enr = '1.6', bp = None),
-'G___6' : Assembly(enr = '2.4', bp = '12'),
-'G___7' : Assembly(enr = '1.6', bp = None),
-'G___8' : Assembly(enr = '2.4', bp = '16'),
-'G___9' : Assembly(enr = '1.6', bp = None),
-'G__10' : Assembly(enr = '2.4', bp = '12'),
-'G__11' : Assembly(enr = '1.6', bp = None),
-'G__12' : Assembly(enr = '2.4', bp = '12'),
-'G__13' : Assembly(enr = '1.6', bp = None),
-'G__14' : Assembly(enr = '3.1', bp = '20'),
-'G__15' : Assembly(enr = '3.1', bp = None),
+assy_dict.update({'G___1' : Assembly(enr = '3.1', bp = None)})
+assy_dict.update({'G___2' : Assembly(enr = '3.1', bp = '20')})
+assy_dict.update({'G___3' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'G___4' : Assembly(enr = '2.4', bp = '12')})
+assy_dict.update({'G___5' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'G___6' : Assembly(enr = '2.4', bp = '12')})
+assy_dict.update({'G___7' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'G___8' : Assembly(enr = '2.4', bp = '16')})
+assy_dict.update({'G___9' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'G__10' : Assembly(enr = '2.4', bp = '12')})
+assy_dict.update({'G__11' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'G__12' : Assembly(enr = '2.4', bp = '12')})
+assy_dict.update({'G__13' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'G__14' : Assembly(enr = '3.1', bp = '20')})
+assy_dict.update({'G__15' : Assembly(enr = '3.1', bp = None)})
 
-'H___1' : Assembly(enr = '3.1', bp = '6S'),
-'H___2' : Assembly(enr = '1.6', bp = None),
-'H___3' : Assembly(enr = '2.4', bp = '16'),
-'H___4' : Assembly(enr = '1.6', bp = None),
-'H___5' : Assembly(enr = '2.4', bp = '12'),
-'H___6' : Assembly(enr = '1.6', bp = None),
-'H___7' : Assembly(enr = '2.4', bp = '16'),
-'H___8' : Assembly(enr = '1.6', bp = None),
-'H___9' : Assembly(enr = '2.4', bp = '16'),
-'H__10' : Assembly(enr = '1.6', bp = None),
-'H__11' : Assembly(enr = '2.4', bp = '12'),
-'H__12' : Assembly(enr = '1.6', bp = None),
-'H__13' : Assembly(enr = '2.4', bp = '16'),
-'H__14' : Assembly(enr = '1.6', bp = None),
-'H__15' : Assembly(enr = '3.1', bp = '6N'),
+assy_dict.update({'H___1' : Assembly(enr = '3.1', bp = '6S')})
+assy_dict.update({'H___2' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'H___3' : Assembly(enr = '2.4', bp = '16')})
+assy_dict.update({'H___4' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'H___5' : Assembly(enr = '2.4', bp = '12')})
+assy_dict.update({'H___6' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'H___7' : Assembly(enr = '2.4', bp = '16')})
+assy_dict.update({'H___8' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'H___9' : Assembly(enr = '2.4', bp = '16')})
+assy_dict.update({'H__10' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'H__11' : Assembly(enr = '2.4', bp = '12')})
+assy_dict.update({'H__12' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'H__13' : Assembly(enr = '2.4', bp = '16')})
+assy_dict.update({'H__14' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'H__15' : Assembly(enr = '3.1', bp = '6N')})
 
-'J___1' : Assembly(enr = '3.1', bp = None),
-'J___2' : Assembly(enr = '3.1', bp = '20'),
-'J___3' : Assembly(enr = '1.6', bp = None),
-'J___4' : Assembly(enr = '2.4', bp = '12'),
-'J___5' : Assembly(enr = '1.6', bp = None),
-'J___6' : Assembly(enr = '2.4', bp = '12'),
-'J___7' : Assembly(enr = '1.6', bp = None),
-'J___8' : Assembly(enr = '2.4', bp = '16'),
-'J___9' : Assembly(enr = '1.6', bp = None),
-'J__10' : Assembly(enr = '2.4', bp = '12'),
-'J__11' : Assembly(enr = '1.6', bp = None),
-'J__12' : Assembly(enr = '2.4', bp = '12'),
-'J__13' : Assembly(enr = '1.6', bp = None),
-'J__14' : Assembly(enr = '3.1', bp = '20'),
-'J__15' : Assembly(enr = '3.1', bp = None),
+assy_dict.update({'J___1' : Assembly(enr = '3.1', bp = None)})
+assy_dict.update({'J___2' : Assembly(enr = '3.1', bp = '20')})
+assy_dict.update({'J___3' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'J___4' : Assembly(enr = '2.4', bp = '12')})
+assy_dict.update({'J___5' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'J___6' : Assembly(enr = '2.4', bp = '12')})
+assy_dict.update({'J___7' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'J___8' : Assembly(enr = '2.4', bp = '16')})
+assy_dict.update({'J___9' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'J__10' : Assembly(enr = '2.4', bp = '12')})
+assy_dict.update({'J__11' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'J__12' : Assembly(enr = '2.4', bp = '12')})
+assy_dict.update({'J__13' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'J__14' : Assembly(enr = '3.1', bp = '20')})
+assy_dict.update({'J__15' : Assembly(enr = '3.1', bp = None)})
 
-'K___1' : Assembly(enr = '3.1', bp = '6S'),
-'K___2' : Assembly(enr = '1.6', bp = None),
-'K___3' : Assembly(enr = '2.4', bp = '16'),
-'K___4' : Assembly(enr = '1.6', bp = None),
-'K___5' : Assembly(enr = '2.4', bp = '12'),
-'K___6' : Assembly(enr = '1.6', bp = None),
-'K___7' : Assembly(enr = '2.4', bp = '12'),
-'K___8' : Assembly(enr = '1.6', bp = None),
-'K___9' : Assembly(enr = '2.4', bp = '12'),
-'K__10' : Assembly(enr = '1.6', bp = None),
-'K__11' : Assembly(enr = '2.4', bp = '12'),
-'K__12' : Assembly(enr = '1.6', bp = None),
-'K__13' : Assembly(enr = '2.4', bp = '16'),
-'K__14' : Assembly(enr = '1.6', bp = None),
-'K__15' : Assembly(enr = '3.1', bp = '6N'),
+assy_dict.update({'K___1' : Assembly(enr = '3.1', bp = '6S')})
+assy_dict.update({'K___2' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'K___3' : Assembly(enr = '2.4', bp = '16')})
+assy_dict.update({'K___4' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'K___5' : Assembly(enr = '2.4', bp = '12')})
+assy_dict.update({'K___6' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'K___7' : Assembly(enr = '2.4', bp = '12')})
+assy_dict.update({'K___8' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'K___9' : Assembly(enr = '2.4', bp = '12')})
+assy_dict.update({'K__10' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'K__11' : Assembly(enr = '2.4', bp = '12')})
+assy_dict.update({'K__12' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'K__13' : Assembly(enr = '2.4', bp = '16')})
+assy_dict.update({'K__14' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'K__15' : Assembly(enr = '3.1', bp = '6N')})
 
-'L___1' : Assembly(enr = '3.1', bp = None),
-'L___2' : Assembly(enr = '3.1', bp = '16'),
-'L___3' : Assembly(enr = '1.6', bp = None),
-'L___4' : Assembly(enr = '2.4', bp = '16'),
-'L___5' : Assembly(enr = '1.6', bp = None),
-'L___6' : Assembly(enr = '2.4', bp = '12'),
-'L___7' : Assembly(enr = '1.6', bp = None),
-'L___8' : Assembly(enr = '2.4', bp = '12'),
-'L___9' : Assembly(enr = '1.6', bp = None),
-'L__10' : Assembly(enr = '2.4', bp = '12'),
-'L__11' : Assembly(enr = '1.6', bp = None),
-'L__12' : Assembly(enr = '2.4', bp = '16'),
-'L__13' : Assembly(enr = '1.6', bp = None),
-'L__14' : Assembly(enr = '3.1', bp = '16'),
-'L__15' : Assembly(enr = '3.1', bp = None),
+assy_dict.update({'L___1' : Assembly(enr = '3.1', bp = None)})
+assy_dict.update({'L___2' : Assembly(enr = '3.1', bp = '16')})
+assy_dict.update({'L___3' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'L___4' : Assembly(enr = '2.4', bp = '16')})
+assy_dict.update({'L___5' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'L___6' : Assembly(enr = '2.4', bp = '12')})
+assy_dict.update({'L___7' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'L___8' : Assembly(enr = '2.4', bp = '12')})
+assy_dict.update({'L___9' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'L__10' : Assembly(enr = '2.4', bp = '12')})
+assy_dict.update({'L__11' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'L__12' : Assembly(enr = '2.4', bp = '16')})
+assy_dict.update({'L__13' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'L__14' : Assembly(enr = '3.1', bp = '16')})
+assy_dict.update({'L__15' : Assembly(enr = '3.1', bp = None)})
 
-'M___2' : Assembly(enr = '3.1', bp = None),
-'M___3' : Assembly(enr = '2.4', bp = '16'),
-'M___4' : Assembly(enr = '2.4', bp = None),
-'M___5' : Assembly(enr = '2.4', bp = '16'),
-'M___6' : Assembly(enr = '1.6', bp = None),
-'M___7' : Assembly(enr = '2.4', bp = '12'),
-'M___8' : Assembly(enr = '1.6', bp = None),
-'M___9' : Assembly(enr = '2.4', bp = '12'),
-'M__10' : Assembly(enr = '1.6', bp = None),
-'M__11' : Assembly(enr = '2.4', bp = '16'),
-'M__12' : Assembly(enr = '2.4', bp = None),
-'M__13' : Assembly(enr = '2.4', bp = '16'),
-'M__14' : Assembly(enr = '3.1', bp = None),
+assy_dict.update({'M___2' : Assembly(enr = '3.1', bp = None)})
+assy_dict.update({'M___3' : Assembly(enr = '2.4', bp = '16')})
+assy_dict.update({'M___4' : Assembly(enr = '2.4', bp = None)})
+assy_dict.update({'M___5' : Assembly(enr = '2.4', bp = '16')})
+assy_dict.update({'M___6' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'M___7' : Assembly(enr = '2.4', bp = '12')})
+assy_dict.update({'M___8' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'M___9' : Assembly(enr = '2.4', bp = '12')})
+assy_dict.update({'M__10' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'M__11' : Assembly(enr = '2.4', bp = '16')})
+assy_dict.update({'M__12' : Assembly(enr = '2.4', bp = None)})
+assy_dict.update({'M__13' : Assembly(enr = '2.4', bp = '16')})
+assy_dict.update({'M__14' : Assembly(enr = '3.1', bp = None)})
 
-'N___2' : Assembly(enr = '3.1', bp = None),
-'N___3' : Assembly(enr = '3.1', bp = '15SE'),
-'N___4' : Assembly(enr = '2.4', bp = '16'),
-'N___5' : Assembly(enr = '1.6', bp = None),
-'N___6' : Assembly(enr = '2.4', bp = '16'),
-'N___7' : Assembly(enr = '1.6', bp = None),
-'N___8' : Assembly(enr = '2.4', bp = '16'),
-'N___9' : Assembly(enr = '1.6', bp = None),
-'N__10' : Assembly(enr = '2.4', bp = '16'),
-'N__11' : Assembly(enr = '1.6', bp = None),
-'N__12' : Assembly(enr = '2.4', bp = '16'),
-'N__13' : Assembly(enr = '3.1', bp = '15NE'),
-'N__14' : Assembly(enr = '3.1', bp = None),
+assy_dict.update({'N___2' : Assembly(enr = '3.1', bp = None)})
+assy_dict.update({'N___3' : Assembly(enr = '3.1', bp = '15SE')})
+assy_dict.update({'N___4' : Assembly(enr = '2.4', bp = '16')})
+assy_dict.update({'N___5' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'N___6' : Assembly(enr = '2.4', bp = '16')})
+assy_dict.update({'N___7' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'N___8' : Assembly(enr = '2.4', bp = '16')})
+assy_dict.update({'N___9' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'N__10' : Assembly(enr = '2.4', bp = '16')})
+assy_dict.update({'N__11' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'N__12' : Assembly(enr = '2.4', bp = '16')})
+assy_dict.update({'N__13' : Assembly(enr = '3.1', bp = '15NE')})
+assy_dict.update({'N__14' : Assembly(enr = '3.1', bp = None)})
 
-'P___3' : Assembly(enr = '3.1', bp = None),
-'P___4' : Assembly(enr = '3.1', bp = None),
-'P___5' : Assembly(enr = '3.1', bp = '16'),
-'P___6' : Assembly(enr = '1.6', bp = None),
-'P___7' : Assembly(enr = '3.1', bp = '20'),
-'P___8' : Assembly(enr = '1.6', bp = None),
-'P___9' : Assembly(enr = '3.1', bp = '20'),
-'P__10' : Assembly(enr = '1.6', bp = None),
-'P__11' : Assembly(enr = '3.1', bp = '16'),
-'P__12' : Assembly(enr = '3.1', bp = None),
-'P__13' : Assembly(enr = '3.1', bp = None),
+assy_dict.update({'P___3' : Assembly(enr = '3.1', bp = None)})
+assy_dict.update({'P___4' : Assembly(enr = '3.1', bp = None)})
+assy_dict.update({'P___5' : Assembly(enr = '3.1', bp = '16')})
+assy_dict.update({'P___6' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'P___7' : Assembly(enr = '3.1', bp = '20')})
+assy_dict.update({'P___8' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'P___9' : Assembly(enr = '3.1', bp = '20')})
+assy_dict.update({'P__10' : Assembly(enr = '1.6', bp = None)})
+assy_dict.update({'P__11' : Assembly(enr = '3.1', bp = '16')})
+assy_dict.update({'P__12' : Assembly(enr = '3.1', bp = None)})
+assy_dict.update({'P__13' : Assembly(enr = '3.1', bp = None)})
 
-'R___5' : Assembly(enr = '3.1', bp = None),
-'R___6' : Assembly(enr = '3.1', bp = '6E'),
-'R___7' : Assembly(enr = '3.1', bp = None),
-'R___8' : Assembly(enr = '3.1', bp = '6E'),
-'R___9' : Assembly(enr = '3.1', bp = None),
-'R__10' : Assembly(enr = '3.1', bp = '6E'),
-'R__11' : Assembly(enr = '3.1', bp = None),
-})
+assy_dict.update({'R___5' : Assembly(enr = '3.1', bp = None)})
+assy_dict.update({'R___6' : Assembly(enr = '3.1', bp = '6E')})
+assy_dict.update({'R___7' : Assembly(enr = '3.1', bp = None)})
+assy_dict.update({'R___8' : Assembly(enr = '3.1', bp = '6E')})
+assy_dict.update({'R___9' : Assembly(enr = '3.1', bp = None)})
+assy_dict.update({'R__10' : Assembly(enr = '3.1', bp = '6E')})
+assy_dict.update({'R__11' : Assembly(enr = '3.1', bp = None)})
 
 assembly_map = """
 {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {GRNWc.u:>4} {GR__N.u:>4} {GR__N.u:>4} {GR__N.u:>4} {GR__N.u:>4} {GR__N.u:>4} {GR__N.u:>4} {GR__N.u:>4} {GRNEc.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} 
@@ -265,6 +262,106 @@ assembly_map = """
 {MOD__.u:>4} {GRSWc.u:>4} {GR_SW.u:>4} {N__14.u:>4} {M__14.u:>4} {L__14.u:>4} {K__14.u:>4} {J__14.u:>4} {H__14.u:>4} {G__14.u:>4} {F__14.u:>4} {E__14.u:>4} {D__14.u:>4} {C__14.u:>4} {GR_SE.u:>4} {GRSEc.u:>4} {MOD__.u:>4}
 {MOD__.u:>4} {MOD__.u:>4} {GRSWc.u:>4} {GR__S.u:>4} {GR_SW.u:>4} {L__15.u:>4} {K__15.u:>4} {J__15.u:>4} {H__15.u:>4} {G__15.u:>4} {F__15.u:>4} {E__15.u:>4} {GR_SE.u:>4} {GR__S.u:>4} {GRSEc.u:>4} {MOD__.u:>4} {MOD__.u:>4}
 {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {GRSWc.u:>4} {GR__S.u:>4} {GR__S.u:>4} {GR__S.u:>4} {GR__S.u:>4} {GR__S.u:>4} {GR__S.u:>4} {GR__S.u:>4} {GRSEc.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4} {MOD__.u:>4}
+"""
+
+water_idmap = """
+{MOD__.wid:>4} {MOD__.wid:>4} {MOD__.wid:>4} {MOD__.wid:>4} {GRNWc.wid:>4} {GR__N.wid:>4} {GR__N.wid:>4} {GR__N.wid:>4} {GR__N.wid:>4} {GR__N.wid:>4} {GR__N.wid:>4} {GR__N.wid:>4} {GRNEc.wid:>4} {MOD__.wid:>4} {MOD__.wid:>4} {MOD__.wid:>4} {MOD__.wid:>4} 
+{MOD__.wid:>4} {MOD__.wid:>4} {GRNWc.wid:>4} {GR__N.wid:>4} {GR_NW.wid:>4} {L___1.wid:>4} {K___1.wid:>4} {J___1.wid:>4} {H___1.wid:>4} {G___1.wid:>4} {F___1.wid:>4} {E___1.wid:>4} {GR_NE.wid:>4} {GR__N.wid:>4} {GRNEc.wid:>4} {MOD__.wid:>4} {MOD__.wid:>4}
+{MOD__.wid:>4} {GRNWc.wid:>4} {GR_NW.wid:>4} {N___2.wid:>4} {M___2.wid:>4} {L___2.wid:>4} {K___2.wid:>4} {J___2.wid:>4} {H___2.wid:>4} {G___2.wid:>4} {F___2.wid:>4} {E___2.wid:>4} {D___2.wid:>4} {C___2.wid:>4} {GR_NE.wid:>4} {GRNEc.wid:>4} {MOD__.wid:>4}
+{MOD__.wid:>4} {GR__W.wid:>4} {P___3.wid:>4} {N___3.wid:>4} {M___3.wid:>4} {L___3.wid:>4} {K___3.wid:>4} {J___3.wid:>4} {H___3.wid:>4} {G___3.wid:>4} {F___3.wid:>4} {E___3.wid:>4} {D___3.wid:>4} {C___3.wid:>4} {B___3.wid:>4} {GR__E.wid:>4} {MOD__.wid:>4}
+{GRNWc.wid:>4} {GR_NW.wid:>4} {P___4.wid:>4} {N___4.wid:>4} {M___4.wid:>4} {L___4.wid:>4} {K___4.wid:>4} {J___4.wid:>4} {H___4.wid:>4} {G___4.wid:>4} {F___4.wid:>4} {E___4.wid:>4} {D___4.wid:>4} {C___4.wid:>4} {B___4.wid:>4} {GR_NE.wid:>4} {GRNEc.wid:>4}
+{GR__W.wid:>4} {R___5.wid:>4} {P___5.wid:>4} {N___5.wid:>4} {M___5.wid:>4} {L___5.wid:>4} {K___5.wid:>4} {J___5.wid:>4} {H___5.wid:>4} {G___5.wid:>4} {F___5.wid:>4} {E___5.wid:>4} {D___5.wid:>4} {C___5.wid:>4} {B___5.wid:>4} {A___5.wid:>4} {GR__E.wid:>4}
+{GR__W.wid:>4} {R___6.wid:>4} {P___6.wid:>4} {N___6.wid:>4} {M___6.wid:>4} {L___6.wid:>4} {K___6.wid:>4} {J___6.wid:>4} {H___6.wid:>4} {G___6.wid:>4} {F___6.wid:>4} {E___6.wid:>4} {D___6.wid:>4} {C___6.wid:>4} {B___6.wid:>4} {A___6.wid:>4} {GR__E.wid:>4}
+{GR__W.wid:>4} {R___7.wid:>4} {P___7.wid:>4} {N___7.wid:>4} {M___7.wid:>4} {L___7.wid:>4} {K___7.wid:>4} {J___7.wid:>4} {H___7.wid:>4} {G___7.wid:>4} {F___7.wid:>4} {E___7.wid:>4} {D___7.wid:>4} {C___7.wid:>4} {B___7.wid:>4} {A___7.wid:>4} {GR__E.wid:>4}
+{GR__W.wid:>4} {R___8.wid:>4} {P___8.wid:>4} {N___8.wid:>4} {M___8.wid:>4} {L___8.wid:>4} {K___8.wid:>4} {J___8.wid:>4} {H___8.wid:>4} {G___8.wid:>4} {F___8.wid:>4} {E___8.wid:>4} {D___8.wid:>4} {C___8.wid:>4} {B___8.wid:>4} {A___8.wid:>4} {GR__E.wid:>4}
+{GR__W.wid:>4} {R___9.wid:>4} {P___9.wid:>4} {N___9.wid:>4} {M___9.wid:>4} {L___9.wid:>4} {K___9.wid:>4} {J___9.wid:>4} {H___9.wid:>4} {G___9.wid:>4} {F___9.wid:>4} {E___9.wid:>4} {D___9.wid:>4} {C___9.wid:>4} {B___9.wid:>4} {A___9.wid:>4} {GR__E.wid:>4}
+{GR__W.wid:>4} {R__10.wid:>4} {P__10.wid:>4} {N__10.wid:>4} {M__10.wid:>4} {L__10.wid:>4} {K__10.wid:>4} {J__10.wid:>4} {H__10.wid:>4} {G__10.wid:>4} {F__10.wid:>4} {E__10.wid:>4} {D__10.wid:>4} {C__10.wid:>4} {B__10.wid:>4} {A__10.wid:>4} {GR__E.wid:>4}
+{GR__W.wid:>4} {R__11.wid:>4} {P__11.wid:>4} {N__11.wid:>4} {M__11.wid:>4} {L__11.wid:>4} {K__11.wid:>4} {J__11.wid:>4} {H__11.wid:>4} {G__11.wid:>4} {F__11.wid:>4} {E__11.wid:>4} {D__11.wid:>4} {C__11.wid:>4} {B__11.wid:>4} {A__11.wid:>4} {GR__E.wid:>4}
+{GRSWc.wid:>4} {GR_SW.wid:>4} {P__12.wid:>4} {N__12.wid:>4} {M__12.wid:>4} {L__12.wid:>4} {K__12.wid:>4} {J__12.wid:>4} {H__12.wid:>4} {G__12.wid:>4} {F__12.wid:>4} {E__12.wid:>4} {D__12.wid:>4} {C__12.wid:>4} {B__12.wid:>4} {GR_SE.wid:>4} {GRSEc.wid:>4}
+{MOD__.wid:>4} {GR__W.wid:>4} {P__13.wid:>4} {N__13.wid:>4} {M__13.wid:>4} {L__13.wid:>4} {K__13.wid:>4} {J__13.wid:>4} {H__13.wid:>4} {G__13.wid:>4} {F__13.wid:>4} {E__13.wid:>4} {D__13.wid:>4} {C__13.wid:>4} {B__13.wid:>4} {GR__E.wid:>4} {MOD__.wid:>4}
+{MOD__.wid:>4} {GRSWc.wid:>4} {GR_SW.wid:>4} {N__14.wid:>4} {M__14.wid:>4} {L__14.wid:>4} {K__14.wid:>4} {J__14.wid:>4} {H__14.wid:>4} {G__14.wid:>4} {F__14.wid:>4} {E__14.wid:>4} {D__14.wid:>4} {C__14.wid:>4} {GR_SE.wid:>4} {GRSEc.wid:>4} {MOD__.wid:>4}
+{MOD__.wid:>4} {MOD__.wid:>4} {GRSWc.wid:>4} {GR__S.wid:>4} {GR_SW.wid:>4} {L__15.wid:>4} {K__15.wid:>4} {J__15.wid:>4} {H__15.wid:>4} {G__15.wid:>4} {F__15.wid:>4} {E__15.wid:>4} {GR_SE.wid:>4} {GR__S.wid:>4} {GRSEc.wid:>4} {MOD__.wid:>4} {MOD__.wid:>4}
+{MOD__.wid:>4} {MOD__.wid:>4} {MOD__.wid:>4} {MOD__.wid:>4} {GRSWc.wid:>4} {GR__S.wid:>4} {GR__S.wid:>4} {GR__S.wid:>4} {GR__S.wid:>4} {GR__S.wid:>4} {GR__S.wid:>4} {GR__S.wid:>4} {GRSEc.wid:>4} {MOD__.wid:>4} {MOD__.wid:>4} {MOD__.wid:>4} {MOD__.wid:>4}
+"""
+
+enr_map = """
+{MOD__.enr:>4} {MOD__.enr:>4} {MOD__.enr:>4} {MOD__.enr:>4} {GRNWc.enr:>4} {GR__N.enr:>4} {GR__N.enr:>4} {GR__N.enr:>4} {GR__N.enr:>4} {GR__N.enr:>4} {GR__N.enr:>4} {GR__N.enr:>4} {GRNEc.enr:>4} {MOD__.enr:>4} {MOD__.enr:>4} {MOD__.enr:>4} {MOD__.enr:>4} 
+{MOD__.enr:>4} {MOD__.enr:>4} {GRNWc.enr:>4} {GR__N.enr:>4} {GR_NW.enr:>4} {L___1.enr:>4} {K___1.enr:>4} {J___1.enr:>4} {H___1.enr:>4} {G___1.enr:>4} {F___1.enr:>4} {E___1.enr:>4} {GR_NE.enr:>4} {GR__N.enr:>4} {GRNEc.enr:>4} {MOD__.enr:>4} {MOD__.enr:>4}
+{MOD__.enr:>4} {GRNWc.enr:>4} {GR_NW.enr:>4} {N___2.enr:>4} {M___2.enr:>4} {L___2.enr:>4} {K___2.enr:>4} {J___2.enr:>4} {H___2.enr:>4} {G___2.enr:>4} {F___2.enr:>4} {E___2.enr:>4} {D___2.enr:>4} {C___2.enr:>4} {GR_NE.enr:>4} {GRNEc.enr:>4} {MOD__.enr:>4}
+{MOD__.enr:>4} {GR__W.enr:>4} {P___3.enr:>4} {N___3.enr:>4} {M___3.enr:>4} {L___3.enr:>4} {K___3.enr:>4} {J___3.enr:>4} {H___3.enr:>4} {G___3.enr:>4} {F___3.enr:>4} {E___3.enr:>4} {D___3.enr:>4} {C___3.enr:>4} {B___3.enr:>4} {GR__E.enr:>4} {MOD__.enr:>4}
+{GRNWc.enr:>4} {GR_NW.enr:>4} {P___4.enr:>4} {N___4.enr:>4} {M___4.enr:>4} {L___4.enr:>4} {K___4.enr:>4} {J___4.enr:>4} {H___4.enr:>4} {G___4.enr:>4} {F___4.enr:>4} {E___4.enr:>4} {D___4.enr:>4} {C___4.enr:>4} {B___4.enr:>4} {GR_NE.enr:>4} {GRNEc.enr:>4}
+{GR__W.enr:>4} {R___5.enr:>4} {P___5.enr:>4} {N___5.enr:>4} {M___5.enr:>4} {L___5.enr:>4} {K___5.enr:>4} {J___5.enr:>4} {H___5.enr:>4} {G___5.enr:>4} {F___5.enr:>4} {E___5.enr:>4} {D___5.enr:>4} {C___5.enr:>4} {B___5.enr:>4} {A___5.enr:>4} {GR__E.enr:>4}
+{GR__W.enr:>4} {R___6.enr:>4} {P___6.enr:>4} {N___6.enr:>4} {M___6.enr:>4} {L___6.enr:>4} {K___6.enr:>4} {J___6.enr:>4} {H___6.enr:>4} {G___6.enr:>4} {F___6.enr:>4} {E___6.enr:>4} {D___6.enr:>4} {C___6.enr:>4} {B___6.enr:>4} {A___6.enr:>4} {GR__E.enr:>4}
+{GR__W.enr:>4} {R___7.enr:>4} {P___7.enr:>4} {N___7.enr:>4} {M___7.enr:>4} {L___7.enr:>4} {K___7.enr:>4} {J___7.enr:>4} {H___7.enr:>4} {G___7.enr:>4} {F___7.enr:>4} {E___7.enr:>4} {D___7.enr:>4} {C___7.enr:>4} {B___7.enr:>4} {A___7.enr:>4} {GR__E.enr:>4}
+{GR__W.enr:>4} {R___8.enr:>4} {P___8.enr:>4} {N___8.enr:>4} {M___8.enr:>4} {L___8.enr:>4} {K___8.enr:>4} {J___8.enr:>4} {H___8.enr:>4} {G___8.enr:>4} {F___8.enr:>4} {E___8.enr:>4} {D___8.enr:>4} {C___8.enr:>4} {B___8.enr:>4} {A___8.enr:>4} {GR__E.enr:>4}
+{GR__W.enr:>4} {R___9.enr:>4} {P___9.enr:>4} {N___9.enr:>4} {M___9.enr:>4} {L___9.enr:>4} {K___9.enr:>4} {J___9.enr:>4} {H___9.enr:>4} {G___9.enr:>4} {F___9.enr:>4} {E___9.enr:>4} {D___9.enr:>4} {C___9.enr:>4} {B___9.enr:>4} {A___9.enr:>4} {GR__E.enr:>4}
+{GR__W.enr:>4} {R__10.enr:>4} {P__10.enr:>4} {N__10.enr:>4} {M__10.enr:>4} {L__10.enr:>4} {K__10.enr:>4} {J__10.enr:>4} {H__10.enr:>4} {G__10.enr:>4} {F__10.enr:>4} {E__10.enr:>4} {D__10.enr:>4} {C__10.enr:>4} {B__10.enr:>4} {A__10.enr:>4} {GR__E.enr:>4}
+{GR__W.enr:>4} {R__11.enr:>4} {P__11.enr:>4} {N__11.enr:>4} {M__11.enr:>4} {L__11.enr:>4} {K__11.enr:>4} {J__11.enr:>4} {H__11.enr:>4} {G__11.enr:>4} {F__11.enr:>4} {E__11.enr:>4} {D__11.enr:>4} {C__11.enr:>4} {B__11.enr:>4} {A__11.enr:>4} {GR__E.enr:>4}
+{GRSWc.enr:>4} {GR_SW.enr:>4} {P__12.enr:>4} {N__12.enr:>4} {M__12.enr:>4} {L__12.enr:>4} {K__12.enr:>4} {J__12.enr:>4} {H__12.enr:>4} {G__12.enr:>4} {F__12.enr:>4} {E__12.enr:>4} {D__12.enr:>4} {C__12.enr:>4} {B__12.enr:>4} {GR_SE.enr:>4} {GRSEc.enr:>4}
+{MOD__.enr:>4} {GR__W.enr:>4} {P__13.enr:>4} {N__13.enr:>4} {M__13.enr:>4} {L__13.enr:>4} {K__13.enr:>4} {J__13.enr:>4} {H__13.enr:>4} {G__13.enr:>4} {F__13.enr:>4} {E__13.enr:>4} {D__13.enr:>4} {C__13.enr:>4} {B__13.enr:>4} {GR__E.enr:>4} {MOD__.enr:>4}
+{MOD__.enr:>4} {GRSWc.enr:>4} {GR_SW.enr:>4} {N__14.enr:>4} {M__14.enr:>4} {L__14.enr:>4} {K__14.enr:>4} {J__14.enr:>4} {H__14.enr:>4} {G__14.enr:>4} {F__14.enr:>4} {E__14.enr:>4} {D__14.enr:>4} {C__14.enr:>4} {GR_SE.enr:>4} {GRSEc.enr:>4} {MOD__.enr:>4}
+{MOD__.enr:>4} {MOD__.enr:>4} {GRSWc.enr:>4} {GR__S.enr:>4} {GR_SW.enr:>4} {L__15.enr:>4} {K__15.enr:>4} {J__15.enr:>4} {H__15.enr:>4} {G__15.enr:>4} {F__15.enr:>4} {E__15.enr:>4} {GR_SE.enr:>4} {GR__S.enr:>4} {GRSEc.enr:>4} {MOD__.enr:>4} {MOD__.enr:>4}
+{MOD__.enr:>4} {MOD__.enr:>4} {MOD__.enr:>4} {MOD__.enr:>4} {GRSWc.enr:>4} {GR__S.enr:>4} {GR__S.enr:>4} {GR__S.enr:>4} {GR__S.enr:>4} {GR__S.enr:>4} {GR__S.enr:>4} {GR__S.enr:>4} {GRSEc.enr:>4} {MOD__.enr:>4} {MOD__.enr:>4} {MOD__.enr:>4} {MOD__.enr:>4}
+"""
+
+bp_map = """
+{MOD__.bp:>4} {MOD__.bp:>4} {MOD__.bp:>4} {MOD__.bp:>4} {GRNWc.bp:>4} {GR__N.bp:>4} {GR__N.bp:>4} {GR__N.bp:>4} {GR__N.bp:>4} {GR__N.bp:>4} {GR__N.bp:>4} {GR__N.bp:>4} {GRNEc.bp:>4} {MOD__.bp:>4} {MOD__.bp:>4} {MOD__.bp:>4} {MOD__.bp:>4} 
+{MOD__.bp:>4} {MOD__.bp:>4} {GRNWc.bp:>4} {GR__N.bp:>4} {GR_NW.bp:>4} {L___1.bp:>4} {K___1.bp:>4} {J___1.bp:>4} {H___1.bp:>4} {G___1.bp:>4} {F___1.bp:>4} {E___1.bp:>4} {GR_NE.bp:>4} {GR__N.bp:>4} {GRNEc.bp:>4} {MOD__.bp:>4} {MOD__.bp:>4}
+{MOD__.bp:>4} {GRNWc.bp:>4} {GR_NW.bp:>4} {N___2.bp:>4} {M___2.bp:>4} {L___2.bp:>4} {K___2.bp:>4} {J___2.bp:>4} {H___2.bp:>4} {G___2.bp:>4} {F___2.bp:>4} {E___2.bp:>4} {D___2.bp:>4} {C___2.bp:>4} {GR_NE.bp:>4} {GRNEc.bp:>4} {MOD__.bp:>4}
+{MOD__.bp:>4} {GR__W.bp:>4} {P___3.bp:>4} {N___3.bp:>4} {M___3.bp:>4} {L___3.bp:>4} {K___3.bp:>4} {J___3.bp:>4} {H___3.bp:>4} {G___3.bp:>4} {F___3.bp:>4} {E___3.bp:>4} {D___3.bp:>4} {C___3.bp:>4} {B___3.bp:>4} {GR__E.bp:>4} {MOD__.bp:>4}
+{GRNWc.bp:>4} {GR_NW.bp:>4} {P___4.bp:>4} {N___4.bp:>4} {M___4.bp:>4} {L___4.bp:>4} {K___4.bp:>4} {J___4.bp:>4} {H___4.bp:>4} {G___4.bp:>4} {F___4.bp:>4} {E___4.bp:>4} {D___4.bp:>4} {C___4.bp:>4} {B___4.bp:>4} {GR_NE.bp:>4} {GRNEc.bp:>4}
+{GR__W.bp:>4} {R___5.bp:>4} {P___5.bp:>4} {N___5.bp:>4} {M___5.bp:>4} {L___5.bp:>4} {K___5.bp:>4} {J___5.bp:>4} {H___5.bp:>4} {G___5.bp:>4} {F___5.bp:>4} {E___5.bp:>4} {D___5.bp:>4} {C___5.bp:>4} {B___5.bp:>4} {A___5.bp:>4} {GR__E.bp:>4}
+{GR__W.bp:>4} {R___6.bp:>4} {P___6.bp:>4} {N___6.bp:>4} {M___6.bp:>4} {L___6.bp:>4} {K___6.bp:>4} {J___6.bp:>4} {H___6.bp:>4} {G___6.bp:>4} {F___6.bp:>4} {E___6.bp:>4} {D___6.bp:>4} {C___6.bp:>4} {B___6.bp:>4} {A___6.bp:>4} {GR__E.bp:>4}
+{GR__W.bp:>4} {R___7.bp:>4} {P___7.bp:>4} {N___7.bp:>4} {M___7.bp:>4} {L___7.bp:>4} {K___7.bp:>4} {J___7.bp:>4} {H___7.bp:>4} {G___7.bp:>4} {F___7.bp:>4} {E___7.bp:>4} {D___7.bp:>4} {C___7.bp:>4} {B___7.bp:>4} {A___7.bp:>4} {GR__E.bp:>4}
+{GR__W.bp:>4} {R___8.bp:>4} {P___8.bp:>4} {N___8.bp:>4} {M___8.bp:>4} {L___8.bp:>4} {K___8.bp:>4} {J___8.bp:>4} {H___8.bp:>4} {G___8.bp:>4} {F___8.bp:>4} {E___8.bp:>4} {D___8.bp:>4} {C___8.bp:>4} {B___8.bp:>4} {A___8.bp:>4} {GR__E.bp:>4}
+{GR__W.bp:>4} {R___9.bp:>4} {P___9.bp:>4} {N___9.bp:>4} {M___9.bp:>4} {L___9.bp:>4} {K___9.bp:>4} {J___9.bp:>4} {H___9.bp:>4} {G___9.bp:>4} {F___9.bp:>4} {E___9.bp:>4} {D___9.bp:>4} {C___9.bp:>4} {B___9.bp:>4} {A___9.bp:>4} {GR__E.bp:>4}
+{GR__W.bp:>4} {R__10.bp:>4} {P__10.bp:>4} {N__10.bp:>4} {M__10.bp:>4} {L__10.bp:>4} {K__10.bp:>4} {J__10.bp:>4} {H__10.bp:>4} {G__10.bp:>4} {F__10.bp:>4} {E__10.bp:>4} {D__10.bp:>4} {C__10.bp:>4} {B__10.bp:>4} {A__10.bp:>4} {GR__E.bp:>4}
+{GR__W.bp:>4} {R__11.bp:>4} {P__11.bp:>4} {N__11.bp:>4} {M__11.bp:>4} {L__11.bp:>4} {K__11.bp:>4} {J__11.bp:>4} {H__11.bp:>4} {G__11.bp:>4} {F__11.bp:>4} {E__11.bp:>4} {D__11.bp:>4} {C__11.bp:>4} {B__11.bp:>4} {A__11.bp:>4} {GR__E.bp:>4}
+{GRSWc.bp:>4} {GR_SW.bp:>4} {P__12.bp:>4} {N__12.bp:>4} {M__12.bp:>4} {L__12.bp:>4} {K__12.bp:>4} {J__12.bp:>4} {H__12.bp:>4} {G__12.bp:>4} {F__12.bp:>4} {E__12.bp:>4} {D__12.bp:>4} {C__12.bp:>4} {B__12.bp:>4} {GR_SE.bp:>4} {GRSEc.bp:>4}
+{MOD__.bp:>4} {GR__W.bp:>4} {P__13.bp:>4} {N__13.bp:>4} {M__13.bp:>4} {L__13.bp:>4} {K__13.bp:>4} {J__13.bp:>4} {H__13.bp:>4} {G__13.bp:>4} {F__13.bp:>4} {E__13.bp:>4} {D__13.bp:>4} {C__13.bp:>4} {B__13.bp:>4} {GR__E.bp:>4} {MOD__.bp:>4}
+{MOD__.bp:>4} {GRSWc.bp:>4} {GR_SW.bp:>4} {N__14.bp:>4} {M__14.bp:>4} {L__14.bp:>4} {K__14.bp:>4} {J__14.bp:>4} {H__14.bp:>4} {G__14.bp:>4} {F__14.bp:>4} {E__14.bp:>4} {D__14.bp:>4} {C__14.bp:>4} {GR_SE.bp:>4} {GRSEc.bp:>4} {MOD__.bp:>4}
+{MOD__.bp:>4} {MOD__.bp:>4} {GRSWc.bp:>4} {GR__S.bp:>4} {GR_SW.bp:>4} {L__15.bp:>4} {K__15.bp:>4} {J__15.bp:>4} {H__15.bp:>4} {G__15.bp:>4} {F__15.bp:>4} {E__15.bp:>4} {GR_SE.bp:>4} {GR__S.bp:>4} {GRSEc.bp:>4} {MOD__.bp:>4} {MOD__.bp:>4}
+{MOD__.bp:>4} {MOD__.bp:>4} {MOD__.bp:>4} {MOD__.bp:>4} {GRSWc.bp:>4} {GR__S.bp:>4} {GR__S.bp:>4} {GR__S.bp:>4} {GR__S.bp:>4} {GR__S.bp:>4} {GR__S.bp:>4} {GR__S.bp:>4} {GRSEc.bp:>4} {MOD__.bp:>4} {MOD__.bp:>4} {MOD__.bp:>4} {MOD__.bp:>4}
+"""
+
+density_map = """
+{MOD__.density:>4} {MOD__.density:>4} {MOD__.density:>4} {MOD__.density:>4} {GRNWc.density:>4} {GR__N.density:>4} {GR__N.density:>4} {GR__N.density:>4} {GR__N.density:>4} {GR__N.density:>4} {GR__N.density:>4} {GR__N.density:>4} {GRNEc.density:>4} {MOD__.density:>4} {MOD__.density:>4} {MOD__.density:>4} {MOD__.density:>4} 
+{MOD__.density:>4} {MOD__.density:>4} {GRNWc.density:>4} {GR__N.density:>4} {GR_NW.density:>4} {L___1.density:>4} {K___1.density:>4} {J___1.density:>4} {H___1.density:>4} {G___1.density:>4} {F___1.density:>4} {E___1.density:>4} {GR_NE.density:>4} {GR__N.density:>4} {GRNEc.density:>4} {MOD__.density:>4} {MOD__.density:>4}
+{MOD__.density:>4} {GRNWc.density:>4} {GR_NW.density:>4} {N___2.density:>4} {M___2.density:>4} {L___2.density:>4} {K___2.density:>4} {J___2.density:>4} {H___2.density:>4} {G___2.density:>4} {F___2.density:>4} {E___2.density:>4} {D___2.density:>4} {C___2.density:>4} {GR_NE.density:>4} {GRNEc.density:>4} {MOD__.density:>4}
+{MOD__.density:>4} {GR__W.density:>4} {P___3.density:>4} {N___3.density:>4} {M___3.density:>4} {L___3.density:>4} {K___3.density:>4} {J___3.density:>4} {H___3.density:>4} {G___3.density:>4} {F___3.density:>4} {E___3.density:>4} {D___3.density:>4} {C___3.density:>4} {B___3.density:>4} {GR__E.density:>4} {MOD__.density:>4}
+{GRNWc.density:>4} {GR_NW.density:>4} {P___4.density:>4} {N___4.density:>4} {M___4.density:>4} {L___4.density:>4} {K___4.density:>4} {J___4.density:>4} {H___4.density:>4} {G___4.density:>4} {F___4.density:>4} {E___4.density:>4} {D___4.density:>4} {C___4.density:>4} {B___4.density:>4} {GR_NE.density:>4} {GRNEc.density:>4}
+{GR__W.density:>4} {R___5.density:>4} {P___5.density:>4} {N___5.density:>4} {M___5.density:>4} {L___5.density:>4} {K___5.density:>4} {J___5.density:>4} {H___5.density:>4} {G___5.density:>4} {F___5.density:>4} {E___5.density:>4} {D___5.density:>4} {C___5.density:>4} {B___5.density:>4} {A___5.density:>4} {GR__E.density:>4}
+{GR__W.density:>4} {R___6.density:>4} {P___6.density:>4} {N___6.density:>4} {M___6.density:>4} {L___6.density:>4} {K___6.density:>4} {J___6.density:>4} {H___6.density:>4} {G___6.density:>4} {F___6.density:>4} {E___6.density:>4} {D___6.density:>4} {C___6.density:>4} {B___6.density:>4} {A___6.density:>4} {GR__E.density:>4}
+{GR__W.density:>4} {R___7.density:>4} {P___7.density:>4} {N___7.density:>4} {M___7.density:>4} {L___7.density:>4} {K___7.density:>4} {J___7.density:>4} {H___7.density:>4} {G___7.density:>4} {F___7.density:>4} {E___7.density:>4} {D___7.density:>4} {C___7.density:>4} {B___7.density:>4} {A___7.density:>4} {GR__E.density:>4}
+{GR__W.density:>4} {R___8.density:>4} {P___8.density:>4} {N___8.density:>4} {M___8.density:>4} {L___8.density:>4} {K___8.density:>4} {J___8.density:>4} {H___8.density:>4} {G___8.density:>4} {F___8.density:>4} {E___8.density:>4} {D___8.density:>4} {C___8.density:>4} {B___8.density:>4} {A___8.density:>4} {GR__E.density:>4}
+{GR__W.density:>4} {R___9.density:>4} {P___9.density:>4} {N___9.density:>4} {M___9.density:>4} {L___9.density:>4} {K___9.density:>4} {J___9.density:>4} {H___9.density:>4} {G___9.density:>4} {F___9.density:>4} {E___9.density:>4} {D___9.density:>4} {C___9.density:>4} {B___9.density:>4} {A___9.density:>4} {GR__E.density:>4}
+{GR__W.density:>4} {R__10.density:>4} {P__10.density:>4} {N__10.density:>4} {M__10.density:>4} {L__10.density:>4} {K__10.density:>4} {J__10.density:>4} {H__10.density:>4} {G__10.density:>4} {F__10.density:>4} {E__10.density:>4} {D__10.density:>4} {C__10.density:>4} {B__10.density:>4} {A__10.density:>4} {GR__E.density:>4}
+{GR__W.density:>4} {R__11.density:>4} {P__11.density:>4} {N__11.density:>4} {M__11.density:>4} {L__11.density:>4} {K__11.density:>4} {J__11.density:>4} {H__11.density:>4} {G__11.density:>4} {F__11.density:>4} {E__11.density:>4} {D__11.density:>4} {C__11.density:>4} {B__11.density:>4} {A__11.density:>4} {GR__E.density:>4}
+{GRSWc.density:>4} {GR_SW.density:>4} {P__12.density:>4} {N__12.density:>4} {M__12.density:>4} {L__12.density:>4} {K__12.density:>4} {J__12.density:>4} {H__12.density:>4} {G__12.density:>4} {F__12.density:>4} {E__12.density:>4} {D__12.density:>4} {C__12.density:>4} {B__12.density:>4} {GR_SE.density:>4} {GRSEc.density:>4}
+{MOD__.density:>4} {GR__W.density:>4} {P__13.density:>4} {N__13.density:>4} {M__13.density:>4} {L__13.density:>4} {K__13.density:>4} {J__13.density:>4} {H__13.density:>4} {G__13.density:>4} {F__13.density:>4} {E__13.density:>4} {D__13.density:>4} {C__13.density:>4} {B__13.density:>4} {GR__E.density:>4} {MOD__.density:>4}
+{MOD__.density:>4} {GRSWc.density:>4} {GR_SW.density:>4} {N__14.density:>4} {M__14.density:>4} {L__14.density:>4} {K__14.density:>4} {J__14.density:>4} {H__14.density:>4} {G__14.density:>4} {F__14.density:>4} {E__14.density:>4} {D__14.density:>4} {C__14.density:>4} {GR_SE.density:>4} {GRSEc.density:>4} {MOD__.density:>4}
+{MOD__.density:>4} {MOD__.density:>4} {GRSWc.density:>4} {GR__S.density:>4} {GR_SW.density:>4} {L__15.density:>4} {K__15.density:>4} {J__15.density:>4} {H__15.density:>4} {G__15.density:>4} {F__15.density:>4} {E__15.density:>4} {GR_SE.density:>4} {GR__S.density:>4} {GRSEc.density:>4} {MOD__.density:>4} {MOD__.density:>4}
+{MOD__.density:>4} {MOD__.density:>4} {MOD__.density:>4} {MOD__.density:>4} {GRSWc.density:>4} {GR__S.density:>4} {GR__S.density:>4} {GR__S.density:>4} {GR__S.density:>4} {GR__S.density:>4} {GR__S.density:>4} {GR__S.density:>4} {GRSEc.density:>4} {MOD__.density:>4} {MOD__.density:>4} {MOD__.density:>4} {MOD__.density:>4}
+"""
+
+fueltemp_map = """
+{MOD__.fueltemp:>4} {MOD__.fueltemp:>4} {MOD__.fueltemp:>4} {MOD__.fueltemp:>4} {GRNWc.fueltemp:>4} {GR__N.fueltemp:>4} {GR__N.fueltemp:>4} {GR__N.fueltemp:>4} {GR__N.fueltemp:>4} {GR__N.fueltemp:>4} {GR__N.fueltemp:>4} {GR__N.fueltemp:>4} {GRNEc.fueltemp:>4} {MOD__.fueltemp:>4} {MOD__.fueltemp:>4} {MOD__.fueltemp:>4} {MOD__.fueltemp:>4} 
+{MOD__.fueltemp:>4} {MOD__.fueltemp:>4} {GRNWc.fueltemp:>4} {GR__N.fueltemp:>4} {GR_NW.fueltemp:>4} {L___1.fueltemp:>4} {K___1.fueltemp:>4} {J___1.fueltemp:>4} {H___1.fueltemp:>4} {G___1.fueltemp:>4} {F___1.fueltemp:>4} {E___1.fueltemp:>4} {GR_NE.fueltemp:>4} {GR__N.fueltemp:>4} {GRNEc.fueltemp:>4} {MOD__.fueltemp:>4} {MOD__.fueltemp:>4}
+{MOD__.fueltemp:>4} {GRNWc.fueltemp:>4} {GR_NW.fueltemp:>4} {N___2.fueltemp:>4} {M___2.fueltemp:>4} {L___2.fueltemp:>4} {K___2.fueltemp:>4} {J___2.fueltemp:>4} {H___2.fueltemp:>4} {G___2.fueltemp:>4} {F___2.fueltemp:>4} {E___2.fueltemp:>4} {D___2.fueltemp:>4} {C___2.fueltemp:>4} {GR_NE.fueltemp:>4} {GRNEc.fueltemp:>4} {MOD__.fueltemp:>4}
+{MOD__.fueltemp:>4} {GR__W.fueltemp:>4} {P___3.fueltemp:>4} {N___3.fueltemp:>4} {M___3.fueltemp:>4} {L___3.fueltemp:>4} {K___3.fueltemp:>4} {J___3.fueltemp:>4} {H___3.fueltemp:>4} {G___3.fueltemp:>4} {F___3.fueltemp:>4} {E___3.fueltemp:>4} {D___3.fueltemp:>4} {C___3.fueltemp:>4} {B___3.fueltemp:>4} {GR__E.fueltemp:>4} {MOD__.fueltemp:>4}
+{GRNWc.fueltemp:>4} {GR_NW.fueltemp:>4} {P___4.fueltemp:>4} {N___4.fueltemp:>4} {M___4.fueltemp:>4} {L___4.fueltemp:>4} {K___4.fueltemp:>4} {J___4.fueltemp:>4} {H___4.fueltemp:>4} {G___4.fueltemp:>4} {F___4.fueltemp:>4} {E___4.fueltemp:>4} {D___4.fueltemp:>4} {C___4.fueltemp:>4} {B___4.fueltemp:>4} {GR_NE.fueltemp:>4} {GRNEc.fueltemp:>4}
+{GR__W.fueltemp:>4} {R___5.fueltemp:>4} {P___5.fueltemp:>4} {N___5.fueltemp:>4} {M___5.fueltemp:>4} {L___5.fueltemp:>4} {K___5.fueltemp:>4} {J___5.fueltemp:>4} {H___5.fueltemp:>4} {G___5.fueltemp:>4} {F___5.fueltemp:>4} {E___5.fueltemp:>4} {D___5.fueltemp:>4} {C___5.fueltemp:>4} {B___5.fueltemp:>4} {A___5.fueltemp:>4} {GR__E.fueltemp:>4}
+{GR__W.fueltemp:>4} {R___6.fueltemp:>4} {P___6.fueltemp:>4} {N___6.fueltemp:>4} {M___6.fueltemp:>4} {L___6.fueltemp:>4} {K___6.fueltemp:>4} {J___6.fueltemp:>4} {H___6.fueltemp:>4} {G___6.fueltemp:>4} {F___6.fueltemp:>4} {E___6.fueltemp:>4} {D___6.fueltemp:>4} {C___6.fueltemp:>4} {B___6.fueltemp:>4} {A___6.fueltemp:>4} {GR__E.fueltemp:>4}
+{GR__W.fueltemp:>4} {R___7.fueltemp:>4} {P___7.fueltemp:>4} {N___7.fueltemp:>4} {M___7.fueltemp:>4} {L___7.fueltemp:>4} {K___7.fueltemp:>4} {J___7.fueltemp:>4} {H___7.fueltemp:>4} {G___7.fueltemp:>4} {F___7.fueltemp:>4} {E___7.fueltemp:>4} {D___7.fueltemp:>4} {C___7.fueltemp:>4} {B___7.fueltemp:>4} {A___7.fueltemp:>4} {GR__E.fueltemp:>4}
+{GR__W.fueltemp:>4} {R___8.fueltemp:>4} {P___8.fueltemp:>4} {N___8.fueltemp:>4} {M___8.fueltemp:>4} {L___8.fueltemp:>4} {K___8.fueltemp:>4} {J___8.fueltemp:>4} {H___8.fueltemp:>4} {G___8.fueltemp:>4} {F___8.fueltemp:>4} {E___8.fueltemp:>4} {D___8.fueltemp:>4} {C___8.fueltemp:>4} {B___8.fueltemp:>4} {A___8.fueltemp:>4} {GR__E.fueltemp:>4}
+{GR__W.fueltemp:>4} {R___9.fueltemp:>4} {P___9.fueltemp:>4} {N___9.fueltemp:>4} {M___9.fueltemp:>4} {L___9.fueltemp:>4} {K___9.fueltemp:>4} {J___9.fueltemp:>4} {H___9.fueltemp:>4} {G___9.fueltemp:>4} {F___9.fueltemp:>4} {E___9.fueltemp:>4} {D___9.fueltemp:>4} {C___9.fueltemp:>4} {B___9.fueltemp:>4} {A___9.fueltemp:>4} {GR__E.fueltemp:>4}
+{GR__W.fueltemp:>4} {R__10.fueltemp:>4} {P__10.fueltemp:>4} {N__10.fueltemp:>4} {M__10.fueltemp:>4} {L__10.fueltemp:>4} {K__10.fueltemp:>4} {J__10.fueltemp:>4} {H__10.fueltemp:>4} {G__10.fueltemp:>4} {F__10.fueltemp:>4} {E__10.fueltemp:>4} {D__10.fueltemp:>4} {C__10.fueltemp:>4} {B__10.fueltemp:>4} {A__10.fueltemp:>4} {GR__E.fueltemp:>4}
+{GR__W.fueltemp:>4} {R__11.fueltemp:>4} {P__11.fueltemp:>4} {N__11.fueltemp:>4} {M__11.fueltemp:>4} {L__11.fueltemp:>4} {K__11.fueltemp:>4} {J__11.fueltemp:>4} {H__11.fueltemp:>4} {G__11.fueltemp:>4} {F__11.fueltemp:>4} {E__11.fueltemp:>4} {D__11.fueltemp:>4} {C__11.fueltemp:>4} {B__11.fueltemp:>4} {A__11.fueltemp:>4} {GR__E.fueltemp:>4}
+{GRSWc.fueltemp:>4} {GR_SW.fueltemp:>4} {P__12.fueltemp:>4} {N__12.fueltemp:>4} {M__12.fueltemp:>4} {L__12.fueltemp:>4} {K__12.fueltemp:>4} {J__12.fueltemp:>4} {H__12.fueltemp:>4} {G__12.fueltemp:>4} {F__12.fueltemp:>4} {E__12.fueltemp:>4} {D__12.fueltemp:>4} {C__12.fueltemp:>4} {B__12.fueltemp:>4} {GR_SE.fueltemp:>4} {GRSEc.fueltemp:>4}
+{MOD__.fueltemp:>4} {GR__W.fueltemp:>4} {P__13.fueltemp:>4} {N__13.fueltemp:>4} {M__13.fueltemp:>4} {L__13.fueltemp:>4} {K__13.fueltemp:>4} {J__13.fueltemp:>4} {H__13.fueltemp:>4} {G__13.fueltemp:>4} {F__13.fueltemp:>4} {E__13.fueltemp:>4} {D__13.fueltemp:>4} {C__13.fueltemp:>4} {B__13.fueltemp:>4} {GR__E.fueltemp:>4} {MOD__.fueltemp:>4}
+{MOD__.fueltemp:>4} {GRSWc.fueltemp:>4} {GR_SW.fueltemp:>4} {N__14.fueltemp:>4} {M__14.fueltemp:>4} {L__14.fueltemp:>4} {K__14.fueltemp:>4} {J__14.fueltemp:>4} {H__14.fueltemp:>4} {G__14.fueltemp:>4} {F__14.fueltemp:>4} {E__14.fueltemp:>4} {D__14.fueltemp:>4} {C__14.fueltemp:>4} {GR_SE.fueltemp:>4} {GRSEc.fueltemp:>4} {MOD__.fueltemp:>4}
+{MOD__.fueltemp:>4} {MOD__.fueltemp:>4} {GRSWc.fueltemp:>4} {GR__S.fueltemp:>4} {GR_SW.fueltemp:>4} {L__15.fueltemp:>4} {K__15.fueltemp:>4} {J__15.fueltemp:>4} {H__15.fueltemp:>4} {G__15.fueltemp:>4} {F__15.fueltemp:>4} {E__15.fueltemp:>4} {GR_SE.fueltemp:>4} {GR__S.fueltemp:>4} {GRSEc.fueltemp:>4} {MOD__.fueltemp:>4} {MOD__.fueltemp:>4}
+{MOD__.fueltemp:>4} {MOD__.fueltemp:>4} {MOD__.fueltemp:>4} {MOD__.fueltemp:>4} {GRSWc.fueltemp:>4} {GR__S.fueltemp:>4} {GR__S.fueltemp:>4} {GR__S.fueltemp:>4} {GR__S.fueltemp:>4} {GR__S.fueltemp:>4} {GR__S.fueltemp:>4} {GR__S.fueltemp:>4} {GRSEc.fueltemp:>4} {MOD__.fueltemp:>4} {MOD__.fueltemp:>4} {MOD__.fueltemp:>4} {MOD__.fueltemp:>4}
 """
 
 pin_lattice ="""
@@ -316,7 +413,7 @@ def main():
     create_core()
 
     # Create cmfd
-#   create_cmfd()
+    create_cmfd()
 
     # Write OpenMC files
     write_openmc_input()
@@ -945,7 +1042,7 @@ def create_baffle():
        'GR_NW' : Assembly(u = univ_dict['baffle_NW'].id),
        'GRNWc' : Assembly(u = univ_dict['baffle_NWc'].id)})
 
-def create_lattice(lat_key, fuel_key, bp_key, gt_key, it_key, water_key = None, bp_config=None, comment = None):
+def create_lattice(assy, fuel_key, bp_key, gt_key, it_key, water_key = None, bp_config=None, comment = None):
 
     # Set up pin ids
     fuel_id = univ_dict[fuel_key].id
@@ -1012,7 +1109,7 @@ def create_lattice(lat_key, fuel_key, bp_key, gt_key, it_key, water_key = None, 
         'nw' : nw_id} 
 
     # Perform BP configurations
-    if bp_config == None:
+    if bp_config == '0':
         pass
     elif bp_config == '6N':
         univs.update({
@@ -1022,6 +1119,7 @@ def create_lattice(lat_key, fuel_key, bp_key, gt_key, it_key, water_key = None, 
             'pe' : bp_id,
             'pf' : bp_id,
             'pj' : bp_id})
+        assy_dict[assy].bp = '6'
     elif bp_config == '6E':
         univs.update({
             'pj' : bp_id,
@@ -1030,6 +1128,7 @@ def create_lattice(lat_key, fuel_key, bp_key, gt_key, it_key, water_key = None, 
             'pv' : bp_id,
             'pc' : bp_id,
             'py' : bp_id})
+        assy_dict[assy].bp = '6'
     elif bp_config == '6S':
         univs.update({
             'py' : bp_id,
@@ -1038,6 +1137,7 @@ def create_lattice(lat_key, fuel_key, bp_key, gt_key, it_key, water_key = None, 
             'pu' : bp_id,
             'pt' : bp_id,
             'pp' : bp_id})
+        assy_dict[assy].bp = '6'
     elif bp_config == '6W':
         univs.update({
             'pp' : bp_id,
@@ -1046,6 +1146,7 @@ def create_lattice(lat_key, fuel_key, bp_key, gt_key, it_key, water_key = None, 
             'pd' : bp_id,
             'pw' : bp_id,
             'pa' : bp_id})
+        assy_dict[assy].bp = '6'
     elif bp_config == '12':
         univs.update({
             'pa' : bp_id,
@@ -1077,6 +1178,7 @@ def create_lattice(lat_key, fuel_key, bp_key, gt_key, it_key, water_key = None, 
             'pq' : bp_id,
             'pr' : bp_id,
             'ps' : bp_id})
+        assy_dict[assy].bp = '15'
     elif bp_config == '15NE':
         univs.update({
             'pa' : bp_id,
@@ -1094,6 +1196,7 @@ def create_lattice(lat_key, fuel_key, bp_key, gt_key, it_key, water_key = None, 
             'pr' : bp_id,
             'ps' : bp_id,
             'pt' : bp_id})
+        assy_dict[assy].bp = '15'
     elif bp_config == '15SE':
         univs.update({
             'pg' : bp_id,
@@ -1111,6 +1214,7 @@ def create_lattice(lat_key, fuel_key, bp_key, gt_key, it_key, water_key = None, 
             'pw' : bp_id,
             'px' : bp_id,
             'py' : bp_id})
+        assy_dict[assy].bp = '15'
     elif bp_config == '15SW':
         univs.update({
             'pf' : bp_id,
@@ -1128,6 +1232,7 @@ def create_lattice(lat_key, fuel_key, bp_key, gt_key, it_key, water_key = None, 
             'pw' : bp_id,
             'px' : bp_id,
             'py' : bp_id})
+        assy_dict[assy].bp = '15'
     elif bp_config == '16':
         univs.update({
             'pa' : bp_id,
@@ -1172,7 +1277,7 @@ def create_lattice(lat_key, fuel_key, bp_key, gt_key, it_key, water_key = None, 
         raise Exception('BP Configuration {0} doesnt exist.'.format(bp_config))
 
     # Make lattice
-    add_lattice(lat_key,
+    add_lattice(assy,
         dimension = '19 19',
         lower_left = '{0} {0}'.format(lleft),
         width = '{0} {0}'.format(pin_pitch),
@@ -1185,7 +1290,7 @@ def create_assemblies():
     for assy in assy_dict.keys():
 
         # Check for non fuel assembly
-        if assy_dict[assy].enr == None:
+        if assy_dict[assy].enr == '0.0':
             continue
 
         # Sample density
@@ -1195,7 +1300,12 @@ def create_assemblies():
         assy_dict[assy].add_density(density)
 
         # Create a water material with that density
-        create_water_material('{0} coolant'.format(assy), density, color)
+        create_water_material(assy, density, color)
+        assy_dict[assy].add_waterid(mat_dict['{0} water'.format(assy)].id)
+
+        # Sample fuel temperature
+        fueltemp = random.uniform(hzp_fueltemp, high_fueltemp)
+        assy_dict[assy].add_fueltemp(fueltemp)
 
         # Create pin cells
         enr = assy_dict[assy].enr
@@ -1207,20 +1317,20 @@ def create_assemblies():
             fuelpin = 'fuel31pin'
         else:
             raise Exception ('Fuel enrichment doesnt exist')
-        create_fuelpin_cell('{0} fuelpin'.format(assy), fuelpin, '{0} coolant'.format(assy)) 
-        create_bppin_cell('{0} bppin'.format(assy), 'bp', '{0} coolant'.format(assy))
-        create_gtpin_cell('{0} gtpin'.format(assy), 'gt', '{0} coolant'.format(assy)) 
+        create_fuelpin_cell('{0} fuelpin'.format(assy), fuelpin, '{0} water'.format(assy)) 
+        create_bppin_cell('{0} bppin'.format(assy), 'bp', '{0} water'.format(assy))
+        create_gtpin_cell('{0} gtpin'.format(assy), 'gt', '{0} water'.format(assy)) 
 
         # Create lattice
-        create_lattice('{0} lattice'.format(assy), '{0} fuelpin'.format(assy), '{0} bppin'.format(assy),
-                       '{0} gtpin'.format(assy), '{0} gtpin'.format(assy), water_key = '{0} coolant'.format(assy),
+        create_lattice(assy, '{0} fuelpin'.format(assy), '{0} bppin'.format(assy),
+                       '{0} gtpin'.format(assy), '{0} gtpin'.format(assy), water_key = '{0} water'.format(assy),
                        bp_config = assy_dict[assy].bp, comment = '{0} lattice'.format(assy))
 
         # Create cell to put lattice in
         add_cell('{0} lattice fill'.format(assy),
             surfaces = '',
             universe = '{0} assembly'.format(assy),
-            fill = lat_dict['{0} lattice'.format(assy)].id,
+            fill = lat_dict[assy].id,
             comment = '{0} Assembly Cell'.format(assy))
         assy_dict['{0}'.format(assy)].add_universe(univ_dict['{0} assembly'.format(assy)].id)
 
@@ -1391,7 +1501,7 @@ def create_water_material(key, water_density, color=None):
     NO17 = aO17 * NO
     NO18 = aO18 * NO
 
-    mat_h2o = Material(key, 'HZP Water @ {0} g/cc'.format(water_density))
+    mat_h2o = Material('{0} water'.format(key), 'Water @ {0} g/cc in {1}'.format(water_density, key))
     mat_h2o.add_nuclide('B-10', '71c', str(NB10))
     mat_h2o.add_nuclide('B-11', '71c', str(NB11))
     mat_h2o.add_nuclide('H-1', '71c', str(NH1))
@@ -1406,71 +1516,50 @@ def create_water_material(key, water_density, color=None):
 def create_cmfd():
 
     # Put mesh info in
-    dz = (axial_surfaces['taf'] - axial_surfaces['baf'])/float(n_water)
-    mx = -assy_pitch/2.0
-    my = -assy_pitch/2.0
-    mz = axial_surfaces['baf'] - dz
-    px = assy_pitch/2.0
-    py = assy_pitch/2.0
-    pz = axial_surfaces['taf'] + dz
+    mx = -17.0*assy_pitch/2.0
+    my = -17.0*assy_pitch/2.0
+    mz = -100.0 
+    px = 17.0*assy_pitch/2.0
+    py = 17.0*assy_pitch/2.0
+    pz = 100.0 
     cmfd.update({'lower_left': '{0} {1} {2}'.format(mx, my, mz)})
     cmfd.update({'upper_right':'{0} {1} {2}'.format(px, py, pz)})
-    cmfd.update({'dimension':'1 1 {0}'.format(n_water + 2)})
-    map_str = "1\n"
-    for i in range(n_water):
-        map_str += "2\n"
-    map_str += "1\n"
+    cmfd.update({'dimension':'17 17 1'})
+    map_str = """
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1
+1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1
+1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1
+1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1
+1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1
+1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1
+1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1
+1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1
+1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1
+1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1
+1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1
+1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1
+1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1
+1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1
+1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1""" 
     cmfd.update({'map':map_str})
 
     # Put water id map in
-    water_str = "0\n"
-    current_id = -1 
-    for key in axial_dict.keys():
-        axial = axial_dict[key]
-        if axial.water_idx != current_id:
-            current_id = axial.water_idx
-            water_str += "{0}\n".format(mat_dict['water_{0}'.format(current_id)].id)
-    water_str += "0"
-    cmfd.update({'water_map':water_str})
+    cmfd.update({'water_map':water_idmap.format(**assy_dict)})
 
     # Put enrichment and bp map together
-    enr_str = "0.0\n"
-    bp_str = "0\n"
-    for i in range(n_water):
-        enr_str += "2.4\n"
-        bp_str += "12\n"
-    enr_str += "0.0"
-    bp_str += "0"
-    cmfd.update({'enr_map':enr_str})
-    cmfd.update({'bp_map':bp_str})
+    cmfd.update({'enr_map':enr_map.format(**assy_dict)})
+    cmfd.update({'bp_map':bp_map.format(**assy_dict)})
 
     # Fuel temperature
-    temp_low = 600.0
-    temp_high = 1200.0
-    try:
-        temp_slope = (temp_high - temp_low)/float(n_temps - 1)
-    except ZeroDivisionError:
-        temp_slope = 0.0
-    temp_str = "{0}\n".format(temp_low)
-    for i in range(n_water):
-        temp = temp_slope*i + temp_low
-        temp_str += "{0}\n".format(temp)
-    temp_str += "{0}".format(temp_low)
-    cmfd.update({'fuel_temp':temp_str})
+    cmfd.update({'fuel_temp':fueltemp_map.format(**assy_dict)})
 
     # Density
-    density_str = "0.0\n"
-    current_id = -1 
-    for key in axial_dict.keys():
-        axial = axial_dict[key]
-        if axial.water_idx != current_id:
-            current_id = axial.water_idx
-            density_str += "{0}\n".format(axial.cool_rho)
-    density_str += "0.0"
-    cmfd.update({'density':density_str})
+    cmfd.update({'density':density_map.format(**assy_dict)})
 
     # Normalization
-    cmfd.update({'norm':n_water})
+    cmfd.update({'norm':cmfd['n_assemblies']})
 
 def write_openmc_input():
 
@@ -1570,7 +1659,7 @@ def write_openmc_input():
     plot_str += """</plots>""".format(x = assy_pitch+5, y = assy_pitch+5)
     with open('plots.xml','w') as fh:
         fh.write(plot_str)
-    return
+
 ############ CMFD File ###############
 
     cmfd_str = """<?xml version="1.0" encoding="UTF-8"?>
@@ -1581,7 +1670,7 @@ def write_openmc_input():
     <lower_left>{lower_left}</lower_left>
     <upper_right>{upper_right}</upper_right>
     <dimension>{dimension}</dimension>
-    <albedo>1.0 1.0 1.0 1.0 0.0 0.0</albedo>
+    <albedo>0.0 0.0 0.0 0.0 1.0 1.0</albedo>
     <map>
 {map}
     </map>
