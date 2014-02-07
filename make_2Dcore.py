@@ -943,7 +943,7 @@ def create_baffle():
        'GR_NW' : Assembly(u = univ_dict['baffle_NW'].id),
        'GRNWc' : Assembly(u = univ_dict['baffle_NWc'].id)})
 
-def create_lattice(lat_key, fuel_key, bp_key, gt_key, it_key, bp_config=None, comment = None):
+def create_lattice(lat_key, fuel_key, bp_key, gt_key, it_key, water_key = None, bp_config=None, comment = None):
 
     # Set up pin ids
     fuel_id = univ_dict[fuel_key].id
@@ -952,14 +952,23 @@ def create_lattice(lat_key, fuel_key, bp_key, gt_key, it_key, bp_config=None, co
     it_id = univ_dict[it_key].id
 
     # No grid present in this model so set these all to water
-    no_id = univ_dict['mod'].id
-    ne_id = univ_dict['mod'].id
-    ea_id = univ_dict['mod'].id
-    se_id = univ_dict['mod'].id
-    so_id = univ_dict['mod'].id
-    sw_id = univ_dict['mod'].id
-    we_id = univ_dict['mod'].id
-    nw_id = univ_dict['mod'].id
+    if water_key == None:
+        water_univ = 'mod'
+    else:
+        add_cell(water_key,
+            surfaces = '',
+            universe = water_key,
+            material =  mat_dict[water_key].id,
+            comment = '{0} universe'.format(water_key))
+        water_univ = water_key
+    no_id = univ_dict[water_univ].id
+    ne_id = univ_dict[water_univ].id
+    ea_id = univ_dict[water_univ].id
+    se_id = univ_dict[water_univ].id
+    so_id = univ_dict[water_univ].id
+    sw_id = univ_dict[water_univ].id
+    we_id = univ_dict[water_univ].id
+    nw_id = univ_dict[water_univ].id
 
     # Calculate coordinates
     lleft = -19.0*pin_pitch / 2.0
@@ -1202,8 +1211,8 @@ def create_assemblies():
 
         # Create lattice
         create_lattice('{0} lattice'.format(assy), '{0} fuelpin'.format(assy), '{0} bppin'.format(assy),
-                       '{0} gtpin'.format(assy), '{0} gtpin'.format(assy), bp_config = assy_dict[assy].bp,
-                       comment = '{0} lattice'.format(assy))
+                       '{0} gtpin'.format(assy), '{0} gtpin'.format(assy), water_key = '{0} coolant'.format(assy),
+                       bp_config = assy_dict[assy].bp, comment = '{0} lattice'.format(assy))
 
         # Create cell to put lattice in
         add_cell('{0} lattice fill'.format(assy),
