@@ -547,6 +547,8 @@ def create_surfaces():
     add_surface('shield_NWSE30', 'plane', '1 {0} 0 0'.format(-math.tan(math.pi/6)), comment = 'Shield panel cut plane')
     add_surface('rpv_IR', 'z-cylinder', '0.0 0.0 230.09', comment = 'RPV inner radius')
     add_surface('rpv_OR', 'z-cylinder', '0.0 0.0 251.9', bc = 'vacuum', comment = 'RPV outer radius')
+    add_surface('floor', 'z-plane', '-100.0', bc = 'reflective', comment = 'Lowest plane')
+    add_surface('ceiling', 'z-plane', '100.0', bc = 'reflective', comment = 'Hightest plane')
 
 def create_fuelpin(fuel_mat):
 
@@ -1235,78 +1237,94 @@ def create_core():
      
     # Create core fill cell
     add_cell('core',
-        surfaces = '{0} -{1} {2} -{3} -{4}'.format(surf_dict['core_left'].id, surf_dict['core_right'].id,
-                                        surf_dict['core_back'].id, surf_dict['core_front'].id, surf_dict['core_barrelIR'].id),
+        surfaces = '{0} -{1} {2} -{3} -{4} {5} -{6}'.format(surf_dict['core_left'].id, surf_dict['core_right'].id,
+                                        surf_dict['core_back'].id, surf_dict['core_front'].id, surf_dict['core_barrelIR'].id,
+                                        surf_dict['floor'].id, surf_dict['ceiling'].id),
         fill = lat_dict['Core Lattice'].id,
         comment = 'Core fill')
 
     # Add moderator outside of core
     add_cell('coremodN',
-        surfaces = '{0} {1} -{2} -{3}'.format(surf_dict['core_front'].id, surf_dict['core_left'].id, surf_dict['core_right'].id, surf_dict['core_barrelIR'].id),
+        surfaces = '{0} {1} -{2} -{3} {4} -{5}'.format(surf_dict['core_front'].id, surf_dict['core_left'].id, surf_dict['core_right'].id, surf_dict['core_barrelIR'].id,
+                                        surf_dict['floor'].id, surf_dict['ceiling'].id),
         material = mat_dict['h2o_hzp'].id,
         comment = 'Moderator around N of core')
     add_cell('coremodS',
-        surfaces = '-{0} {1} -{2} -{3}'.format(surf_dict['core_back'].id, surf_dict['core_left'].id, surf_dict['core_right'].id, surf_dict['core_barrelIR'].id),
+        surfaces = '-{0} {1} -{2} -{3} {4} -{5}'.format(surf_dict['core_back'].id, surf_dict['core_left'].id, surf_dict['core_right'].id, surf_dict['core_barrelIR'].id,
+                                        surf_dict['floor'].id, surf_dict['ceiling'].id),
         material = mat_dict['h2o_hzp'].id,
         comment = 'Moderator around S of core')
     add_cell('coremodNES',
-        surfaces = '{0} -{1}'.format(surf_dict['core_right'].id, surf_dict['core_barrelIR'].id),
+        surfaces = '{0} -{1} {2} -{3}'.format(surf_dict['core_right'].id, surf_dict['core_barrelIR'].id,
+                                        surf_dict['floor'].id, surf_dict['ceiling'].id),
         material = mat_dict['h2o_hzp'].id,
         comment = 'Moderator around E of core')
     add_cell('coremodSWN',
-        surfaces = '-{0} -{1}'.format(surf_dict['core_left'].id, surf_dict['core_barrelIR'].id),
+        surfaces = '-{0} -{1} {2} -{3}'.format(surf_dict['core_left'].id, surf_dict['core_barrelIR'].id,
+                                        surf_dict['floor'].id, surf_dict['ceiling'].id),
         material = mat_dict['h2o_hzp'].id,
         comment = 'Moderator around W of core')
 
     # Add in core barrel
     add_cell('core_barrel',
-        surfaces = '{0} -{1}'.format(surf_dict['core_barrelIR'].id, surf_dict['core_barrelOR'].id),
+        surfaces = '{0} -{1} {2} -{3}'.format(surf_dict['core_barrelIR'].id, surf_dict['core_barrelOR'].id,
+                                        surf_dict['floor'].id, surf_dict['ceiling'].id),
         material = mat_dict['ss'].id,
         comment = 'Core Barrel')
 
     # Add shield panel ring
     add_cell('panelNE',
-        surfaces = '{0} -{1} {2} -{3}'.format(surf_dict['core_barrelOR'].id, surf_dict['shield_OR'].id, surf_dict['shield_NESW60'].id, surf_dict['shield_NESW30'].id),
+        surfaces = '{0} -{1} {2} -{3} {4} -{5}'.format(surf_dict['core_barrelOR'].id, surf_dict['shield_OR'].id, surf_dict['shield_NESW60'].id, surf_dict['shield_NESW30'].id,
+                                        surf_dict['floor'].id, surf_dict['ceiling'].id),
         material = mat_dict['ss'].id,
         comment = 'Northeast Shield Panel')
     add_cell('panelmodE',
-        surfaces = '{0} -{1} {2} -{3}'.format(surf_dict['core_barrelOR'].id, surf_dict['shield_OR'].id, surf_dict['shield_NESW30'].id, surf_dict['shield_NWSE30'].id),
+        surfaces = '{0} -{1} {2} -{3} {4} -{5}'.format(surf_dict['core_barrelOR'].id, surf_dict['shield_OR'].id, surf_dict['shield_NESW30'].id, surf_dict['shield_NWSE30'].id,
+                                        surf_dict['floor'].id, surf_dict['ceiling'].id),
         material = mat_dict['h2o_hzp'].id,
         comment = 'Mod East Shield Panel')
     add_cell('panelSE',
-       surfaces = '{0} -{1} {2} -{3}'.format(surf_dict['core_barrelOR'].id, surf_dict['shield_OR'].id, surf_dict['shield_NWSE30'].id, surf_dict['shield_NWSE60'].id),
+       surfaces = '{0} -{1} {2} -{3} {4} -{5}'.format(surf_dict['core_barrelOR'].id, surf_dict['shield_OR'].id, surf_dict['shield_NWSE30'].id, surf_dict['shield_NWSE60'].id,
+                                        surf_dict['floor'].id, surf_dict['ceiling'].id),
        material = mat_dict['ss'].id,
        comment = 'Southeast Shield Panel')
     add_cell('panelmodS',
-        surfaces = '{0} -{1}  {2} {3}'.format(surf_dict['core_barrelOR'].id, surf_dict['shield_OR'].id, surf_dict['shield_NWSE60'].id, surf_dict['shield_NESW60'].id),
+        surfaces = '{0} -{1}  {2} {3} {4} -{5}'.format(surf_dict['core_barrelOR'].id, surf_dict['shield_OR'].id, surf_dict['shield_NWSE60'].id, surf_dict['shield_NESW60'].id,
+                                        surf_dict['floor'].id, surf_dict['ceiling'].id),
         material = mat_dict['h2o_hzp'].id,
         comment = 'Mod South Shield Panel')
     add_cell('panelSW',
-        surfaces = '{0} -{1} -{2} {3}'.format(surf_dict['core_barrelOR'].id, surf_dict['shield_OR'].id, surf_dict['shield_NESW60'].id, surf_dict['shield_NESW30'].id),
+        surfaces = '{0} -{1} -{2} {3} {4} -{5}'.format(surf_dict['core_barrelOR'].id, surf_dict['shield_OR'].id, surf_dict['shield_NESW60'].id, surf_dict['shield_NESW30'].id,
+                                        surf_dict['floor'].id, surf_dict['ceiling'].id),
         material = mat_dict['ss'].id,
         comment = 'Southwest Shield Panel')
     add_cell('panelmodW',
-        surfaces = '{0} -{1} -{2} {3}'.format(surf_dict['core_barrelOR'].id, surf_dict['shield_OR'].id, surf_dict['shield_NESW30'].id, surf_dict['shield_NWSE30'].id),
+        surfaces = '{0} -{1} -{2} {3} {4} -{5}'.format(surf_dict['core_barrelOR'].id, surf_dict['shield_OR'].id, surf_dict['shield_NESW30'].id, surf_dict['shield_NWSE30'].id,
+                                        surf_dict['floor'].id, surf_dict['ceiling'].id),
         material = mat_dict['h2o_hzp'].id,
         comment = 'Mod West Shield Panel')
     add_cell('panelNW',
-        surfaces = '{0} -{1} -{2} {3}'.format(surf_dict['core_barrelOR'].id, surf_dict['shield_OR'].id, surf_dict['shield_NWSE30'].id, surf_dict['shield_NWSE60'].id),
+        surfaces = '{0} -{1} -{2} {3} {4} -{5}'.format(surf_dict['core_barrelOR'].id, surf_dict['shield_OR'].id, surf_dict['shield_NWSE30'].id, surf_dict['shield_NWSE60'].id,
+                                        surf_dict['floor'].id, surf_dict['ceiling'].id),
         material = mat_dict['ss'].id,
         comment = 'Northwest Shield Panel')
     add_cell('panelmodN',
-        surfaces = '{0} -{1} -{2} -{3}'.format(surf_dict['core_barrelOR'].id, surf_dict['shield_OR'].id, surf_dict['shield_NWSE60'].id, surf_dict['shield_NESW60'].id),
+        surfaces = '{0} -{1} -{2} -{3} {4} -{5}'.format(surf_dict['core_barrelOR'].id, surf_dict['shield_OR'].id, surf_dict['shield_NWSE60'].id, surf_dict['shield_NESW60'].id,
+                                        surf_dict['floor'].id, surf_dict['ceiling'].id),
         material = mat_dict['h2o_hzp'].id,
         comment = 'Mod North Shield Panel')
 
     # Add moderator before rpv
     add_cell('modrpv',
-        surfaces = '{0} -{1}'.format(surf_dict['shield_OR'].id, surf_dict['rpv_IR'].id),
+        surfaces = '{0} -{1} {2} -{3}'.format(surf_dict['shield_OR'].id, surf_dict['rpv_IR'].id,
+                                        surf_dict['floor'].id, surf_dict['ceiling'].id),
         material = mat_dict['h2o_hzp'].id,
         comment = 'Mod before RPV')
 
     # Add rpv
     add_cell('rpv',
-        surfaces = '{0} -{1}'.format(surf_dict['rpv_IR'].id, surf_dict['rpv_OR'].id),
+        surfaces = '{0} -{1} {2} -{3}'.format(surf_dict['rpv_IR'].id, surf_dict['rpv_OR'].id,
+                                        surf_dict['floor'].id, surf_dict['ceiling'].id),
         material = mat_dict['cs'].id,
         comment = 'RPV')
 
@@ -1506,10 +1524,10 @@ def write_openmc_input():
     settings.update({
 'xbot' : -17*assy_pitch/2.0,
 'ybot' : -17*assy_pitch/2.0,
-'zbot' : 0.0,
+'zbot' : -100.0,
 'xtop' : 17*assy_pitch/2.0,
 'ytop' : 17*assy_pitch/2.0,
-'ztop' : 10.0,
+'ztop' : 100.0,
 'entrX' : 17,
 'entrY' : 17,
 'entrZ' : 1
