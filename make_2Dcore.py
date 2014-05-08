@@ -1310,6 +1310,7 @@ def create_assemblies():
         density = random.uniform(low_density, hzp_density)
         color = -156.0/(hzp_density - low_density) * \
                 (density - hzp_density)
+        density = 0.739779017 
         assy_dict[assy].add_density(density)
 
         # Create a water material with that density
@@ -1318,6 +1319,7 @@ def create_assemblies():
 
         # Sample fuel temperature
         fueltemp = random.uniform(hzp_fueltemp, high_fueltemp)
+        fueltemp = 600.0
         assy_dict[assy].add_fueltemp(fueltemp)
 
         # Create pin cells

@@ -268,8 +268,8 @@ class Assembly(object):
         self.bp = bp
         self.u = u
         self.wid = wid
-        self.density = '0.0' 
-        self.fueltemp = '0.0'
+        self.density = '0.739779017' 
+        self.fueltemp = '600.0'
 
     def add_universe(self, u):
         self.u = u
