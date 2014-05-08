@@ -8,9 +8,9 @@ import math
 
 # Input Data
 settings = {
-'batches' : 500,
-'inactive' : 100,
-'particles' : 1000,
+'batches' : 400,
+'inactive' : 200,
+'particles' : 20000000,
 'run_cmfd' : 'true'
 }
 cmfd = {
@@ -432,6 +432,19 @@ def create_static_materials():
     mat_hzph2o.add_color('0 0 255')
     mat_hzph2o.finalize()
 
+    # HZP Water Material for assembly coolant
+    create_water_material('h2o_assy', 0.73986, 0)
+#   mat_h2o_assy = Material('h2o_assy', 'Assembly Water @ 0.73986 g/cc')
+#   mat_hzph2o.add_nuclide('B-10', '71c', '8.0042e-06')
+#   mat_hzph2o.add_nuclide('B-11', '71c', '3.2218e-05')
+#   mat_hzph2o.add_nuclide('H-1', '71c', '4.9457e-02')
+#   mat_hzph2o.add_nuclide('H-2', '71c', '7.4196e-06')
+#   mat_hzph2o.add_nuclide('O-16', '71c', '2.4672e-02')
+#   mat_hzph2o.add_nuclide('O-17', '71c', '6.0099e-05')
+#   mat_hzph2o.add_sab('lwtr', '15t')
+#   mat_hzph2o.add_color('0 255 0')
+#   mat_hzph2o.finalize()
+
     # Helium Material
     mat_hel = Material('he', 'Helium for Gap')
     mat_hel.add_nuclide('He-4', '71c', '2.4044e-04')
@@ -553,31 +566,31 @@ def create_static_materials():
 
     # UO2 at 1.6% enrichment Material
     mat_fuel24 = Material('fuel16', 'UO2 Fuel 1.6 w/o')
-    mat_fuel24.add_nuclide('U-234', '71c', '3.0131e-06')
-    mat_fuel24.add_nuclide('U-235', '71c', '3.7503e-04')
-    mat_fuel24.add_nuclide('U-238', '71c', '2.2626e-02')
-    mat_fuel24.add_nuclide('O-16', '71c', '4.5896e-02')
-    mat_fuel24.add_nuclide('O-17', '71c', '1.1180e-04')
+    mat_fuel24.add_nuclide('U-234', '72c', '3.0131e-06')
+    mat_fuel24.add_nuclide('U-235', '72c', '3.7503e-04')
+    mat_fuel24.add_nuclide('U-238', '72c', '2.2626e-02')
+    mat_fuel24.add_nuclide('O-16', '72c', '4.5896e-02')
+    mat_fuel24.add_nuclide('O-17', '72c', '1.1180e-04')
     mat_fuel24.add_color('142 35 35')
     mat_fuel24.finalize()
 
     # UO2 at 2.4% enrichment Material
     mat_fuel24 = Material('fuel24', 'UO2 Fuel 2.4 w/o')
-    mat_fuel24.add_nuclide('U-234', '71c', '4.4843e-06')
-    mat_fuel24.add_nuclide('U-235', '71c', '5.5815e-04')
-    mat_fuel24.add_nuclide('U-238', '71c', '2.2408e-02')
-    mat_fuel24.add_nuclide('O-16', '71c', '4.5829e-02')
-    mat_fuel24.add_nuclide('O-17', '71c', '1.1164e-04')
+    mat_fuel24.add_nuclide('U-234', '72c', '4.4843e-06')
+    mat_fuel24.add_nuclide('U-235', '72c', '5.5815e-04')
+    mat_fuel24.add_nuclide('U-238', '72c', '2.2408e-02')
+    mat_fuel24.add_nuclide('O-16', '72c', '4.5829e-02')
+    mat_fuel24.add_nuclide('O-17', '72c', '1.1164e-04')
     mat_fuel24.add_color('255 215 0')
     mat_fuel24.finalize()
 
     # UO2 at 3.1% enrichment Material
     mat_fuel24 = Material('fuel31', 'UO2 Fuel 2.4 w/o')
-    mat_fuel24.add_nuclide('U-234', '71c', '5.7988e-06')
-    mat_fuel24.add_nuclide('U-235', '71c', '7.2176e-04')
-    mat_fuel24.add_nuclide('U-238', '71c', '2.2254e-02')
-    mat_fuel24.add_nuclide('O-16', '71c', '4.5851e-02')
-    mat_fuel24.add_nuclide('O-17', '71c', '1.1169e-04')
+    mat_fuel24.add_nuclide('U-234', '72c', '5.7988e-06')
+    mat_fuel24.add_nuclide('U-235', '72c', '7.2176e-04')
+    mat_fuel24.add_nuclide('U-238', '72c', '2.2254e-02')
+    mat_fuel24.add_nuclide('O-16', '72c', '4.5851e-02')
+    mat_fuel24.add_nuclide('O-17', '72c', '1.1169e-04')
     mat_fuel24.add_color('0 0 128')
     mat_fuel24.finalize()
 
@@ -1054,12 +1067,12 @@ def create_lattice(assy, fuel_key, bp_key, gt_key, it_key, water_key = None, bp_
     if water_key == None:
         water_univ = 'mod'
     else:
-        add_cell(water_key,
+        add_cell(water_key+assy,
             surfaces = '',
-            universe = water_key,
+            universe = water_key+assy,
             material =  mat_dict[water_key].id,
             comment = '{0} universe'.format(water_key))
-        water_univ = water_key
+        water_univ = water_key+assy
     no_id = univ_dict[water_univ].id
     ne_id = univ_dict[water_univ].id
     ea_id = univ_dict[water_univ].id
@@ -1300,8 +1313,8 @@ def create_assemblies():
         assy_dict[assy].add_density(density)
 
         # Create a water material with that density
-        create_water_material(assy, density, color)
-        assy_dict[assy].add_waterid(mat_dict['{0} water'.format(assy)].id)
+#       create_water_material(assy, density, color)
+        assy_dict[assy].add_waterid(mat_dict['h2o_assy'].id)
 
         # Sample fuel temperature
         fueltemp = random.uniform(hzp_fueltemp, high_fueltemp)
@@ -1317,13 +1330,13 @@ def create_assemblies():
             fuelpin = 'fuel31pin'
         else:
             raise Exception ('Fuel enrichment doesnt exist')
-        create_fuelpin_cell('{0} fuelpin'.format(assy), fuelpin, '{0} water'.format(assy)) 
-        create_bppin_cell('{0} bppin'.format(assy), 'bp', '{0} water'.format(assy))
-        create_gtpin_cell('{0} gtpin'.format(assy), 'gt', '{0} water'.format(assy)) 
+        create_fuelpin_cell('{0} fuelpin'.format(assy), fuelpin, 'h2o_assy') 
+        create_bppin_cell('{0} bppin'.format(assy), 'bp', 'h2o_assy')
+        create_gtpin_cell('{0} gtpin'.format(assy), 'gt', 'h2o_assy') 
 
         # Create lattice
         create_lattice(assy, '{0} fuelpin'.format(assy), '{0} bppin'.format(assy),
-                       '{0} gtpin'.format(assy), '{0} gtpin'.format(assy), water_key = '{0} water'.format(assy),
+                       '{0} gtpin'.format(assy), '{0} gtpin'.format(assy), water_key = 'h2o_assy',
                        bp_config = assy_dict[assy].bp, comment = '{0} lattice'.format(assy))
 
         # Create cell to put lattice in
@@ -1501,7 +1514,7 @@ def create_water_material(key, water_density, color=None):
     NO17 = aO17 * NO
     NO18 = aO18 * NO
 
-    mat_h2o = Material('{0} water'.format(key), 'Water @ {0} g/cc in {1}'.format(water_density, key))
+    mat_h2o = Material('{0}'.format(key), 'Water @ {0} g/cc in {1}'.format(water_density, key))
     mat_h2o.add_nuclide('B-10', '71c', str(NB10))
     mat_h2o.add_nuclide('B-11', '71c', str(NB11))
     mat_h2o.add_nuclide('H-1', '71c', str(NH1))
